@@ -1,0 +1,4 @@
+backend/__pycache__/*
+backend/services/__pycache__/*
+backend/repositories/__pycache__/*
+backend/controllers/__pycache__/*
