@@ -8,10 +8,11 @@ import { StudentDataService } from '../../../services/student.service';  // Impo
   standalone: true,
   imports: [BarChartModule],
   templateUrl: './edu-famille.component.html',
+  styleUrl: './edu-famille.component.css',
 })
 export class EduFamilleComponent implements OnInit {
   data: schoolData[] = [];  
-  view: [number, number] = [1200, 500];
+  view: [number, number] = [1000, 500];
   xAxisLabel = "Niveau d'éducation des parents";
   yAxisLabel = "Moyenne des notes des étudiants";
   chartData: any[] = [];
