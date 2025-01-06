@@ -19,11 +19,14 @@ export class EduFamilleComponent  implements OnInit {
   constructor() {}
 
   ngOnInit(): void {
+    /*
     console.log(this.data)
     const groupedData = this.groupStudentsByParentEducation();
     this.chartData = this.formatChartData(groupedData);
+    */
   }
-
+  
+/*
   // Calculer la moyenne des trimestres pour chaque étudiant
   private calculateStudentAverages(): any[] {
     return this.data.map((student) => {
@@ -70,5 +73,5 @@ export class EduFamilleComponent  implements OnInit {
       name: group.range,
       value: group.avgGrade,
     }));
-  }
+  }*/
 }
