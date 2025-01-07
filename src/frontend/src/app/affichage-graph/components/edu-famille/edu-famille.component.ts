@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { BarChartModule } from '@swimlane/ngx-charts';
 import { schoolData } from '../../../types';
 import { StudentDataService } from '../../../services/student.service';  // Importer le service
+import { GraphService } from '../../../graph.service';
 
 @Component({
   selector: 'app-edu-famille',
@@ -10,60 +11,90 @@ import { StudentDataService } from '../../../services/student.service';  // Impo
   templateUrl: './edu-famille.component.html',
 })
 export class EduFamilleComponent implements OnInit {
-  data: schoolData[] = [];  
+  students: schoolData[] = [];
   view: [number, number] = [1200, 500];
-  xAxisLabel = "Niveau d'éducation des parents";
-  yAxisLabel = "Moyenne des notes des étudiants";
+  xAxisLabel = "Tranche de notes";
+  yAxisLabel = "Effectif des étudiants";
+  yScaleMax = 180
+  yScaleMin = 0
   chartData: any[] = [];
+  chartData2: any[] = [];
+  niveauEduc : number = 4;
+  combinedChartData: any[] = []
+  customColors = [
+    { name: 'Dataset 1', value: 'rgba(255, 99, 132, 0.5)' },  // Transparence 50% pour Dataset 1
+    { name: 'Dataset 2', value: 'rgba(54, 162, 235, 1)' }      // Opacité complète pour Dataset 2
+  ]
 
-  constructor(private studentDataService: StudentDataService) {} 
+  constructor(private readonly graphService: GraphService, private studentDataService: StudentDataService) { }
 
   ngOnInit(): void {
-    this.studentDataService.getStudentData().subscribe((students: schoolData[]) => {
-      this.data = students;  
-      const groupedData = this.groupStudentsByParentEducation();
-      this.chartData = this.formatChartData(groupedData);
+    this.studentDataService.getStudentData().subscribe((data: schoolData[]) => {
+      this.students = data;
+      this.chartData = this.numberStudentsPerRangeNotes();
+      this.chartData2 = this.numberStudentsPerRangeNotesAndParentEdu(this.niveauEduc);
+      this.combinedChartData = this.combined()
+      console.log(this.combinedChartData)
     });
   }
 
-  private calculateStudentAverages(): { parentEducation: number; averageGrade: number }[] {
-    return this.data.map((student: schoolData) => {  
-      const averageGrade = (student.G1 + student.G2 + student.G3) / 3;
-      const parentEducation = (student.Medu + student.Fedu) / 2;
-      return { parentEducation, averageGrade };
-    });
+  private calculateAverageParentEdu(student: schoolData): number {
+    return Math.ceil((student.Medu + student.Fedu) / 2)
   }
 
-  private groupStudentsByParentEducation(): { range: string; avgGrade: number }[] {
-    const ranges = [
-      { range: '0 - 1', students: [] as number[] },
-      { range: '1 - 2', students: [] as number[] },
-      { range: '2 - 3', students: [] as number[] },
-      { range: '3 - 4', students: [] as number[] },
+  private studentsAverageGrades(): number {
+    return this.students.reduce((note, student: schoolData) =>
+      student.G1 + student.G2 + student.G3, 0) / 3
+  }
+
+  private calculateStudentAverageGrades(student: schoolData): number {
+    return (student.G1 + student.G2 + student.G3) / 3
+  }
+
+  private numberStudentsPerRangeNotes() {
+    //let dataset = [
+    return [{ name: '< 5', value: this.students.filter(x => this.calculateStudentAverageGrades(x) < 5).length },
+    { name: '5 - 10', value: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 5 && this.calculateStudentAverageGrades(x) < 10).length },
+    { name: '10 - 15', value: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 10 && this.calculateStudentAverageGrades(x) < 15).length },
+    { name: '> 15', value: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 15).length }
+    ]
+
+    //return this.graphStudentsPerRangeNotes(dataset)
+  }
+
+  private numberStudentsPerRangeNotesAndParentEdu(parentEduLvl: number) {
+
+    //let dataset = 
+    return [
+      { name: '< 5', value: this.students.filter(x => this.calculateStudentAverageGrades(x) < 5 && this.calculateAverageParentEdu(x) == parentEduLvl).length },
+      { name: '5 - 10', value: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 5 && this.calculateStudentAverageGrades(x) < 10 && this.calculateAverageParentEdu(x) == parentEduLvl).length },
+      { name: '10 - 15', value: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 10 && this.calculateStudentAverageGrades(x) < 15 && this.calculateAverageParentEdu(x) == parentEduLvl).length },
+      { name: '> 15', value: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 15 && this.calculateAverageParentEdu(x) == parentEduLvl).length }
+    ]
+
+    //return this.graphStudentsPerRangeNotes(dataset)
+  }
+
+  private combined() {
+    return [
+      {
+        name: 'Dataset 1',
+        series: this.chartData
+      },
+      {
+        name: 'Dataset 2',
+        series: this.chartData2
+      }
     ];
-
-    const studentsWithAverages = this.calculateStudentAverages();
-
-    studentsWithAverages.forEach((student) => {
-      const edu = student.parentEducation;
-
-      if (edu >= 0 && edu < 1) ranges[0].students.push(student.averageGrade);
-      else if (edu >= 1 && edu < 2) ranges[1].students.push(student.averageGrade);
-      else if (edu >= 2 && edu < 3) ranges[2].students.push(student.averageGrade);
-      else if (edu >= 3 && edu <= 4) ranges[3].students.push(student.averageGrade);
-    });
-
-    return ranges.map((range) => {
-      const total = range.students.reduce((sum, grade) => sum + grade, 0);
-      const avgGrade = range.students.length ? total / range.students.length : 0;
-      return { range: range.range, avgGrade };
-    });
   }
 
-  private formatChartData(groupedData: { range: string; avgGrade: number }[]): any[] {
-    return groupedData.map((group) => ({
-      name: group.range,
-      value: group.avgGrade,
-    }));
+  private graphStudentsPerRangeNotes(dataset: { name: string; value: number; }[]) {
+    return this.graphService.toSingleData(
+      dataset.reduce((acc, curr) => {
+        acc[curr.name] = curr.value;
+        return acc;
+      }, {} as { [key: string]: number })
+    )
   }
+
 }
