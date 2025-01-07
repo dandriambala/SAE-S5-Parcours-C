@@ -1,5 +1,5 @@
 <h2>Effectif des élèves par tranche de notes </h2>
-<ngx-charts-bar-vertical
+<!--<ngx-charts-bar-vertical
   [view]="view"
   [scheme]="'vivid'"
   [results]="chartData"
@@ -31,20 +31,32 @@
   [yScaleMin]="yScaleMin">
 </ngx-charts-bar-vertical>
 
-<!--<h2>Combiné</h2>
+<h2>Combiné</h2>
 
-<ngx-charts-bar-vertical
-  [view]="view"
-  [scheme]="'vivid'"
-  [results]="combinedChartData"
-  [xAxis]="true"
-  [yAxis]="true"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  [legend]="false"
-  [yScaleMax]="yScaleMax"
-  [yScaleMin]="yScaleMin"
-  [customColors]="customColors">
-</ngx-charts-bar-vertical>-->
+<ngx-charts-bar-vertical-2d 
+[view]="view"
+[scheme]="'vivid'"
+[results]="combinedChartData"
+[xAxis]="true"
+[yAxis]="true"
+[xAxisLabel]="xAxisLabel"
+[yAxisLabel]="yAxisLabel"
+[showXAxisLabel]="true"
+[showYAxisLabel]="true"
+[legend]="false"
+[customColors]="customColors">
+</ngx-charts-bar-vertical-2d>-->
+
+<ngx-charts-bar-vertical-2d 
+[view]="view"
+[scheme]="'vivid'"
+[results]="combinedChartData"
+[xAxis]="true"
+[yAxis]="true"
+[xAxisLabel]="xAxisLabel"
+[yAxisLabel]="yAxisLabel"
+[showXAxisLabel]="true"
+[showYAxisLabel]="true"
+[legend]="false"
+[customColors]="customColors">
+</ngx-charts-bar-vertical-2d>
