@@ -15,9 +15,15 @@ export class EduFamilleComponent implements OnInit {
   //Object properties
   students: schoolData[] = [];
   chartData: any[] = [];
-  niveauEduc: number = 4;
+  parentEducationLevelSelected: number = 1;
   combinedChartData: any[] = []
   studentRanges: StudentRange[] = []
+  tabLevelEdu = [
+    { name: "éducation élevée", value: 4 },
+    { name: "éducation moyennement élevée", value: 3 },
+    { name: "éducation moyennement faible", value: 2 },
+    { name: "éducation faible", value: 1 }
+  ];
 
   //BarChart Settings
   view: [number, number] = [800, 500];
@@ -26,8 +32,11 @@ export class EduFamilleComponent implements OnInit {
   yScaleMax = 180
   yScaleMin = 0
   customColors = [
-    { name: 'total', value: 'rgba(255, 99, 229, 0.5)' },  // Transparence 50% pour Dataset 1
-    { name: 'education faible', value: 'rgba(54, 162, 235, 1)' }      // Opacité complète pour Dataset 2
+    { name: 'total', value: 'rgba(105, 127, 253, 0.14)' },
+    { name: 'éducation élevée', value: 'rgb(0, 81, 255)' },
+    { name: 'éducation moyennement élevée', value: 'rgb(38, 0, 252)' },
+    { name: 'éducation moyennement faible', value: 'rgb(191, 5, 248)' },
+    { name: 'éducation faible', value: 'rgb(250, 0, 0)' }
   ]
 
   constructor(private readonly graphService: GraphService, private studentDataService: StudentDataService) { }
@@ -45,7 +54,9 @@ export class EduFamilleComponent implements OnInit {
 
       this.chartData = this.getStudentRangeSummary();
 
-      this.chartData = this.getStudentRangePerParentEducationLevel(this.niveauEduc)
+      //this.chartData = this.getStudentRangePerParentEducationLevel(this.parentEducationLevelSelected)
+
+      this.chartData = this.getAllStudentRangePerParentEducationLevel()
 
       this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData)
     });
@@ -75,19 +86,36 @@ export class EduFamilleComponent implements OnInit {
 
   }
 
+  private getEduLevelName(value: number): string {
+    return this.tabLevelEdu.find(level => level.value === value)?.name || 'N/A';
+  }
+
   private getStudentRangePerParentEducationLevel(parentEduLvl: number) {
 
     const tabEdu = this.studentRanges.map(range => ({
       name: range.name,
       series: [
-        { name: 'education faible', value: range.list.filter(x => this.calculateAverageParentEdu(x) == parentEduLvl).length }
+        { name: this.getEduLevelName(parentEduLvl) , value: range.list.filter(x => this.calculateAverageParentEdu(x) == parentEduLvl).length }
       ]
     }));
 
     return [...this.chartData, ...tabEdu]
 
   }
-  
+
+  private getAllStudentRangePerParentEducationLevel() {
+
+    let tabEdu: any[] = []
+    let tabFinal: any[] = []
+
+    for (const edu of this.tabLevelEdu) {
+      tabEdu = this.getStudentRangePerParentEducationLevel(edu.value)
+      tabFinal = [...tabFinal, ...tabEdu];
+    }
+
+    return [...this.chartData, ...tabFinal]
+
+  }
 
   /*
   Transforme ça :
