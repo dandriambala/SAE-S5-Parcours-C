@@ -18,19 +18,15 @@ export class EduFamilleComponent implements OnInit {
   niveauEduc: number = 4;
   combinedChartData: any[] = []
   studentRanges: StudentRange[] = []
-  /*listStudentInf5: schoolData[] = []
-  listStudent5to10: schoolData[] = []
-  listStudent10to15: schoolData[] = []
-  listStudentSup15: schoolData[] = []*/
 
-  //BarCHart Settings
+  //BarChart Settings
   view: [number, number] = [800, 500];
   xAxisLabel = "Tranche de notes";
   yAxisLabel = "Effectif des étudiants";
   yScaleMax = 180
   yScaleMin = 0
   customColors = [
-    { name: 'total', value: 'rgba(255, 99, 132, 0.5)' },  // Transparence 50% pour Dataset 1
+    { name: 'total', value: 'rgba(255, 99, 229, 0.5)' },  // Transparence 50% pour Dataset 1
     { name: 'education faible', value: 'rgba(54, 162, 235, 1)' }      // Opacité complète pour Dataset 2
   ]
 
@@ -39,10 +35,6 @@ export class EduFamilleComponent implements OnInit {
   ngOnInit(): void {
     this.studentDataService.getStudentData().subscribe((data: schoolData[]) => {
       this.students = data;
-      /*this.listStudentInf5 = this.students.filter(x => this.calculateStudentAverageGrades(x) < 5)
-      this.listStudent5to10 = this.students.filter(x => this.calculateStudentAverageGrades(x) >= 5 && this.calculateStudentAverageGrades(x) < 10)
-      this.listStudent10to15 = this.students.filter(x => this.calculateStudentAverageGrades(x) >= 10 && this.calculateStudentAverageGrades(x) < 15)
-      this.listStudentSup15 = this.students.filter(x => this.calculateStudentAverageGrades(x) >= 15)*/
 
       this.studentRanges = [
         { name: '<5', list: this.students.filter(x => this.calculateStudentAverageGrades(x) < 5) },
@@ -51,10 +43,11 @@ export class EduFamilleComponent implements OnInit {
         { name: '>15', list: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 15) }
       ]
 
-      this.chartData = this.numberStudentsPerRangeNotes();
-      //this.chartData2 = this.numberStudentsPerRangeNotesAndParentEdu(this.niveauEduc);
+      this.chartData = this.getStudentRangeSummary();
+
+      this.chartData = this.getStudentRangePerParentEducationLevel(this.niveauEduc)
+
       this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData)
-      console.log(this.combinedChartData)
     });
   }
 
@@ -71,64 +64,30 @@ export class EduFamilleComponent implements OnInit {
     return (student.G1 + student.G2 + student.G3) / 3
   }
 
-  private numberStudentsPerRangeNotes() {
+  private getStudentRangeSummary(): { name: string, series: { name: string, value: number }[] }[] {
 
-    return [{
-      name: '<5',
-      series: [{ name: 'total', value: this.studentRanges.list.length }
+    return this.studentRanges.map(range => ({
+      name: range.name,
+      series: [
+        { name: 'total', value: range.list.length }
       ]
-    },
-    {
-      name: '5 - 10',
-      series: [{ name: 'total', value: this.listStudent5to10.length }
-      ]
-    },
-    {
-      name: '10 - 15',
-      series: [{ name: 'total', value: this.listStudent10to15.length }
-      ]
-    },
-    {
-      name: '>15',
-      series: [{ name: 'total', value: this.listStudentSup15.length }
-      ]
-    }
-    ]
+    }));
 
   }
 
-  private numberStudentsPerRangeNotesAndParentEdu(parentEduLvl: number) {
+  private getStudentRangePerParentEducationLevel(parentEduLvl: number) {
 
-    /*return [
-      { name: '< 5', value: this.students.filter(x => this.calculateStudentAverageGrades(x) < 5 && this.calculateAverageParentEdu(x) == parentEduLvl).length },
-      { name: '5 - 10', value: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 5 && this.calculateStudentAverageGrades(x) < 10 && this.calculateAverageParentEdu(x) == parentEduLvl).length },
-      { name: '10 - 15', value: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 10 && this.calculateStudentAverageGrades(x) < 15 && this.calculateAverageParentEdu(x) == parentEduLvl).length },
-      { name: '> 15', value: this.students.filter(x => this.calculateStudentAverageGrades(x) >= 15 && this.calculateAverageParentEdu(x) == parentEduLvl).length }
-    ]*/
+    const tabEdu = this.studentRanges.map(range => ({
+      name: range.name,
+      series: [
+        { name: 'education faible', value: range.list.filter(x => this.calculateAverageParentEdu(x) == parentEduLvl).length }
+      ]
+    }));
 
-    return [{
-      name: '<5',
-      series: [{ name: 'total', value: this.listStudentInf5.filter(x => this.calculateAverageParentEdu(x) == parentEduLvl).length }
-      ]
-    },
-    {
-      name: '5 - 10',
-      series: [{ name: 'total', value: this.listStudent5to10.length }
-      ]
-    },
-    {
-      name: '10 - 15',
-      series: [{ name: 'total', value: this.listStudent10to15.length }
-      ]
-    },
-    {
-      name: '>15',
-      series: [{ name: 'total', value: this.listStudentSup15.length }
-      ]
-    }
-    ]
+    return [...this.chartData, ...tabEdu]
 
   }
+  
 
   /*
   Transforme ça :

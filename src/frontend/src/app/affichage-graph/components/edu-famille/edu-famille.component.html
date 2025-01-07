@@ -1,37 +1,4 @@
 <h2>Effectif des élèves par tranche de notes </h2>
-<!--<ngx-charts-bar-vertical
-  [view]="view"
-  [scheme]="'vivid'"
-  [results]="chartData"
-  [xAxis]="true"
-  [yAxis]="true"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  [legend]="false"
-  [yScaleMax]="yScaleMax"
-  [yScaleMin]="yScaleMin">
-</ngx-charts-bar-vertical>
-
-<h2>Effectif des élèves par tranche de notes en fonction du niveau d'éducation des parents</h2>
-<h4>Niveau d'éducation : {{niveauEduc}}</h4>
-<ngx-charts-bar-vertical
-  [view]="view"
-  [scheme]="'vivid'"
-  [results]="chartData2"
-  [xAxis]="true"
-  [yAxis]="true"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [showXAxisLabel]="true"
-  [showYAxisLabel]="true"
-  [legend]="false"
-  [yScaleMax]="yScaleMax"
-  [yScaleMin]="yScaleMin">
-</ngx-charts-bar-vertical>
-
-<h2>Combiné</h2>
 
 <ngx-charts-bar-vertical-2d 
 [view]="view"
@@ -44,19 +11,6 @@
 [showXAxisLabel]="true"
 [showYAxisLabel]="true"
 [legend]="false"
-[customColors]="customColors">
-</ngx-charts-bar-vertical-2d>-->
-
-<ngx-charts-bar-vertical-2d 
-[view]="view"
-[scheme]="'vivid'"
-[results]="combinedChartData"
-[xAxis]="true"
-[yAxis]="true"
-[xAxisLabel]="xAxisLabel"
-[yAxisLabel]="yAxisLabel"
-[showXAxisLabel]="true"
-[showYAxisLabel]="true"
-[legend]="false"
-[customColors]="customColors">
+[customColors]="customColors"
+[yScaleMax]="yScaleMax">
 </ngx-charts-bar-vertical-2d>
