@@ -1,15 +1,88 @@
-
 <div class="chart-container">
-  <ngx-charts-bar-vertical
-    [view]="view"
-    [scheme]="'vivid'"
-    [results]="chartData"
-    [xAxis]="true"
-    [yAxis]="true"
-    [xAxisLabel]="xAxisLabel"
-    [yAxisLabel]="yAxisLabel"
-    [showXAxisLabel]="true"
-    [showYAxisLabel]="true"
-    [legend]="false">
-  </ngx-charts-bar-vertical>
-</div>
+  <div class="menu-and-chart">
+   
+    <div class="menu">
+      <div class="menu-item">
+        <h4>Situation familiale
+          <input type="radio" name="valeur" value="situationFamiliale">
+        </h4>
+        <label>
+          <input type="checkbox" name="situation-familiale" value="monoparental" checked (click)="testSituationFamiliale($event)">
+          Monoparental
+        </label>
+        <label>
+          <input type="checkbox" name="situation-familiale" value="marie" (click)="testSituationFamiliale($event)">
+          Marié.e
+        </label>
+        <label>
+          <input type="checkbox" name="situation-familiale" value="divorce" (click)="testSituationFamiliale($event)">
+          Divorcé.e
+        </label>
+      </div>
+
+      <div class="menu-item">
+        <h4>Alcool
+          <input type="radio" name="valeur" value="alcool">
+        </h4>
+        <label>
+          <input type="checkbox" name="alcool" value="jamais">
+          Jamais
+        </label>
+        <label>
+          <input type="checkbox" name="alcool" value="occasionnellement">
+          Occasionnellement
+        </label>
+        <label>
+          <input type="checkbox" name="alcool" value="regulierement">
+          Régulièrement
+        </label>
+        <label>
+          <input type="checkbox" name="alcool" value="tous-les-jours">
+          Tous les jours
+        </label>
+      </div>
+
+      <div class="menu-item">
+        <h4>Jeu Vidéos
+          <input type="radio" name="valeur" value="jeu-video" class="radio-right" onclick="toggleCheckboxes('jeu-video-options')">
+        </h4>
+        <div class="checkbox-dropdown" id="jeu-video-options" style="display:none;">
+          <label>
+            <input type="checkbox" name="jeu-video" value="action">
+            Action
+          </label>
+          <label>
+            <input type="checkbox" name="jeu-video" value="aventure">
+            Aventure
+          </label>
+          <label>
+            <input type="checkbox" name="jeu-video" value="stratégie">
+            Stratégie
+          </label>
+          <label>
+            <input type="checkbox" name="jeu-video" value="simulation">
+            Simulation
+          </label>
+        </div>
+      </div>
+      
+    </div> 
+
+    <div class="chart">
+      <h3 class="chart-title">Graphe Moyenne Étudiant</h3>
+      <div class="chart-wrapper">
+        <ngx-charts-bar-vertical
+          [view]="view"
+          [scheme]="'vivid'"
+          [results]="chartData"
+          [xAxis]="true"
+          [yAxis]="true"
+          [xAxisLabel]="xAxisLabel"
+          [yAxisLabel]="yAxisLabel"
+          [showXAxisLabel]="true"
+          [showYAxisLabel]="true"
+          [legend]="false">
+        </ngx-charts-bar-vertical>
+      </div>
+    </div>
+ 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BarChartModule } from '@swimlane/ngx-charts';
 import { schoolData } from '../../../types';
-import { StudentDataService } from '../../../services/student.service';  // Importer le service
+import { StudentDataService } from '../../../services/student.service';  
 
 @Component({
   selector: 'app-edu-famille',
@@ -12,10 +12,13 @@ import { StudentDataService } from '../../../services/student.service';  // Impo
 })
 export class EduFamilleComponent implements OnInit {
   data: schoolData[] = [];  
-  view: [number, number] = [1000, 500];
+  view: [number, number] = [900, 500];
   xAxisLabel = "Niveau d'éducation des parents";
   yAxisLabel = "Moyenne des notes des étudiants";
   chartData: any[] = [];
+  situationFamiliale: string[] = [];
+  alcool: string[] = [];
+  jeuVideo: string[] = [];
 
   constructor(private studentDataService: StudentDataService) {} 
 
@@ -67,4 +70,43 @@ export class EduFamilleComponent implements OnInit {
       value: group.avgGrade,
     }));
   }
+  
+
+ 
+  testSituationFamiliale(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    const value = input.value;
+
+    if (input.checked) {
+     
+      this.situationFamiliale.push(value);
+    } else {
+   
+      this.situationFamiliale = this.situationFamiliale.filter((item) => item !== value);
+    }
+
+    console.log('Situation familiale sélectionnée :', this.situationFamiliale);
+
+    if (this.situationFamiliale.includes('monoparental')) {
+      console.log('Monoparental est sélectionné');
+    }
+    if (this.situationFamiliale.includes('marie')) {
+      console.log('Marié.e est sélectionné');
+    }
+    if (this.situationFamiliale.includes('divorce')) {
+      console.log('Divorcé.e est sélectionné');
+    }
+  }
+
+ 
+  
+  resetSelection() {
+    this.situationFamiliale = [];
+    this.alcool = [];
+    this.jeuVideo = [];
+    console.log('Toutes les sélections ont été réinitialisées');
+  }
+
+ 
+
 }
