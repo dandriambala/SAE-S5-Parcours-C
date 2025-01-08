@@ -15,20 +15,32 @@ import { DatasetItem, Dataset, StudentRange } from '../../../types';
 })
 export class EduFamilleComponent implements OnInit {
   
-  //Object properties
+  /**
+   * Object properties
+   * **/
+
+  //Global
   students: schoolData[] = [];
   chartData: any[] = [];
-  parentEducationLevelSelected: number = 1;
-  combinedChartData: any[] = []
+  combinedChartData: any[] = [];
   studentRanges: StudentRange[] = []
+
+  //Education des parents
+  parentEducationLevelSelected: number = 1;
   tabLevelEdu = [
     { name: "éducation élevée", value: 4 },
     { name: "éducation moyennement élevée", value: 3 },
     { name: "éducation moyennement faible", value: 2 },
     { name: "éducation faible", value: 1 }
   ];
+
+  //Situation familiale
   situationFamiliale: string[] = [];
+
+  //Alcool
   alcool: string[] = [];
+
+  //Jeux vidéo
   jeuVideo: string[] = [];
 
   //BarChart Settings
@@ -37,6 +49,8 @@ export class EduFamilleComponent implements OnInit {
   yAxisLabel = "Effectif des étudiants";
   yScaleMax = 180
   yScaleMin = 0
+
+  //Colors
   customColors = [
     { name: 'total', value: 'rgba(105, 127, 253, 0.14)' },
     { name: 'éducation élevée', value: 'rgb(0, 81, 255)' },
