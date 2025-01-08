@@ -3,7 +3,7 @@ import { BarChartModule } from '@swimlane/ngx-charts';
 import { MultipleData, schoolData } from '../../../types';
 import { StudentDataService } from '../../../services/student.service';  // Importer le service
 import { GraphService } from '../../../graph.service';
-import { DatasetItem, Dataset, StudentRange } from '../../../types';
+import { DatasetItem, Dataset, StudentRange, SeriesItem } from '../../../types';
 
 
 @Component({
@@ -14,7 +14,7 @@ import { DatasetItem, Dataset, StudentRange } from '../../../types';
   styleUrl: './edu-famille.component.css',
 })
 export class EduFamilleComponent implements OnInit {
-  
+
   /**
    * Object properties
    * **/
@@ -26,22 +26,33 @@ export class EduFamilleComponent implements OnInit {
   studentRanges: StudentRange[] = []
 
   //Education des parents
-  parentEducationLevelSelected: number = 1;
-  tabLevelEdu = [
-    { name: "éducation élevée", value: 4 },
-    { name: "éducation moyennement élevée", value: 3 },
-    { name: "éducation moyennement faible", value: 2 },
-    { name: "éducation faible", value: 1 }
+  education = [
+    { name: "éducation : faible", value: 1 },
+    { name: "éducation : moyennement faible", value: 2 },
+    { name: "éducation : moyennement élevée", value: 3 },
+    { name: "éducation : élevée", value: 4 }
   ];
 
   //Situation familiale
-  situationFamiliale: string[] = [];
+  situationFamiliale = [
+    { name: "parent.s : monoparental", value: 1 },
+    { name: "parent.s : mariés", value: 2 },
+    { name: "parent.s : divorcés", value: 3 }
+  ];
 
   //Alcool
-  alcool: string[] = [];
+  alcool = [
+    { name: "alcool : jamais", value: 1 },
+    { name: "alcool : occasionnellement", value: 2 },
+    { name: "alcool : régulièrement", value: 3 }
+  ];
 
   //Jeux vidéo
-  jeuVideo: string[] = [];
+  jeuVideo = [
+    { name: "jeux vidéos : jamais", value: 1 },
+    { name: "jeux vidéos : occasionnellement", value: 2 },
+    { name: "jeux vidéos : régulièrement", value: 3 }
+  ];
 
   //BarChart Settings
   view: [number, number] = [900, 500];
@@ -52,11 +63,20 @@ export class EduFamilleComponent implements OnInit {
 
   //Colors
   customColors = [
-    { name: 'total', value: 'rgba(105, 127, 253, 0.14)' },
-    { name: 'éducation élevée', value: 'rgb(0, 81, 255)' },
-    { name: 'éducation moyennement élevée', value: 'rgb(38, 0, 252)' },
-    { name: 'éducation moyennement faible', value: 'rgb(191, 5, 248)' },
-    { name: 'éducation faible', value: 'rgb(250, 0, 0)' }
+    { name: 'total', value: 'rgba(105, 127, 253)' },
+    { name: 'éducation : faible', value: 'rgb(0, 81, 255)' },
+    { name: 'éducation : moyennement élevée', value: 'rgb(38, 0, 252)' },
+    { name: 'éducation : moyennement faible', value: 'rgb(191, 5, 248)' },
+    { name: 'éducation : faible', value: 'rgb(250, 0, 0)' },
+    { name: "parent.s : monoparental", value: 'rgb(0, 81, 255)' },
+    { name: "parent.s : mariés", value: 'rgb(38, 0, 252)' },
+    { name: "parent.s : divorcés", value: 'rgb(191, 5, 248)' },
+    { name: "alcool : jamais", value: 'rgb(0, 81, 255)' },
+    { name: "alcool : occasionnellement", value: 'rgb(38, 0, 252)' },
+    { name: "alcool : régulièrement", value: 'rgb(191, 5, 248)' },
+    { name: "jeux vidéos : jamais", value: 'rgb(0, 81, 255)' },
+    { name: "jeux vidéos : occasionnellement", value: 'rgb(38, 0, 252)' },
+    { name: "jeux vidéos : régulièrement", value: 'rgb(191, 5, 248)' }
   ]
 
   constructor(private readonly graphService: GraphService, private studentDataService: StudentDataService) { }
@@ -74,25 +94,8 @@ export class EduFamilleComponent implements OnInit {
 
       this.chartData = this.getStudentRangeSummary();
 
-      //this.chartData = this.getStudentRangePerParentEducationLevel(this.parentEducationLevelSelected)
-
-      this.chartData = this.getAllStudentRangePerParentEducationLevel()
-
       this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData)
     });
-  }
-
-  private calculateAverageParentEdu(student: schoolData): number {
-    return Math.ceil((student.Medu + student.Fedu) / 2)
-  }
-
-  private studentsAverageGrades(): number {
-    return this.students.reduce((note, student: schoolData) =>
-      student.G1 + student.G2 + student.G3, 0) / 3
-  }
-
-  private calculateStudentAverageGrades(student: schoolData): number {
-    return (student.G1 + student.G2 + student.G3) / 3
   }
 
   private getStudentRangeSummary(): { name: string, series: { name: string, value: number }[] }[] {
@@ -103,37 +106,6 @@ export class EduFamilleComponent implements OnInit {
         { name: 'total', value: range.list.length }
       ]
     }));
-
-  }
-
-  private getEduLevelName(value: number): string {
-    return this.tabLevelEdu.find(level => level.value === value)?.name || 'N/A';
-  }
-
-  private getStudentRangePerParentEducationLevel(parentEduLvl: number) {
-
-    const tabEdu = this.studentRanges.map(range => ({
-      name: range.name,
-      series: [
-        { name: this.getEduLevelName(parentEduLvl) , value: range.list.filter(x => this.calculateAverageParentEdu(x) == parentEduLvl).length }
-      ]
-    }));
-
-    return [...this.chartData, ...tabEdu]
-
-  }
-
-  private getAllStudentRangePerParentEducationLevel() {
-
-    let tabEdu: any[] = []
-    let tabFinal: any[] = []
-
-    for (const edu of this.tabLevelEdu) {
-      tabEdu = this.getStudentRangePerParentEducationLevel(edu.value)
-      tabFinal = [...tabFinal, ...tabEdu];
-    }
-
-    return [...this.chartData, ...tabFinal]
 
   }
 
@@ -180,7 +152,6 @@ export class EduFamilleComponent implements OnInit {
     ...
   ];
   */
-
   private sortStudentsDatasetPerRangeNotes(dataset: DatasetItem[]): DatasetItem[] {
     const mergedMap = new Map<string, { name: string; value: number }[]>();
 
@@ -202,40 +173,122 @@ export class EduFamilleComponent implements OnInit {
 
   }
 
-  testSituationFamiliale(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    const value = input.value;
 
-    if (input.checked) {
-     
-      this.situationFamiliale.push(value);
+  /**
+   * Fonctions pour éducation
+   */
+
+
+  private calculateAverageParentEdu(student: schoolData): number {
+    return Math.ceil((student.Medu + student.Fedu) / 2)
+  }
+
+  private studentsAverageGrades(): number {
+    return this.students.reduce((note, student: schoolData) =>
+      student.G1 + student.G2 + student.G3, 0) / 3
+  }
+
+  private calculateStudentAverageGrades(student: schoolData): number {
+    return (student.G1 + student.G2 + student.G3) / 3
+  }
+
+  private getEduLevelName(value: number): string {
+    return this.education.find(id => id.value === value)?.name || 'N/A';
+  }
+
+  private getStudentRangePerParentEducationLevel(parentEduLvl: number) {
+
+    if (!parentEduLvl) return this.chartData
+
+    const tabEdu = this.studentRanges.map(range => ({
+      name: range.name,
+      series: [
+        { name: this.getEduLevelName(parentEduLvl), value: range.list.filter(x => this.calculateAverageParentEdu(x) == parentEduLvl).length }
+      ]
+    }));
+
+    return tabEdu
+
+  }
+
+  private getAllStudentRangePerParentEducationLevel() {
+
+    let tabEdu: any[] = []
+    let tabFinal: any[] = []
+
+    for (const edu of this.education) {
+      tabEdu = this.getStudentRangePerParentEducationLevel(edu.value)
+      tabFinal = [...tabFinal, ...tabEdu];
+    }
+
+    return [...this.chartData, ...tabFinal]
+
+  }
+
+  onParentEducationLevelToggle(value: number, event: Event): void {
+
+    const inputElement = event.target as HTMLInputElement; // Cast de l'élément cible
+
+    if (inputElement.checked) {
+      // Ajouter les données si la checkbox est cochée
+      const newChartData = this.getStudentRangePerParentEducationLevel(value);
+      this.chartData = [...this.chartData, ...newChartData];
     } else {
-   
-      this.situationFamiliale = this.situationFamiliale.filter((item) => item !== value);
+      // Retirer les données si la checkbox est décochée
+      this.chartData = this.chartData.map(item => ({
+        name: item.name,
+        series: item.series.filter((seriesItem: SeriesItem) =>
+          seriesItem.name !== this.getEduLevelName(value)
+        )
+      })).filter(item => item.series.length > 0); // Retirer les objets vides
     }
 
-    console.log('Situation familiale sélectionnée :', this.situationFamiliale);
-
-    if (this.situationFamiliale.includes('monoparental')) {
-      console.log('Monoparental est sélectionné');
-    }
-    if (this.situationFamiliale.includes('marie')) {
-      console.log('Marié.e est sélectionné');
-    }
-    if (this.situationFamiliale.includes('divorce')) {
-      console.log('Divorcé.e est sélectionné');
-    }
+    this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
   }
 
- 
-  
-  resetSelection() {
-    this.situationFamiliale = [];
-    this.alcool = [];
-    this.jeuVideo = [];
-    console.log('Toutes les sélections ont été réinitialisées');
+  /**
+   * 
+   * Fonctions pour situation familiale
+   */
+
+ /* private getSituationFamilialeName(value: number): string {
+    return this.situationFamiliale.find(id => id.value === value)?.name || 'N/A';
   }
 
- 
+  private getStudentRangePerSituationFamiliale(parentSituationId: number) {
+
+    if (!parentSituationId) return this.chartData
+
+    const tabSituationFamiliale = this.studentRanges.map(range => ({
+      name: range.name,
+      series: [
+        { name: this.getSituationFamilialeName(parentSituationId) , value: range.list.filter(x => x === parentEduLvl).length }
+      ]
+    }));
+
+    return tabSituationFamiliale
+
+  }*/
+
+  onSituationFamilialeToggle(value: number, event: Event): void {
+
+    const inputElement = event.target as HTMLInputElement; // Cast de l'élément cible
+
+    if (inputElement.checked) {
+      // Ajouter les données si la checkbox est cochée
+      const newChartData = this.getStudentRangePerParentEducationLevel(value);
+      this.chartData = [...this.chartData, ...newChartData];
+    } else {
+      // Retirer les données si la checkbox est décochée
+      this.chartData = this.chartData.map(item => ({
+        name: item.name,
+        series: item.series.filter((seriesItem: SeriesItem) =>
+          seriesItem.name !== this.getEduLevelName(value)
+        )
+      })).filter(item => item.series.length > 0); // Retirer les objets vides
+    }
+
+    this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
+  }
 
 }
