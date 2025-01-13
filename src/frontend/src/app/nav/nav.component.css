@@ -1,49 +1,52 @@
 header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1rem 2rem;
-    background-color: #1e293b; 
-    color: #ffffff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background-color: #1e293b;
+  color: #ffffff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+header a {
+  text-decoration: none;
+  color: #ffffff;
+  font-weight: 600;
+  transition: color 0.3s ease;
+}
+
+header a:hover {
+  color: #38bdf8;
+}
+
+nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+nav a {
+  padding: 0.5rem 1rem;
+  border-radius: 0.25rem;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  font-size:medium;
+}
+
+nav a:hover {
+  background-color: #38bdf8;
+  color: #1e293b;
+}
+img {
+  height: 100px;
+  width:  100px;
+}
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    align-items: flex-start;
   }
-  
-  header a {
-    text-decoration: none;
-    color: #ffffff;
-    font-weight: 600;
-    transition: color 0.3s ease;
-  }
-  
-  header a:hover {
-    color: #38bdf8; 
-  }
-  
+
   nav {
-    display: flex;
-    gap: 1.5rem; 
+    flex-wrap: wrap;
+    gap: 1rem;
   }
-  
-  nav a {
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  nav a:hover {
-    background-color: #38bdf8; 
-    color: #1e293b; 
-  }
-  
-  @media (max-width: 768px) {
-    header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-  
-    nav {
-      flex-wrap: wrap;
-      gap: 1rem;
-    }
-  }
-  
+}
