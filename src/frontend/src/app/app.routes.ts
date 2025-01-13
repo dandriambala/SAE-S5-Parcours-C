@@ -3,6 +3,7 @@ import { AffichageGraphComponent } from './affichage-graph/affichage-graph.compo
 import { HomePageComponent } from './home-page/home-page.component';
 import { EduFamilleComponent } from './affichage-graph/components/edu-famille/edu-famille.component';
 import { RadarChartComponent } from './affichage-graph/components/radar-chart/radar-chart.component';
+import {BubbleChartComponent } from './affichage-graph/components/bubble-chart/bubble-chart.component';
 
 export const routes: Routes = [
     {
@@ -20,5 +21,9 @@ export const routes: Routes = [
     {
         path: 'radar-chart',
         component: RadarChartComponent
+    },
+    {
+        path: 'bubble-chart',
+        component: BubbleChartComponent
     }
 ];

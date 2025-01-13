@@ -1,0 +1,18 @@
+<div class="chart-container">
+    <h2>Analyse des Données - Bubble Chart</h2>
+    <ngx-charts-bubble-chart
+      [view]="view"
+      [legend]="legend"
+      [xAxis]="xAxis"
+      [yAxis]="yAxis"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [animations]="animations"
+      [results]="multi"
+      (select)="onSelect($event)"
+    >
+    </ngx-charts-bubble-chart>
+  </div>
+  
