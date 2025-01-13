@@ -1,0 +1,79 @@
+/* Footer principal */
+.footer {
+    margin-top: 2%;
+    background-color: #997a8d; /* Couleur rose Mountbatten */
+    color: #ffffff; /* Texte en blanc */
+    padding: 30px 20px;
+    text-align: center;
+  }
+  
+  .footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start;
+    margin-bottom: 20px;
+  }
+  
+  .footer-section {
+    flex: 1;
+    min-width: 250px; /* Largeur minimale pour les sections */
+    margin: 10px;
+  }
+  
+  .footer-section h3,
+  .footer-section h4 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  
+  .footer-section p {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .footer-section ul li {
+    margin: 5px 0;
+    font-size: 1rem;
+  }
+  
+  /* Liens */
+  .footer-section a {
+    color: #ffe6f0; /* Une variante plus claire du rose pour les liens */
+    text-decoration: none;
+  }
+  
+  .footer-section a:hover {
+    text-decoration: underline;
+    color: #ffffff; /* Changement au survol */
+  }
+  
+  /* Bas du footer */
+  .footer-bottom {
+    border-top: 1px solid #e4d4db; /* Ligne de séparation */
+    padding-top: 10px;
+    font-size: 0.9rem;
+    color: #e4d4db;
+  }
+  
+  .footer-section {
+    transition: all 0.3s ease-in-out; /* Animation fluide */
+  }
+  
+  .footer-section:hover {
+    background-color: #d9b8c6; /* Un rose plus clair au survol */
+    color: #ffffff; /* Texte blanc pour le contraste */
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Ajout d'une ombre légère */
+    border-radius: 8px; /* Légère bordure arrondie pour l'effet */
+    padding: 15px; /* Légère expansion pour souligner l'interactivité */
+  }
+  
+  .footer-section ul li:hover {
+    text-decoration: underline; /* Surligne les noms au survol */
+  }

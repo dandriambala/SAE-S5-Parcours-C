@@ -3,7 +3,7 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
-  background-color: #1e293b;
+  background-color: #997a8d ;
   color: #ffffff;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
@@ -28,16 +28,16 @@ nav a {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-size:medium;
+  font-size: medium;
 }
 
 nav a:hover {
-  background-color: #38bdf8;
-  color: #1e293b;
+  background-color: #db7093;
+  color: #ffffff;
 }
 img {
   height: 100px;
-  width:  100px;
+  width: 100px;
 }
 @media (max-width: 768px) {
   header {

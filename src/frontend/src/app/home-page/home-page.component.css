@@ -1,20 +1,123 @@
-.scenario-container {
-    padding: 20px;
-    background-color: #f4f4f4;
-    color: #333;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-  .scenario-container h1, h2, h3 {
-    color: #0056b3;
-  }
-  .highlight {
-    background-color: #e7f3ff;
-    padding: 10px;
-    border-left: 4px solid #0056b3;
-    margin: 10px 0;
-  }
-  ul {
-    margin: 10px 0;
-    padding-left: 20px;
-  }
+/* Conteneur principal */
+.stats-container {
+  display: flex;
+  flex-direction: column; /* Pour empiler les éléments verticalement */
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #ddd0d8; /* Fond blanc */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(2, 2, 2, 0.5);
+  width: 70%;
+  height: auto;
+  margin: auto;
+  margin-top: 2%;
+}
+
+/* Section gauche : Texte */
+.info-section {
+  max-width: 80%; /* Ajuster la largeur pour qu'elle soit plus adaptée */
+  margin-bottom: 30px; /* Ajouter de l'espace entre le texte et les cartes */
+  
+}
+
+.info-section h2 {
+  font-size: 1.8rem;
+  color: #333333;
+  margin-bottom: 10px;
+}
+
+.info-section p {
+  font-size: 1rem;
+  color: #555555;
+}
+
+/* Section droite : Cartes */
+.cards-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px; /* Espacement entre le texte et les cartes */
+}
+
+.card {
+  align-items: center;
+  background-color: #997a8d;
+  border-radius: 10px;
+  padding: 30px;
+  text-align: center;
+  width: 200px;
+  height: 250px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out; /* Animation fluide */
+}
+
+.card h3 {
+  font-size: 2.5rem; /* Augmenter la taille du texte */
+  margin-bottom: 10px;
+  color: #fff;
+}
+
+.card p {
+  font-size: 1.2rem; /* Augmenter la taille du texte */
+  color: #fff;
+}
+
+.stats-container2 {
+  display: flex;
+  flex-direction: column; /* Pour empiler les éléments verticalement */
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #ddd0d8; /* Fond blanc */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(2, 2, 2, 0.5);
+  width: 70%;
+  height: auto;
+  margin: auto;
+  margin-top: 2%;
+}
+
+.card:hover {
+  background-color: #d9b8c6; /* Couleur plus claire au survol */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Augmenter l'ombre */
+  transform: translateY(-5px); /* Légère élévation */
+}
+
+/* Hover pour le texte dans info-section */
+.info-section h2,
+.info-section p {
+  transition: color 0.3s ease-in-out;
+}
+
+.info-section h2:hover {
+  color: #997a8d; /* Texte coloré au survol */
+}
+
+.info-section p:hover {
+  color: #333333; /* Texte plus foncé au survol */
+}
+
+/* Hover pour les conteneurs (stats-container2) */
+.stats-container2 {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #ddd0d8;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(2, 2, 2, 0.5);
+  width: 70%;
+  height: auto;
+  margin: auto;
+  margin-top: 2%;
+  transition: all 0.3s ease-in-out; /* Animation fluide */
+}
+
+.stats-container2:hover {
+  background-color: #cbb5c2; /* Couleur légèrement différente au survol */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Plus d'ombre */
+  transform: scale(1.02); /* Légère augmentation de taille */
+}
