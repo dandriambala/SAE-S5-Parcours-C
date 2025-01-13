@@ -1,0 +1,71 @@
+/* Style pour la conteneur du graphique */
+.chart-container {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 15px;
+    background-color: #f9f9f9; /* Couleur de fond claire */
+    border: 1px solid #ddd; /* Bordure fine et discrète */
+    border-radius: 8px; /* Coins arrondis */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Ombre douce */
+    text-align: center; /* Centrer le contenu */
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Titre */
+  .chart-container h2 {
+    margin-bottom: 15px;
+    font-size: 24px;
+    color: #333; /* Couleur du texte */
+    font-weight: bold;
+  }
+  
+  /* Personnalisation des légendes */
+  ngx-charts-bubble-chart .legend-label {
+    font-size: 14px;
+    color: #555;
+  }
+  
+  /* Ajuster le graphique pour un meilleur espacement */
+  ngx-charts-bubble-chart {
+    display: block;
+    margin: auto;
+    padding-top: 10px;
+  }
+  
+  /* Animation douce au survol des bulles */
+  ngx-charts-bubble-chart circle:hover {
+    stroke: #ff9800; /* Contour orange au survol */
+    stroke-width: 2px; /* Épaisseur du contour */
+    transition: stroke 0.3s ease;
+  }
+  
+  /* Axes */
+  ngx-charts-axis-label {
+    font-size: 14px;
+    fill: #666; /* Couleur des axes */
+    font-weight: bold;
+  }
+  
+  /* Personnalisation des tooltips */
+  ngx-charts-tooltip {
+    background-color: #ffffff;
+    color: #333333;
+    border-radius: 4px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    padding: 8px;
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  
+  /* Responsive */
+  @media (max-width: 768px) {
+    .chart-container {
+      max-width: 100%;
+      padding: 10px;
+    }
+  
+    .chart-container h2 {
+      font-size: 20px;
+    }
+  }
+  

@@ -18,8 +18,8 @@ export class BubbleChartComponent implements OnInit {
   yAxis: boolean = true;
   showXAxisLabel: boolean = true;
   showYAxisLabel: boolean = true;
-  xAxisLabel: string = 'Temps libre (moyenne)';
-  yAxisLabel: string = 'Temps d\'étude (moyenne)';
+  xAxisLabel: string = 'Tranche des notes';
+  yAxisLabel: string = 'Effectif des étudiants';
   animations: boolean = true;
 
   constructor(private studentService: StudentDataService) {}
@@ -30,14 +30,16 @@ export class BubbleChartComponent implements OnInit {
 
   loadChartData(): void {
     this.studentService.getStudentData().subscribe((students) => {
+      // Initialiser les tranches de notes
       const noteRanges = [
-        { name: '< 5', series: this.initializeCriteria() },
-        { name: '5-10', series: this.initializeCriteria() },
-        { name: '10-15', series: this.initializeCriteria() },
-        { name: '> 15', series: this.initializeCriteria() },
+        { name: '< 5', absences: 0, freetime: 0, studytime: 0, failures: 0, studentCount: 0 },
+        { name: '5-10', absences: 0, freetime: 0, studytime: 0, failures: 0, studentCount: 0 },
+        { name: '10-15', absences: 0, freetime: 0, studytime: 0, failures: 0, studentCount: 0 },
+        { name: '> 15', absences: 0, freetime: 0, studytime: 0, failures: 0, studentCount: 0 },
       ];
 
-      students.forEach((student) => {
+      // Calculer les données pour chaque tranche
+      students.forEach((student: any) => {
         const moyenne = (student.G1 + student.G2 + student.G3) / 3;
 
         let rangeIndex = -1;
@@ -53,45 +55,54 @@ export class BubbleChartComponent implements OnInit {
 
         if (rangeIndex !== -1) {
           const range = noteRanges[rangeIndex];
-          range.series[0].value += student.absences;
-          range.series[1].value += student.freetime;
-          range.series[2].value += student.studytime;
-          range.series[3].value += student.failures;
-          range.series[4].value++;
+          range.absences += student.absences;
+          range.freetime += student.freetime;
+          range.studytime += student.studytime;
+          range.failures += student.failures;
+          range.studentCount++;
         }
       });
 
-      const bubbleData = noteRanges.map((range) => {
-        const absences = range.series.find((s) => s.name === 'Absences')?.value || 0;
-        const freetime = range.series.find((s) => s.name === 'Temps libre')?.value || 0;
-        const studytime = range.series.find((s) => s.name === 'Temps d\'étude')?.value || 0;
-        const studentCount = range.series.find((s) => s.name === 'Nombre d\'étudiants')?.value || 1;
-
-        return {
-          name: range.name,
-          x: freetime / studentCount,
-          y: studytime / studentCount,
-          r: studentCount,
-        };
-      });
-
+      // Construire les données pour le graphique
       this.multi = [
         {
-          name: 'Étudiants',
-          series: bubbleData,
+          name: 'Absences',
+          series: noteRanges.map((range) => ({
+            name: range.name,
+            x: range.name,
+            y: range.studentCount,
+            r: range.absences / (range.studentCount || 1),
+          })),
+        },
+        {
+          name: 'Temps libre',
+          series: noteRanges.map((range) => ({
+            name: range.name,
+            x: range.name,
+            y: range.studentCount,
+            r: range.freetime / (range.studentCount || 1),
+          })),
+        },
+        {
+          name: 'Temps d\'étude',
+          series: noteRanges.map((range) => ({
+            name: range.name,
+            x: range.name,
+            y: range.studentCount,
+            r: range.studytime / (range.studentCount || 1),
+          })),
+        },
+        {
+          name: 'Échecs',
+          series: noteRanges.map((range) => ({
+            name: range.name,
+            x: range.name,
+            y: range.studentCount,
+            r: range.failures / (range.studentCount || 1),
+          })),
         },
       ];
     });
-  }
-
-  private initializeCriteria() {
-    return [
-      { name: 'Absences', value: 0 },
-      { name: 'Temps libre', value: 0 },
-      { name: 'Temps d\'étude', value: 0 },
-      { name: 'Échecs', value: 0 },
-      { name: 'Nombre d\'étudiants', value: 0 },
-    ];
   }
 
   onSelect(event: any): void {
