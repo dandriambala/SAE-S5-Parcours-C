@@ -1,7 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
-import { multi } from '../../../data';  // Assurez-vous d'importer correctement le fichier
-import { MultipleData, schoolData } from '../../../types';
+import { StudentDataService } from '../../../services/student.service'; 
 
 @Component({
   standalone: true,
@@ -10,37 +9,43 @@ import { MultipleData, schoolData } from '../../../types';
   templateUrl: './radar-chart.component.html',
   styleUrls: ['./radar-chart.component.css'],
 })
+export class RadarChartComponent implements OnInit {
+  multi: any[] = [];
+  view: [number, number] = [700, 400];
 
-export class RadarChartComponent {
-  schoolData: { G1: number; series: { name: string; value: number }[] }[] = []; // Type explicite de multi
-  view: [number, number] = [700, 400];  // Largeur et hauteur du graphique
-
-  // options du graphique
+  
+  xAxis: boolean = true;
+  yAxis: boolean = true;
+  showXAxisLabel: boolean = true;
+  showYAxisLabel: boolean = true;
+  xAxisLabel: string = 'Élément';
+  yAxisLabel: string = 'Valeur';
   legend: boolean = true;
   showLabels: boolean = true;
   animations: boolean = true;
-  xAxis: boolean = true;
-  yAxis: boolean = true;
-  showYAxisLabel: boolean = true;
-  showXAxisLabel: boolean = true;
-  xAxisLabel: string = 'Year';
-  yAxisLabel: string = 'Population';
 
-  colorScheme = {
-    name: 'cool' , // nom du schéma de couleur, peut être personnalisé
-    selectable: true, // Permet de sélectionner ce schéma
-    group: 'Ordinal', // Type de groupe, ici 'Ordinal' pour un schéma de couleurs ordonné
-    domain: ['#5AA454', '#A10A28', '#C7B42C', '#AAAAAA'] // les couleurs du graphique
-  };
-  
+  constructor(private studentService: StudentDataService) {}
 
-  
-  constructor() {
-    Object.assign(this, { multi }); 
+  ngOnInit(): void {
+    this.loadChartData();
+  }
+
+  loadChartData(): void {
+    this.studentService.getStudentData().subscribe((students) => {
+      this.multi = students.slice(0, 5).map((student, index) => ({
+        name: `Étudiant ${index + 1}`,
+        series: [
+          { name: 'Moyenne G1-G3', value: (student.G1 + student.G2 + student.G3) / 3 },
+          { name: 'Absences', value: student.absences },
+          { name: 'Temps libre', value: student.freetime },
+          { name: 'Temps d\'étude', value: student.studytime },
+          { name: 'Échecs', value: student.failures },
+        ],
+      }));
+    });
   }
 
   onSelect(event: any): void {
     console.log(event);
   }
-  
 }

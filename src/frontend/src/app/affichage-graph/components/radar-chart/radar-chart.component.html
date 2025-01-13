@@ -1,15 +1,17 @@
-<ngx-charts-polar-chart
-  [view]="view"
-  [legend]="legend"
-  [showXAxisLabel]="showXAxisLabel"
-  [showYAxisLabel]="showYAxisLabel"
-  [xAxis]="xAxis"
-  [yAxis]="yAxis"
-  [xAxisLabel]="xAxisLabel"
-  [yAxisLabel]="yAxisLabel"
-  [results]="multi"
-  [scheme]="colorScheme"
-  (select)="onSelect($event)">
-</ngx-charts-polar-chart>
-
-
+<div class="chart-container">
+  <h2>Analyse des Données</h2>
+  <ngx-charts-polar-chart
+    [view]="view"
+    [legend]="legend"
+    [xAxis]="xAxis"
+    [yAxis]="yAxis"
+    [showXAxisLabel]="showXAxisLabel"
+    [showYAxisLabel]="showYAxisLabel"
+    [xAxisLabel]="xAxisLabel"
+    [yAxisLabel]="yAxisLabel"
+    [animations]="animations" 
+    [results]="multi"
+    (select)="onSelect($event)"
+  >
+  </ngx-charts-polar-chart>
+</div>
