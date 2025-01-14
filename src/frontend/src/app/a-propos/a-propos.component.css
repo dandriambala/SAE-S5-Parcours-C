@@ -1,0 +1,63 @@
+
+/* Texte "Le Projet" */
+.stats-container2 {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    width: 70%;
+    height: auto;
+    margin: auto;
+    margin-top: 2%;
+    line-height: 1.8; /* Espacement pour le confort de lecture */
+  }
+  
+  .stats-container2 h2 {
+    font-size: 2rem;
+    color: #997a8d;
+    margin-bottom: 20px;
+    text-align: center;
+    font-weight: bold;
+  }
+  
+  .stats-container2 p {
+    font-size: 1.2rem;
+    text-align: justify;
+    font-family: "Georgia", serif;
+  }
+  
+  /* Alignement pour texte et logo */
+  
+  .texte2 {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+  }
+  
+  #logo {
+    width: 30%;
+    height: auto;
+  }
+  
+  .texte2 p {
+    font-size: 1.2rem; /* Taille ajustée pour la lisibilité */
+    color: #555555;
+    margin: 0;
+    text-align: left;
+    line-height: 1.6;
+  }
+  .texte {
+    font-size: 1.2rem; /* Taille de la police pour une meilleure lisibilité */
+    color: #000; /* Texte en noir */
+    text-align: justify; /* Justifier le texte pour une présentation professionnelle */
+    font-family: "Georgia", serif; /* Police élégante */
+    line-height: 1.8; /* Espacement pour un confort de lecture */
+  }
+  
+  
