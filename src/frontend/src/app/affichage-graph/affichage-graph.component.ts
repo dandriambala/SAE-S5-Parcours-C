@@ -2,9 +2,7 @@ import { Component} from '@angular/core';
 import { EduFamilleComponent } from './components/edu-famille/edu-famille.component';
 import jsonData from '../../assets/student.json';
 import { dataFromJson } from '../types';
-
 import { RouterOutlet } from '@angular/router';
-//import jsonData from '../../../assets/student.json';
 
 @Component({
   selector: 'app-affichage-graph',
@@ -15,6 +13,6 @@ import { RouterOutlet } from '@angular/router';
 })
 
 export class AffichageGraphComponent {
-  //data = jsonData as dataFromJson;
+  data = jsonData as dataFromJson;
 
 }

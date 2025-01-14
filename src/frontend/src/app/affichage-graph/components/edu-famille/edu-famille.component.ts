@@ -1,12 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { BarChartModule } from '@swimlane/ngx-charts';
-import { NgModule } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms'; // Importez FormsModule
-import { MultipleData, schoolData } from '../../../types';
+import {schoolData, dataFromJson, DatasetItem, StudentRange, SeriesItem} from '../../../types';
 import { StudentDataService } from '../../../services/student.service';  // Importer le service
 import { GraphService } from '../../../graph.service';
-import { DatasetItem, Dataset, StudentRange, SeriesItem } from '../../../types';
 
 
 @Component({
@@ -17,7 +14,7 @@ import { DatasetItem, Dataset, StudentRange, SeriesItem } from '../../../types';
   styleUrl: './edu-famille.component.css',
 })
 export class EduFamilleComponent implements OnInit {
-
+  @Input({ required: true }) data: dataFromJson = [];
   /**
    * Object properties
    * **/
