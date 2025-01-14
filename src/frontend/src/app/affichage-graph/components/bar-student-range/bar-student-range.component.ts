@@ -7,13 +7,13 @@ import { GraphService } from '../../../graph.service';
 
 
 @Component({
-  selector: 'app-edu-famille',
+  selector: 'app-bar-student-range',
   standalone: true,
   imports: [BarChartModule,FormsModule],
-  templateUrl: './edu-famille.component.html',
-  styleUrl: './edu-famille.component.css',
+  templateUrl: './bar-student-range.component.html',
+  styleUrl: './bar-student-range.component.css',
 })
-export class EduFamilleComponent implements OnInit {
+export class BarStudentRangeComponent implements OnInit {
   @Input({ required: true }) data: dataFromJson = [];
   /**
    * Object properties

@@ -1,13 +1,12 @@
 import { Component} from '@angular/core';
-import { EduFamilleComponent } from './components/edu-famille/edu-famille.component';
+import { BarStudentRangeComponent } from './components/bar-student-range/bar-student-range.component';
 import jsonData from '../../assets/student.json';
 import { dataFromJson } from '../types';
-import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-affichage-graph',
   standalone: true,
-  imports: [EduFamilleComponent],
+  imports: [BarStudentRangeComponent],
   templateUrl: './affichage-graph.component.html',
   styleUrls: ['./affichage-graph.component.css'], 
 })
