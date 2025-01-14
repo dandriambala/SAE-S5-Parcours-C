@@ -9,32 +9,32 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
   
-  // Valeurs dynamiques pour les cartes
-  playersCount: number = 0; // Compteur pour "38.8 M"
-  averageScore: number = 0; // Compteur pour "12/20"
-  hoursPlayed: number = 0; // Compteur pour "2 H"
-  daysCount: number = 0; // Compteur pour "1230 jours"
+  
+  playersCount: number = 0;
+  averageScore: number = 0; 
+  hoursPlayed: number = 0;
+  daysCount: number = 0; 
 
   ngOnInit() {
     // Démarrer les animations pour chaque carte
-    this.animateCountUp('playersCount', 38.8, 3000); // Compter jusqu'à 38.8 M
-    this.animateCountUp('averageScore', 12, 2000); // Compter jusqu'à 12
-    this.animateCountUp('hoursPlayed', 2, 1500); // Compter jusqu'à 2
-    this.animateCountUp('daysCount', 1230, 3000); // Compter jusqu'à 1230
+    this.animateCountUp('playersCount', 38.8, 3000); 
+    this.animateCountUp('averageScore', 12, 2000); 
+    this.animateCountUp('hoursPlayed', 2, 1500); 
+    this.animateCountUp('daysCount', 1230, 3000); 
   }
 
   // Fonction générique pour animer un compteur
   animateCountUp(property: string, targetValue: number, duration: number) {
-    const stepTime = duration / targetValue; // Calcul du temps entre chaque incrément
+    const stepTime = duration / targetValue; 
     let currentValue = 0;
 
     const increment = () => {
       if (currentValue < targetValue) {
         currentValue++;
-        (this as any)[property] = currentValue; // Mettre à jour dynamiquement la propriété
-        setTimeout(increment, stepTime); // Recommencer après un délai
+        (this as any)[property] = currentValue; 
+        setTimeout(increment, stepTime); 
       } else {
-        (this as any)[property] = targetValue; // S'assurer que la valeur finale est correcte
+        (this as any)[property] = targetValue; 
       }
     };
 

@@ -16,7 +16,7 @@ header a {
 }
 
 header a:hover {
-  color: #38bdf8;
+  color: #ffe6f0
 }
 
 nav {
@@ -32,8 +32,8 @@ nav a {
 }
 
 nav a:hover {
-  background-color: #db7093;
-  color: #ffffff;
+  background-color: #d9b8c6;
+  color: whitesmoke;
 }
 img {
   height: 100px;

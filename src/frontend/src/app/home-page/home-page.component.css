@@ -91,9 +91,6 @@
   transition: color 0.3s ease-in-out;
 }
 
-.info-section h2:hover {
-  color: #997a8d; /* Texte coloré au survol */
-}
 
 .info-section p:hover {
   color: #333333; /* Texte plus foncé au survol */
@@ -117,7 +114,36 @@
 }
 
 .stats-container2:hover {
-  background-color: #cbb5c2; /* Couleur légèrement différente au survol */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Plus d'ombre */
-  transform: scale(1.02); /* Légère augmentation de taille */
+  background-color: #cbb5c2; 
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
+  transform: scale(1.02); 
+}
+.texte {
+  align-items: center;
+  padding: 40px;
+  background-color: #ddd0d8; 
+  border-radius: 10px;
+  color: #555555;
+}
+
+
+.texte2 {
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-start; 
+  gap: 20px;
+  background-color: #ddd0d8; 
+  border-radius: 10px; 
+}
+
+#logo {
+  width: 30%; 
+  height: auto;
+}
+
+.texte2 p {
+  font-size: 1rem; 
+  color: #555555; 
+  margin: 0; 
+  text-align: left; 
 }
