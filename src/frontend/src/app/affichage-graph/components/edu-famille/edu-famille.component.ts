@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { BarChartModule } from '@swimlane/ngx-charts';
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms'; // Importez FormsModule
 import { MultipleData, schoolData } from '../../../types';
 import { StudentDataService } from '../../../services/student.service';  // Importer le service
 import { GraphService } from '../../../graph.service';
@@ -9,7 +12,7 @@ import { DatasetItem, Dataset, StudentRange, SeriesItem } from '../../../types';
 @Component({
   selector: 'app-edu-famille',
   standalone: true,
-  imports: [BarChartModule],
+  imports: [BarChartModule,FormsModule],
   templateUrl: './edu-famille.component.html',
   styleUrl: './edu-famille.component.css',
 })
@@ -33,12 +36,12 @@ export class EduFamilleComponent implements OnInit {
     { name: "éducation : élevée", value: 4 }
   ];
 
-  //Situation familiale
-  situationFamiliale = [
-    { name: "parent.s : monoparental", value: 1 },
-    { name: "parent.s : mariés", value: 2 },
-    { name: "parent.s : divorcés", value: 3 }
-  ];
+  educationCheckboxes: { [key: string]: boolean } = {
+    '4': false,
+    '3': false,
+    '2': false,
+    '1': false,
+  };
 
   //Alcool
   alcool = [
@@ -64,11 +67,11 @@ export class EduFamilleComponent implements OnInit {
   //Colors
   customColors = [
     { name: 'total', value: 'rgba(105, 127, 253)' },
-    { name: 'éducation : faible', value: 'rgb(0, 81, 255)' },
+    { name: 'éducation : élevée', value: 'rgb(0, 81, 255)' },
     { name: 'éducation : moyennement élevée', value: 'rgb(38, 0, 252)' },
     { name: 'éducation : moyennement faible', value: 'rgb(191, 5, 248)' },
     { name: 'éducation : faible', value: 'rgb(250, 0, 0)' },
-    { name: "parent.s : monoparental", value: 'rgb(0, 81, 255)' },
+    { name: "parent.s : monoparental", value: 'rgb(0, 38, 255)' },
     { name: "parent.s : mariés", value: 'rgb(38, 0, 252)' },
     { name: "parent.s : divorcés", value: 'rgb(191, 5, 248)' },
     { name: "alcool : jamais", value: 'rgb(0, 81, 255)' },
@@ -164,13 +167,11 @@ export class EduFamilleComponent implements OnInit {
         mergedMap.set(item.name, [...existingSeries, ...item.series]);
       }
     });
-
     // Convertir la Map en tableau
     return Array.from(mergedMap.entries()).map(([name, series]) => ({
       name,
       series,
     }));
-
   }
 
 
@@ -246,49 +247,27 @@ export class EduFamilleComponent implements OnInit {
     this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
   }
 
-  /**
-   * 
-   * Fonctions pour situation familiale
-   */
+  onAllParentEducationLevelToggle(value: number, event: Event): void {
 
- /* private getSituationFamilialeName(value: number): string {
-    return this.situationFamiliale.find(id => id.value === value)?.name || 'N/A';
+    const isChecked = (event.target as HTMLInputElement).checked;
+    // Cocher ou décocher toutes les cases
+    Object.keys(this.educationCheckboxes).forEach(key => {
+      this.educationCheckboxes[key] = isChecked;
+    });
+    
+    this.chartData = this.getStudentRangeSummary();
+    this.chartData = this.getAllStudentRangePerParentEducationLevel()
+    this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
   }
 
-  private getStudentRangePerSituationFamiliale(parentSituationId: number) {
+  onDeselectAll(): void {
+    Object.keys(this.educationCheckboxes).forEach(key => {
+      this.educationCheckboxes[key] = false;  
+    });
 
-    if (!parentSituationId) return this.chartData
-
-    const tabSituationFamiliale = this.studentRanges.map(range => ({
-      name: range.name,
-      series: [
-        { name: this.getSituationFamilialeName(parentSituationId) , value: range.list.filter(x => x === parentEduLvl).length }
-      ]
-    }));
-
-    return tabSituationFamiliale
-
-  }*/
-
-  onSituationFamilialeToggle(value: number, event: Event): void {
-
-    const inputElement = event.target as HTMLInputElement; // Cast de l'élément cible
-
-    if (inputElement.checked) {
-      // Ajouter les données si la checkbox est cochée
-      const newChartData = this.getStudentRangePerParentEducationLevel(value);
-      this.chartData = [...this.chartData, ...newChartData];
-    } else {
-      // Retirer les données si la checkbox est décochée
-      this.chartData = this.chartData.map(item => ({
-        name: item.name,
-        series: item.series.filter((seriesItem: SeriesItem) =>
-          seriesItem.name !== this.getEduLevelName(value)
-        )
-      })).filter(item => item.series.length > 0); // Retirer les objets vides
-    }
-
-    this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
+    // Réinitialiser les données du graphique à leur état initial
+  this.chartData = this.getStudentRangeSummary();
+  this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
   }
 
 }

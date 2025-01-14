@@ -3,51 +3,36 @@
 
     <div class="menu">
       <div class="menu-item">
+        <h4>Aucun filtre
+          <input type="radio" name="radio-button" value="aucunfiltre" id="unselect-all-checkboxes" (change)="onDeselectAll()">
+        </h4>
+
         <h4>Education parentale
-          <input type="radio" name="valeur" value="educationFamiliale">
+          <input type="radio" name="radio-button" value="educationFamiliale" id="select-all-checkboxes" (change)="onAllParentEducationLevelToggle(4, $event)">
         </h4>
         <label>
-          <input type="checkbox" name="educationFamiliale" value="4" (change)="onParentEducationLevelToggle(4, $event)">
+          <input type="checkbox" name="educationFamiliale" value="4" [(ngModel)]="educationCheckboxes['4']" (change)="onParentEducationLevelToggle(4, $event)">
           Élevée
         </label>
         <label>
           <input type="checkbox" name="educationFamiliale" value="3"
-            (change)="onParentEducationLevelToggle(3, $event)">
+          [(ngModel)]="educationCheckboxes['3']" (change)="onParentEducationLevelToggle(3, $event)">
           Moyennement élevée
         </label>
         <label>
           <input type="checkbox" name="educationFamiliale" value="2"
-          (change)="onParentEducationLevelToggle(2, $event)">
+          [(ngModel)]="educationCheckboxes['2']" (change)="onParentEducationLevelToggle(2, $event)">
           Moyennement faible
         </label>
         <label>
-          <input type="checkbox" name="educationFamiliale" value="1" (change)="onParentEducationLevelToggle(1, $event)">
+          <input type="checkbox" name="educationFamiliale" value="1" [(ngModel)]="educationCheckboxes['1']" (change)="onParentEducationLevelToggle(1, $event)">
           Faible
         </label>
       </div>
 
       <!--<div class="menu-item">
-        <h4>Situation familiale
-          <input type="radio" name="valeur" value="situationFamiliale">
-        </h4>
-        <label>
-          <input type="checkbox" name="situation-familiale" value="1"
-          (change)="onSituationFamilialeToggle(1, $event)">
-          Monoparental
-        </label>
-        <label>
-          <input type="checkbox" name="situation-familiale" value="2" (change)="onSituationFamilialeToggle(2, $event)">
-          Marié.e
-        </label>
-        <label>
-          <input type="checkbox" name="situation-familiale" value="3" (change)="onSituationFamilialeToggle(3, $event)">
-          Divorcé.e
-        </label>
-      </div>
-
-      <div class="menu-item">
         <h4>Alcool
-          <input type="radio" name="valeur" value="alcool">
+          <input type="radio" name="radio-button" value="alcool">
         </h4>
         <label>
           <input type="checkbox" name="alcool" value="1">
@@ -65,8 +50,7 @@
 
       <div class="menu-item">
         <h4>Jeu Vidéos
-          <input type="radio" name="valeur" value="jeu-video" class="radio-right"
-            onclick="toggleCheckboxes('jeu-video-options')">
+          <input type="radio" name="radio-button" value="jeu-video">
         </h4>
         <div class="checkbox-dropdown" id="jeu-video-options" style="display:none;">
           <label>
@@ -99,3 +83,5 @@
         </ngx-charts-bar-vertical-2d>
       </div>
     </div>
+  </div>
+</div>
