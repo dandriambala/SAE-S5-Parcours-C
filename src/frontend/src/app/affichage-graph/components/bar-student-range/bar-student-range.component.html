@@ -4,11 +4,11 @@
     <div class="menu">
       <div class="menu-item">
         <h4>Aucun filtre
-          <input type="radio" name="radio-button" value="aucunfiltre" id="unselect-all-checkboxes" (change)="onDeselectAll()">
+          <input type="radio" name="radio-button" value="aucunfiltre" id="unselect-all-checkboxes" (change)="onDeselectAll()" checked>
         </h4>
 
-        <h4>Education parentale
-          <input type="radio" name="radio-button" value="educationFamiliale" id="select-all-checkboxes" (change)="onAllParentEducationLevelToggle(4, $event)">
+        <h4>Éducation parentale
+          <input type="radio" name="radio-button" value="educationFamiliale" (change)="onAllParentEducationLevelToggle($event)">
         </h4>
         <label>
           <input type="checkbox" name="educationFamiliale" value="4" [(ngModel)]="educationCheckboxes['4']" (change)="onParentEducationLevelToggle(4, $event)">
@@ -30,47 +30,41 @@
         </label>
       </div>
 
-      <!--<div class="menu-item">
-        <h4>Alcool
-          <input type="radio" name="radio-button" value="alcool">
+      <div class="menu-item">
+        <h4>Sortie extrascolaire
+          <input type="radio" name="radio-button" value="goout" (change)="onAllGoOutLevelToggle($event)">
         </h4>
         <label>
-          <input type="checkbox" name="alcool" value="1">
-          Jamais
+          <input type="checkbox" name="goout" value="1" [(ngModel)]="gooutCheckboxes['1']" (change)="onGoOutLevelToggle(1, 1, 2, $event)">
+          Rarement
         </label>
         <label>
-          <input type="checkbox" name="alcool" value="2">
+          <input type="checkbox" name="goout" value="2" [(ngModel)]="gooutCheckboxes['2']" (change)="onGoOutLevelToggle(2, 3, 3, $event)">
           Occasionnellement
         </label>
         <label>
-          <input type="checkbox" name="alcool" value="3">
+          <input type="checkbox" name="goout" value="3" [(ngModel)]="gooutCheckboxes['3']" (change)="onGoOutLevelToggle(3, 4, 5, $event)">
           Régulièrement
         </label>
       </div>
 
-      <div class="menu-item">
-        <h4>Jeu Vidéos
-          <input type="radio" name="radio-button" value="jeu-video">
+     <div class="menu-item">
+        <h4>Consommation Alcool
+          <input type="radio" name="radio-button" value="alcool" (change)="onAllAlcoolLevelToggle($event)">
         </h4>
-        <div class="checkbox-dropdown" id="jeu-video-options" style="display:none;">
-          <label>
-            <input type="checkbox" name="jeu-video" value="action">
-            Action
-          </label>
-          <label>
-            <input type="checkbox" name="jeu-video" value="aventure">
-            Aventure
-          </label>
-          <label>
-            <input type="checkbox" name="jeu-video" value="stratégie">
-            Stratégie
-          </label>
-          <label>
-            <input type="checkbox" name="jeu-video" value="simulation">
-            Simulation
-          </label>
-        </div>
-      </div>-->
+        <label>
+          <input type="checkbox" name="alcool" value="1" [(ngModel)]="alcoolCheckboxes['1']" (change)="onAlcoolLevelToggle(1, 1, 2, $event)">
+          Rarement
+        </label>
+        <label>
+          <input type="checkbox" name="alcool" value="2" [(ngModel)]="alcoolCheckboxes['2']" (change)="onAlcoolLevelToggle(2, 3, 3, $event)">
+          Occasionnellement
+        </label>
+        <label>
+          <input type="checkbox" name="alcool" value="3" [(ngModel)]="alcoolCheckboxes['3']" (change)="onAlcoolLevelToggle(3, 4, 5, $event)">
+          Régulièrement
+        </label>
+      </div>
 
     </div>
 

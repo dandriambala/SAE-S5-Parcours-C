@@ -1,0 +1,17 @@
+<div class="chart-container">
+    <h2>Effectif des étudiants en fonction</h2>
+    <ngx-charts-polar-chart
+      [view]="view"
+      [legend]="legend"
+      [xAxis]="xAxis"
+      [yAxis]="yAxis"
+      [showXAxisLabel]="showXAxisLabel"
+      [showYAxisLabel]="showYAxisLabel"
+      [xAxisLabel]="xAxisLabel"
+      [yAxisLabel]="yAxisLabel"
+      [animations]="animations" 
+      [results]="multi"
+      (select)="onSelect($event)"
+    >
+    </ngx-charts-polar-chart>
+  </div>

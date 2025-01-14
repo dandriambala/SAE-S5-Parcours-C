@@ -32,7 +32,6 @@ export class BarStudentRangeComponent implements OnInit {
     { name: "éducation : moyennement élevée", value: 3 },
     { name: "éducation : élevée", value: 4 }
   ];
-
   educationCheckboxes: { [key: string]: boolean } = {
     '4': false,
     '3': false,
@@ -40,20 +39,32 @@ export class BarStudentRangeComponent implements OnInit {
     '1': false,
   };
 
+  //Sortie
+  goout = [
+    { name: "sortie extrascolaire : rarement", value: 1, valueMin: 1, valueMax: 2 },
+    { name: "sortie extrascolaire : occasionnellement", value: 2, valueMin: 3, valueMax: 3 },
+    { name: "sortie extrascolaire : régulièrement", value: 3, valueMin: 4, valueMax: 5 },
+  ];
+  gooutCheckboxes: { [key: string]: boolean } = {
+    '3': false,
+    '2': false,
+    '1': false,
+  };
+
+
   //Alcool
   alcool = [
-    { name: "alcool : jamais", value: 1 },
-    { name: "alcool : occasionnellement", value: 2 },
-    { name: "alcool : régulièrement", value: 3 }
+    { name: "alcool : rarement", value: 1, valueMin: 1, valueMax: 2 },
+    { name: "alcool : occasionnellement", value: 2, valueMin: 3, valueMax: 3 },
+    { name: "alcool : régulièrement", value: 3, valueMin: 4, valueMax: 5 },
   ];
+  alcoolCheckboxes: { [key: string]: boolean } = {
+    '3': false,
+    '2': false,
+    '1': false,
+  };
 
-  //Jeux vidéo
-  jeuVideo = [
-    { name: "jeux vidéos : jamais", value: 1 },
-    { name: "jeux vidéos : occasionnellement", value: 2 },
-    { name: "jeux vidéos : régulièrement", value: 3 }
-  ];
-
+  tabFilterCheckboxes = [this.educationCheckboxes, this.gooutCheckboxes, this.alcoolCheckboxes]
   //BarChart Settings
   view: [number, number] = [900, 500];
   xAxisLabel = "Tranche de notes";
@@ -68,15 +79,12 @@ export class BarStudentRangeComponent implements OnInit {
     { name: 'éducation : moyennement élevée', value: 'rgb(38, 0, 252)' },
     { name: 'éducation : moyennement faible', value: 'rgb(191, 5, 248)' },
     { name: 'éducation : faible', value: 'rgb(250, 0, 0)' },
-    { name: "parent.s : monoparental", value: 'rgb(0, 38, 255)' },
-    { name: "parent.s : mariés", value: 'rgb(38, 0, 252)' },
-    { name: "parent.s : divorcés", value: 'rgb(191, 5, 248)' },
-    { name: "alcool : jamais", value: 'rgb(0, 81, 255)' },
+    { name: "sortie extrascolaire : rarement", value: 'rgb(0, 81, 255)' },
+    { name: "sortie extrascolaire : occasionnellement", value: 'rgb(38, 0, 252)' },
+    { name: "sortie extrascolaire : régulièrement", value: 'rgb(191, 5, 248)' },
+    { name: "alcool : rarement", value: 'rgb(0, 81, 255)' },
     { name: "alcool : occasionnellement", value: 'rgb(38, 0, 252)' },
-    { name: "alcool : régulièrement", value: 'rgb(191, 5, 248)' },
-    { name: "jeux vidéos : jamais", value: 'rgb(0, 81, 255)' },
-    { name: "jeux vidéos : occasionnellement", value: 'rgb(38, 0, 252)' },
-    { name: "jeux vidéos : régulièrement", value: 'rgb(191, 5, 248)' }
+    { name: "alcool : régulièrement", value: 'rgb(191, 5, 248)' }
   ]
 
   constructor(private readonly graphService: GraphService, private studentDataService: StudentDataService) { }
@@ -107,6 +115,10 @@ export class BarStudentRangeComponent implements OnInit {
       ]
     }));
 
+  }
+
+  private calculateStudentAverageGrades(student: schoolData): number {
+    return (student.G1 + student.G2 + student.G3) / 3
   }
 
   /*
@@ -171,6 +183,18 @@ export class BarStudentRangeComponent implements OnInit {
     }));
   }
 
+  onDeselectAll(): void {
+    for (const filter of this.tabFilterCheckboxes){
+    Object.keys(filter).forEach(key => {
+      filter[key] = false;  
+    });
+  }
+
+    // Réinitialiser les données du graphique à leur état initial
+  this.chartData = this.getStudentRangeSummary();
+  this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
+  console.log(this.combinedChartData)
+  }
 
   /**
    * Fonctions pour éducation
@@ -179,15 +203,6 @@ export class BarStudentRangeComponent implements OnInit {
 
   private calculateAverageParentEdu(student: schoolData): number {
     return Math.ceil((student.Medu + student.Fedu) / 2)
-  }
-
-  private studentsAverageGrades(): number {
-    return this.students.reduce((note, student: schoolData) =>
-      student.G1 + student.G2 + student.G3, 0) / 3
-  }
-
-  private calculateStudentAverageGrades(student: schoolData): number {
-    return (student.G1 + student.G2 + student.G3) / 3
   }
 
   private getEduLevelName(value: number): string {
@@ -244,8 +259,10 @@ export class BarStudentRangeComponent implements OnInit {
     this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
   }
 
-  onAllParentEducationLevelToggle(value: number, event: Event): void {
+  onAllParentEducationLevelToggle(event: Event): void {
 
+    this.onDeselectAll()
+    
     const isChecked = (event.target as HTMLInputElement).checked;
     // Cocher ou décocher toutes les cases
     Object.keys(this.educationCheckboxes).forEach(key => {
@@ -257,14 +274,154 @@ export class BarStudentRangeComponent implements OnInit {
     this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
   }
 
-  onDeselectAll(): void {
-    Object.keys(this.educationCheckboxes).forEach(key => {
-      this.educationCheckboxes[key] = false;  
-    });
+  /**
+   * Fonctions pour sortie
+   */
 
-    // Réinitialiser les données du graphique à leur état initial
-  this.chartData = this.getStudentRangeSummary();
-  this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
+  private calculateAverageAlcool(student: schoolData): number {
+    return Math.ceil((student.Dalc + student.Walc) / 2)
+  }
+
+  private getGoOutLevelName(value: number): string {
+    return this.goout.find(id => id.value === value)?.name || 'N/A';
+  }
+
+  private getStudentRangePerGoOutLevel(goOutLvl : number, goOutValueMin: number, goOutValueMax: number) {
+
+    if (!goOutLvl) return this.chartData
+
+    const tabGoOut = this.studentRanges.map(range => ({
+      name: range.name,
+      series: [
+        { name: this.getGoOutLevelName(goOutLvl), value: range.list.filter(x => x.goout >= goOutValueMin && x.goout <= goOutValueMax).length }
+      ]
+    }));
+
+    return tabGoOut
+
+  }
+
+  private getAllStudentRangePerGoOutLevel() {
+
+    let tabGoOut: any[] = []
+    let tabFinal: any[] = []
+
+    for (const go of this.goout) {
+      tabGoOut = this.getStudentRangePerGoOutLevel(go.value, go.valueMin, go.valueMax)
+      tabFinal = [...tabFinal, ...tabGoOut];
+    }
+
+    return [...this.chartData, ...tabFinal]
+
+  }
+
+  onGoOutLevelToggle(value: number, valueMin: number, valueMax: number, event: Event): void {
+
+    const inputElement = event.target as HTMLInputElement; // Cast de l'élément cible
+
+    if (inputElement.checked) {
+      // Ajouter les données si la checkbox est cochée
+      const newChartData = this.getStudentRangePerGoOutLevel(value, valueMin, valueMax);
+      this.chartData = [...this.chartData, ...newChartData];
+    } else {
+      // Retirer les données si la checkbox est décochée
+      this.chartData = this.chartData.map(item => ({
+        name: item.name,
+        series: item.series.filter((seriesItem: SeriesItem) =>
+          seriesItem.name !== this.getGoOutLevelName(value)
+        )
+      })).filter(item => item.series.length > 0); // Retirer les objets vides
+    }
+
+    this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
+  }
+
+  onAllGoOutLevelToggle(event: Event): void {
+
+    this.onDeselectAll()
+
+    const isChecked = (event.target as HTMLInputElement).checked;
+    // Cocher ou décocher toutes les cases
+    Object.keys(this.gooutCheckboxes).forEach(key => {
+      this.gooutCheckboxes[key] = isChecked;
+    });
+    
+    this.chartData = this.getStudentRangeSummary();
+    this.chartData = this.getAllStudentRangePerGoOutLevel()
+    this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
+  }
+  
+  /**
+   * Fonctions pour alcool
+   */
+
+  private getAlcoolLevelName(value: number): string {
+    return this.alcool.find(id => id.value === value)?.name || 'N/A';
+  }
+
+  private getStudentRangePerAlcoolLevel(alcoolLvl : number, alcoolValueMin: number, alcoolValueMax: number) {
+
+    if (!alcoolLvl) return this.chartData
+
+    const tabAlcool = this.studentRanges.map(range => ({
+      name: range.name,
+      series: [
+        { name: this.getAlcoolLevelName(alcoolLvl), value: range.list.filter(x => this.calculateAverageAlcool(x) >= alcoolValueMin && this.calculateAverageAlcool(x) <= alcoolValueMax).length }
+      ]
+    }));
+
+    return tabAlcool
+
+  }
+
+  private getAllStudentRangePerAlcoolLevel() {
+
+    let tabAlcool: any[] = []
+    let tabFinal: any[] = []
+
+    for (const alc of this.alcool) {
+      tabAlcool = this.getStudentRangePerAlcoolLevel(alc.value, alc.valueMin, alc.valueMax)
+      tabFinal = [...tabFinal, ...tabAlcool];
+    }
+
+    return [...this.chartData, ...tabFinal]
+
+  }
+
+  onAlcoolLevelToggle(value: number, valueMin: number, valueMax: number, event: Event): void {
+
+    const inputElement = event.target as HTMLInputElement; // Cast de l'élément cible
+
+    if (inputElement.checked) {
+      // Ajouter les données si la checkbox est cochée
+      const newChartData = this.getStudentRangePerAlcoolLevel(value, valueMin, valueMax);
+      this.chartData = [...this.chartData, ...newChartData];
+    } else {
+      // Retirer les données si la checkbox est décochée
+      this.chartData = this.chartData.map(item => ({
+        name: item.name,
+        series: item.series.filter((seriesItem: SeriesItem) =>
+          seriesItem.name !== this.getAlcoolLevelName(value)
+        )
+      })).filter(item => item.series.length > 0); // Retirer les objets vides
+    }
+
+    this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
+  }
+
+  onAllAlcoolLevelToggle(event: Event): void {
+
+    this.onDeselectAll()
+
+    const isChecked = (event.target as HTMLInputElement).checked;
+    // Cocher ou décocher toutes les cases
+    Object.keys(this.alcoolCheckboxes).forEach(key => {
+      this.alcoolCheckboxes[key] = isChecked;
+    });
+    
+    this.chartData = this.getStudentRangeSummary();
+    this.chartData = this.getAllStudentRangePerAlcoolLevel()
+    this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
   }
 
 }
