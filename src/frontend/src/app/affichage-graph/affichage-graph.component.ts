@@ -3,11 +3,12 @@ import { BarStudentRangeComponent } from './components/bar-student-range/bar-stu
 import { PolarStudentRangeComponent } from './components/polar-student-range/polar-student-range.component';
 import jsonData from '../../assets/student.json';
 import { dataFromJson } from '../types';
+import { JaugeStudentRangeComponent } from './components/jauge-student-range/jauge-student-range.component';
 
 @Component({
   selector: 'app-affichage-graph',
   standalone: true,
-  imports: [BarStudentRangeComponent, PolarStudentRangeComponent],
+  imports: [BarStudentRangeComponent, PolarStudentRangeComponent, JaugeStudentRangeComponent],
   templateUrl: './affichage-graph.component.html',
   styleUrls: ['./affichage-graph.component.css'], 
 })
