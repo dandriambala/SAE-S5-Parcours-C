@@ -73,15 +73,12 @@ export class JaugeStudentRangeComponent implements OnInit {
   }
 
   onRevisionLevelToggle(): void {
-    console.log('Niveau de révision sélectionné:', this.revisionLevel);
     const filteredStudents = this.students.filter((x) => x.studytime >= this.revisionLevel);
     this.updateOverallAverage(filteredStudents);
   }
 
-  onTrajetLevelToggle(value: number): void {
-
-    this.trajetLevel = value;
-    const filteredStudents = this.students.filter((x) => x.traveltime >= value);
+  onTrajetLevelToggle(): void {
+    const filteredStudents = this.students.filter((x) => x.traveltime >= this.trajetLevel);
     this.updateOverallAverage(filteredStudents);
 
   }

@@ -6,36 +6,20 @@
 
         <h4>Temps de révision
         </h4>
-        <mat-slider 
-          min="1" 
-          max="4" 
-          step="1" 
-          thumbLabel 
-          [(ngModel)]="revisionLevel"
-          (change)="onRevisionLevelToggle()">
-        </mat-slider>
-        <!--<p>Sélectionné : {{ revisionLevel }}</p>
+        <div class="slider-container">
+          <label for="slider">Valeur du curseur: {{ revisionLevel }}</label>
+          <input type="range" id="slider" min="1" max="4" step="1" thumbLabel [(ngModel)]="revisionLevel"
+            (input)="onRevisionLevelToggle()" />
+        </div>
 
         <h4>Temps de trajet
         </h4>
-        <label>
-          <input type="radio" name="radio-button" value="1" (change)="onTrajetLevelToggle(1)">
-          < 15 min
-        </label>
-        <label>
-          <input type="radio" name="radio-button" value="2" (change)="onTrajetLevelToggle(2)"
-          >
-          > 15 min
-        </label>
-        <label>
-          <input type="radio" name="radio-button" value="3" (change)="onTrajetLevelToggle(3)"
-          >
-          > 30 min 
-        </label>
-        <label>
-          <input type="radio" name="radio-button" value="4" (change)="onTrajetLevelToggle(4)">
-          > 1 h
-        </label>-->
+
+        <div class="slider-container">
+          <label for="slider">Valeur du curseur: {{ trajetLevel }}</label>
+          <input type="range" id="slider" min="1" max="4" step="1" thumbLabel [(ngModel)]="trajetLevel"
+            (change)="onTrajetLevelToggle()" />
+        </div>
       </div>
 
     </div>
@@ -43,15 +27,10 @@
     <div class="chart">
       <h1>Moyenne générale des élévès en fonction du temps </h1>
       <div style="width: 700px; height: 700px;">
-        <ngx-charts-gauge
-          [results]="overallAverage"
-          [min]="0"
-          [max]="20"
-          [units]="'Moyenne /20'"
+        <ngx-charts-gauge [results]="overallAverage" [min]="0" [max]="20" [units]="'Moyenne /20'"
           [colorScheme]="{ domain: ['#5AA454', '#E44D25', '#CFC0BB'] }">
         </ngx-charts-gauge>
       </div>
     </div>
   </div>
 </div>
-  
