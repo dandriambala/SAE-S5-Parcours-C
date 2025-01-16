@@ -7,26 +7,26 @@
           <input type="radio" name="radio-button" value="aucunfiltre" id="unselect-all-checkboxes" (change)="onDeselectAll()" checked>
         </h4>
 
-        <h4>Éducation parentale
+        <h4>Niveau académique des parents
           <input type="radio" name="radio-button" value="educationFamiliale" (change)="onAllParentEducationLevelToggle($event)">
         </h4>
         <label>
           <input type="checkbox" name="educationFamiliale" value="4" [(ngModel)]="educationCheckboxes['4']" (change)="onParentEducationLevelToggle(4, $event)">
-          Élevée
+          Niveau : études supérieures
         </label>
         <label>
           <input type="checkbox" name="educationFamiliale" value="3"
           [(ngModel)]="educationCheckboxes['3']" (change)="onParentEducationLevelToggle(3, $event)">
-          Moyennement élevée
+          Niveau : lycée
         </label>
         <label>
           <input type="checkbox" name="educationFamiliale" value="2"
           [(ngModel)]="educationCheckboxes['2']" (change)="onParentEducationLevelToggle(2, $event)">
-          Moyennement faible
+          Niveau : collège
         </label>
         <label>
           <input type="checkbox" name="educationFamiliale" value="1" [(ngModel)]="educationCheckboxes['1']" (change)="onParentEducationLevelToggle(1, $event)">
-          Faible
+          Niveau : primaire
         </label>
       </div>
 
@@ -72,8 +72,8 @@
       <h2>Effectif des élèves par tranche de notes </h2>
       <div class="chart-wrapper">
         <ngx-charts-bar-vertical-2d [view]="view" [scheme]="'vivid'" [results]="combinedChartData" [xAxis]="true"
-          [yAxis]="true" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [showXAxisLabel]="true"
-          [showYAxisLabel]="true" [legend]="false" [customColors]="customColors" [yScaleMax]="yScaleMax">
+          [yAxis]="true" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [showXAxisLabel]="true" 
+          [showYAxisLabel]="true" [legend]="true" [customColors]="customColors" [yScaleMax]="yScaleMax">
         </ngx-charts-bar-vertical-2d>
       </div>
     </div>

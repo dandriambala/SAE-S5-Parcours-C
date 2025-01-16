@@ -27,10 +27,10 @@ export class BarStudentRangeComponent implements OnInit {
 
   //Education des parents
   education = [
-    { name: "éducation : faible", value: 1 },
-    { name: "éducation : moyennement faible", value: 2 },
-    { name: "éducation : moyennement élevée", value: 3 },
-    { name: "éducation : élevée", value: 4 }
+    { name: "Niveau : primaire", value: 1 },
+    { name: "Niveau : collège", value: 2 },
+    { name: "Niveau : lycée", value: 3 },
+    { name: "Niveau : études supérieures", value: 4 }
   ];
   educationCheckboxes: { [key: string]: boolean } = {
     '4': false,
@@ -75,10 +75,10 @@ export class BarStudentRangeComponent implements OnInit {
   //Colors
   customColors = [
     { name: 'total', value: 'rgba(105, 127, 253)' },
-    { name: 'éducation : élevée', value: 'rgb(0, 81, 255)' },
-    { name: 'éducation : moyennement élevée', value: 'rgb(38, 0, 252)' },
-    { name: 'éducation : moyennement faible', value: 'rgb(191, 5, 248)' },
-    { name: 'éducation : faible', value: 'rgb(250, 0, 0)' },
+    { name: 'Niveau : études supérieures', value: 'rgb(0, 81, 255)' },
+    { name: 'Niveau : lycée', value: 'rgb(38, 0, 252)' },
+    { name: 'Niveau : collège', value: 'rgb(191, 5, 248)' },
+    { name: 'Niveau : primaire', value: 'rgb(250, 0, 0)' },
     { name: "sortie extrascolaire : rarement", value: 'rgb(0, 81, 255)' },
     { name: "sortie extrascolaire : occasionnellement", value: 'rgb(38, 0, 252)' },
     { name: "sortie extrascolaire : régulièrement", value: 'rgb(191, 5, 248)' },
