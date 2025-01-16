@@ -21,6 +21,8 @@ CORS(app)
 app.register_blueprint(guardian_bp)
 app.register_blueprint(tables_bp)
 app.register_blueprint(student_bp)
+
+
 if __name__ == '__main__':
     app.run(debug=True)
 
