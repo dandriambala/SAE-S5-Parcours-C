@@ -2,14 +2,13 @@ import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core'
 import { NgxChartsModule } from '@swimlane/ngx-charts'; // Module de jauge de ngx-charts
 import { schoolData, dataFromJson } from '../../../types';
 import { StudentDataService } from '../../../services/student.service'; // Service des données
-import { MatSliderModule } from '@angular/material/slider';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common'; 
 
 @Component({
   selector: 'app-jauge-student-range',
   standalone: true,
-  imports: [NgxChartsModule, FormsModule, MatSliderModule, CommonModule],
+  imports: [NgxChartsModule, FormsModule, CommonModule],
   templateUrl: './jauge-student-range.component.html',
   styleUrls: ['./jauge-student-range.component.css'],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
