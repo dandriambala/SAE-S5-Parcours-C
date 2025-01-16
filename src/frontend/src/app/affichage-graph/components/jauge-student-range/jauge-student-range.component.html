@@ -1,35 +1,31 @@
 <div class="chart-container">
   <div class="menu-and-chart">
 
-    <div class="menu">
-      <div class="menu-item">
-
-        <h4>Temps de révision
-        </h4>
-        <div class="slider-container">
-          <label for="slider">Valeur du curseur: {{ revisionLevel }}</label>
-          <input type="range" id="slider" min="1" max="4" step="1" thumbLabel [(ngModel)]="revisionLevel"
-            (input)="onRevisionLevelToggle()" />
-        </div>
-
-        <h4>Temps de trajet
-        </h4>
-
-        <div class="slider-container">
-          <label for="slider">Valeur du curseur: {{ trajetLevel }}</label>
-          <input type="range" id="slider" min="1" max="4" step="1" thumbLabel [(ngModel)]="trajetLevel"
-            (change)="onTrajetLevelToggle()" />
-        </div>
-      </div>
-
-    </div>
-
+    <!-- Graphique -->
     <div class="chart">
-      <h1>Moyenne générale des élévès en fonction du temps </h1>
-      <div style="width: 700px; height: 700px;">
+      <h1 class="chart-title">Moyenne générale des élèves en fonction du temps</h1>
+      <div class="chart-wrapper" style="width: 700px; height: 700px;">
+        
         <ngx-charts-gauge [results]="overallAverage" [min]="0" [max]="20" [units]="'Moyenne /20'"
           [colorScheme]="{ domain: ['#5AA454', '#E44D25', '#CFC0BB'] }">
         </ngx-charts-gauge>
+      </div>
+    </div>
+  </div>
+  <div class="menu">
+    <div class="menu-item">
+      <div class="slider-container">
+        <label for="slider"> <h4>{{ getRevisionDescription() }} </h4></label>
+        <input type="range" id="slider" min="1" max="4" step="1" thumbLabel [(ngModel)]="revisionLevel"
+          (input)="onSliderLevelToggle('revision')" />
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <div class="slider-container">
+        <label for="slider2"> <h4>{{ getTrajetDescription() }} </h4></label>
+        <input type="range" id="slider2" min="1" max="4" step="1" thumbLabel [(ngModel)]="trajetLevel"
+          (input)="onSliderLevelToggle('trajet')" />
       </div>
     </div>
   </div>

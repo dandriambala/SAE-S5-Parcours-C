@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { NgxChartsModule } from '@swimlane/ngx-charts'; // Module de jauge de ngx-charts
 import { schoolData, dataFromJson } from '../../../types';
 import { StudentDataService } from '../../../services/student.service'; // Service des données
@@ -23,18 +23,18 @@ export class JaugeStudentRangeComponent implements OnInit {
 
   //Temps de révision
   revision = [
-    { name: "temps de révision : < 2 h", value: 1 },
-    { name: "temps de révision : > 2 h", value: 2 },
-    { name: "temps de révision : > 5 h", value: 3 },
-    { name: "temps de révision : > 10 h", value: 4 }
+    { name: "Temps de révision : < 2 h", value: 1 },
+    { name: "Temps de révision : > 2 h", value: 2 },
+    { name: "Temps de révision : > 5 h", value: 3 },
+    { name: "Temps de révision : > 10 h", value: 4 }
   ];
 
   //Temps de révision
   trajet = [
-    { name: "temps de trajet : < 15 min", value: 1 },
-    { name: "temps de trajet : > 15 min", value: 2 },
-    { name: "temps de trajet : > 30 min", value: 3 },
-    { name: "temps de trajet : > 1 h", value: 4 }
+    { name: "Temps de trajet : < 15 min", value: 1 },
+    { name: "Temps de trajet : > 15 min", value: 2 },
+    { name: "Temps de trajet : > 30 min", value: 3 },
+    { name: "Temps de trajet : > 1 h", value: 4 }
   ];
 
    // Niveaux sélectionnés pour les curseurs
@@ -72,14 +72,25 @@ export class JaugeStudentRangeComponent implements OnInit {
     return totalSum / tab.length;
   }
 
-  onRevisionLevelToggle(): void {
-    const filteredStudents = this.students.filter((x) => x.studytime >= this.revisionLevel);
+  onSliderLevelToggle(SLideType : string): void {
+    let filteredStudents = []
+    if(SLideType === 'trajet')
+      filteredStudents = this.students.filter((x) => x.traveltime >= this.trajetLevel);
+      
+    else{
+      filteredStudents = this.students.filter((x) => x.studytime >= this.revisionLevel);
+    } 
     this.updateOverallAverage(filteredStudents);
   }
 
-  onTrajetLevelToggle(): void {
-    const filteredStudents = this.students.filter((x) => x.traveltime >= this.trajetLevel);
-    this.updateOverallAverage(filteredStudents);
-
+  getRevisionDescription(): string {
+    const revisionItem = this.revision.find(item => item.value === this.revisionLevel);
+    return revisionItem ? revisionItem.name : '';
   }
+  
+  getTrajetDescription(): string {
+    const trajetItem = this.trajet.find(item => item.value === this.trajetLevel);
+    return trajetItem ? trajetItem.name : '';
+  }
+  
 }

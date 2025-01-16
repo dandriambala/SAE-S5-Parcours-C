@@ -7,104 +7,65 @@
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer le contenu horizontalement */
 }
-
 
 .menu-and-chart {
   display: flex;
-  gap: 30px; 
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+}
+
+.chart {
+  margin-bottom: 30px; /* Ajout d'un espace entre le graphique et les curseurs */
 }
 
 .menu {
-  flex: 1;
-  max-width: 300px;
-  padding: 20px;
-  background-color: #ffffff;
-  border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacement vertical entre les curseurs */
+  align-items: center; /* Centrer horizontalement */
+  width: 100%; /* Étendre les curseurs à la largeur disponible */
 }
-
-.menu:hover {
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
-}
-
 
 .menu-item {
-  margin-bottom: 25px;
+  width: 100%;
+  max-width: 600px; /* Limiter la largeur des curseurs */
 }
 
-
-.menu-item h4 {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 15px;
-  border-left: 4px solid #007bff; 
-  padding-left: 10px;
-}
-
-
-.menu-item label {
+.slider-container {
   display: flex;
-  align-items: center;
-  font-size: 15px;
-  font-weight: 500;
-  color: #555;
-  margin-bottom: 10px;
+  flex-direction: column;
+  align-items: center; /* Centrer le contenu des curseurs */
+  gap: 10px; /* Espacement entre le label et l'entrée */
+}
+
+input[type="range"] {
+  -webkit-appearance: none;
+  width: 100%; /* La largeur correspond à celle de l'élément parent */
+  height: 10px;
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 10px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #af4c4c;
   cursor: pointer;
-  transition: color 0.2s ease;
 }
 
-.menu-item label:hover {
-  color: #007bff; 
-}
-
-
-.menu-item input[type="radio"] {
-  margin-right: 12px;
-  width: 16px;
-  height: 16px;
-  accent-color: #007bff; 
-}
-
-
-.menu-item:last-child {
-  margin-bottom: 0;
-}
-
-
-.chart {
-  flex: 3;
-}
-
-
-.chart-title {
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
-  color: #333;
-  margin-bottom: 20px;
-}
-
-
-.chart-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow-x: auto;
-  padding: 10px;
-}
-
-.menu-item h4 {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.mat-slider {
-  width: 300px;
-  margin-bottom: 20px;
+input[type="range"]::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #af4c4c;
+  cursor: pointer;
 }
