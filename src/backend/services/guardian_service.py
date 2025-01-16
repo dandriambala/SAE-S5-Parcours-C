@@ -1,4 +1,4 @@
-from guardian_repository import GuardianRepository
+from repositories.guardian_repository import GuardianRepository
 
 class GuardianService:
     @staticmethod

@@ -1,4 +1,4 @@
-from guardians_model import Guardian
+from models.guardians_model import Guardian
 
 class GuardianRepository:
     @staticmethod

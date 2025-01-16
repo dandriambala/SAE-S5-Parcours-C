@@ -1,22 +1,22 @@
-from flask import Flask ,jsonify
-from flask_sqlalchemy import SQLAlchemy
+from flask import Flask 
+from config import Config
 from flask_cors import CORS
+from bd_sql import db
 from controllers.guardian_controller import guardian_bp
-
-
-
+from controllers.tables_controller import tables_bp
+from sqlalchemy import inspect
 
 app = Flask(__name__)
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+mysqlconnector://dutinfopw201691:bygydasa@database-etudiants.iut.univ-paris8.fr:3306/dutinfopw201691'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
-db = SQLAlchemy(app)
+
+app.config.from_object(Config)
+db.init_app(app)
 
 CORS(app)
 
 
-app.register_blueprint(guardian_bp, url_prefix='/api')
 
-
+app.register_blueprint(guardian_bp)
+app.register_blueprint(tables_bp)
 
 if __name__ == '__main__':
     app.run(debug=True)
@@ -25,4 +25,3 @@ if __name__ == '__main__':
 
 
 
-    

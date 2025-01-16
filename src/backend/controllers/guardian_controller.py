@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify
-from guardian_service import GuardianService
+from services.guardian_service import GuardianService
 
 guardian_bp = Blueprint('guardians', __name__)
 
