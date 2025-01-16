@@ -1,15 +1,16 @@
 .chart-container {
-  max-width: 1200px;
+  max-width: 72%;
   margin: 0 auto;
   margin-top: 50px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #ffe6f0;
   border: 1px solid #ddd;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   flex-direction: column;
   align-items: center; /* Centrer le contenu horizontalement */
+  height: auto;
 }
 
 .menu-and-chart {
@@ -18,18 +19,32 @@
   align-items: center;
 }
 
+.chart-wrapper {
+  background-color: #fff;
+  border-radius: 8px;
+}
+
 .chart {
+  margin-top: 20px;
   margin-bottom: 30px; /* Ajout d'un espace entre le graphique et les curseurs */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: auto;
+
 }
 
 .menu {
   display: flex;
   flex-direction: column;
-  gap: 20px; /* Espacement vertical entre les curseurs */
+  gap: 10px; /* Espacement vertical entre les curseurs */
   align-items: center; /* Centrer horizontalement */
-  width: 100%; /* Étendre les curseurs à la largeur disponible */
+  width: 50%; /* Augmentation de la largeur */
+  height: 40%; /* Augmentation de la hauteur */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px; /* Ajout d'espace interne pour que les curseurs ne soient pas collés au bord */
 }
-
 .menu-item {
   width: 100%;
   max-width: 600px; /* Limiter la largeur des curseurs */
@@ -58,7 +73,7 @@ input[type="range"]::-webkit-slider-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #af4c4c;
+  background: #997a8d;
   cursor: pointer;
 }
 
@@ -66,6 +81,6 @@ input[type="range"]::-moz-range-thumb {
   width: 25px;
   height: 25px;
   border-radius: 50%;
-  background: #af4c4c;
+  background: #997a8d;
   cursor: pointer;
 }

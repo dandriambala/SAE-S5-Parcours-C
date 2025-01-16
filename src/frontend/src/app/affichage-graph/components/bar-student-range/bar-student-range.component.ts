@@ -74,18 +74,20 @@ export class BarStudentRangeComponent implements OnInit {
 
   //Colors
   customColors = [
-    { name: 'total', value: 'rgba(105, 127, 253)' },
-    { name: 'éducation : élevée', value: 'rgb(0, 81, 255)' },
-    { name: 'éducation : moyennement élevée', value: 'rgb(38, 0, 252)' },
-    { name: 'éducation : moyennement faible', value: 'rgb(191, 5, 248)' },
-    { name: 'éducation : faible', value: 'rgb(250, 0, 0)' },
-    { name: "sortie extrascolaire : rarement", value: 'rgb(0, 81, 255)' },
-    { name: "sortie extrascolaire : occasionnellement", value: 'rgb(38, 0, 252)' },
-    { name: "sortie extrascolaire : régulièrement", value: 'rgb(191, 5, 248)' },
-    { name: "alcool : rarement", value: 'rgb(0, 81, 255)' },
-    { name: "alcool : occasionnellement", value: 'rgb(38, 0, 252)' },
-    { name: "alcool : régulièrement", value: 'rgb(191, 5, 248)' }
-  ]
+    { name: 'total', value: '#b06f8e' }, 
+    { name: 'éducation : élevée', value: '#a0557b' }, 
+    { name: 'éducation : moyennement élevée', value: '#c27d9e' }, 
+    { name: 'éducation : moyennement faible', value: '#d894ae' }, 
+    { name: 'éducation : faible', value: '#eab1c4' }, 
+    { name: "sortie extrascolaire : rarement", value: '#a0557b' }, 
+    { name: "sortie extrascolaire : occasionnellement", value: '#c27d9e' }, 
+    { name: "sortie extrascolaire : régulièrement", value: '#d894ae' },
+    { name: "alcool : rarement", value: '#a0557b' }, 
+    { name: "alcool : occasionnellement", value: '#c27d9e' }, 
+    { name: "alcool : régulièrement", value: '#d894ae' } 
+  ];
+  
+
 
   constructor(private readonly graphService: GraphService, private studentDataService: StudentDataService) { }
 

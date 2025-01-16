@@ -14,6 +14,12 @@ import { JaugeStudentRangeComponent } from './components/jauge-student-range/jau
 })
 
 export class AffichageGraphComponent {
+  selectedAnalyse: 'kaggle' | 'questionnaire' = 'kaggle';
+
+  // Méthode appelée lorsqu'un bouton est cliqué
+  onAnalyseChange(analyseType: 'kaggle' | 'questionnaire') {
+    this.selectedAnalyse = analyseType;
+  }
   data = jsonData as dataFromJson;
 
 }
