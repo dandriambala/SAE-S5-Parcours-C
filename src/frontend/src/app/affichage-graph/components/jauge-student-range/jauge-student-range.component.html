@@ -4,10 +4,7 @@
     <!-- Graphique -->
     <h2 class="chart-title">Moyenne générale des élèves en fonction du temps</h2>
     <div class="chart">
-
-
-      <h1 class="chart-title">Moyenne générale des élèves en fonction du temps</h1>
-      <div class="chart-wrapper" style="width: 700px; height: 700px;">
+      <div class="chart-wrapper" >
         <ngx-charts-gauge [results]="overallAverage" [min]="0" [max]="20" [units]="'/20'"
           [colorScheme]="{ domain: ['#5AA454', '#E44D25', '#CFC0BB'] }">
         </ngx-charts-gauge>
@@ -35,7 +32,7 @@
     
     <div class="slider-container">
       <label for="slider">
-        <h1> {{ getSliderLabel() }} </h1>
+        <h3> {{ getSliderLabel() }} </h3>
       </label>
       <input
         type="range"
