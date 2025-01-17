@@ -6,11 +6,11 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StudentDataService {
-  private  readonly jsonUrl = 'assets/student.json'; 
+  private  readonly kaggleUrl = 'http://localhost:5000/students'; 
 
   constructor(private http: HttpClient) {}
 
   getStudentData(): Observable<any[]> {
-    return this.http.get<any[]>(this.jsonUrl);
+    return this.http.get<any[]>(this.kaggleUrl);
   }
 }

@@ -65,9 +65,12 @@ class StudentService:
                 "Walc": health["Walc"],
                 "health": health["health"],
                 "absences": study_habits["absences"],
-                "G1": performance["G1_por"],
-                "G2": performance["G2_por"],
-                "G3": performance["G3_por"],
+                "G1_por": performance["G1_por"],
+                "G2_por": performance["G2_por"],
+                "G3_por": performance["G3_por"],
+                "G1_math": performance.get("G1_math", None),  # Utilisation de `.get()` pour éviter les erreurs si la colonne n'existe pas
+                "G2_math": performance.get("G2_math", None),
+                "G3_math": performance.get("G3_math", None),
             })
 
         return result

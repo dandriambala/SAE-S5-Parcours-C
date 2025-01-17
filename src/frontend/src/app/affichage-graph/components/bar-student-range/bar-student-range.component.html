@@ -11,6 +11,10 @@
           <input type="radio" name="radio-button" value="educationFamiliale" (change)="onAllParentEducationLevelToggle($event)">
         </h4>
         <label>
+          <input type="checkbox" name="educationFamiliale" value="5" [(ngModel)]="educationCheckboxes['5']" (change)="onParentEducationLevelToggle(5, $event)">
+          Niveau : pas d'étude
+        </label>
+        <label>
           <input type="checkbox" name="educationFamiliale" value="4" [(ngModel)]="educationCheckboxes['4']" (change)="onParentEducationLevelToggle(4, $event)">
           Niveau : études supérieures
         </label>

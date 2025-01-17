@@ -7,14 +7,14 @@ export type schoolData = {
     address: string;
     famsize: string;
     Pstatus: string;
-    Medu: number;
-    Fedu: number;
+    Medu: string;
+    Fedu: string;
     Mjob: string;
     Fjob: string;
     reason: string;
     guardian: string;
-    traveltime: number;
-    studytime: number;
+    traveltime: string;
+    studytime: string;
     failures: number;
     schoolsup: string;
     famsup: string;
@@ -31,9 +31,12 @@ export type schoolData = {
     Walc: number;
     health: number;
     absences: number;
-    G1: number;
-    G2: number;
-    G3: number;
+    G1_por: number;
+    G2_por: number;
+    G3_por: number;
+    G1_math: number;
+    G2_math: number;
+    G3_math: number;
 };
 export type SingleData = {
     value: number;

@@ -27,12 +27,14 @@ export class BarStudentRangeComponent implements OnInit {
 
   //Education des parents
   education = [
-    { name: "Niveau : primaire", value: 1 },
-    { name: "Niveau : collège", value: 2 },
-    { name: "Niveau : lycée", value: 3 },
-    { name: "Niveau : études supérieures", value: 4 }
+    { name: "Niveau : primaire", value: 1, value_name: 'primary education'},
+    { name: "Niveau : collège", value: 2, value_name: '5th to 9th grade'},
+    { name: "Niveau : lycée", value: 3, value_name: 'secondary education'},
+    { name: "Niveau : études supérieures", value: 4, value_name: 'higher education' },
+    { name: "Niveau : pas d'études", value: 5, value_name: 'none'}
   ];
   educationCheckboxes: { [key: string]: boolean } = {
+    '5': false,
     '4': false,
     '3': false,
     '2': false,
@@ -118,7 +120,15 @@ export class BarStudentRangeComponent implements OnInit {
   }
 
   private calculateStudentAverageGrades(student: schoolData): number {
-    return (student.G1 + student.G2 + student.G3) / 3
+    let result : number = 0
+    if(student.G1_por != null && student.G1_math != null)
+      result = (student.G1_por + student.G2_por + student.G3_por + student.G1_math + student.G2_math + student.G3_math) / 6
+    else if (student.G1_por != null)
+      result = (student.G1_por + student.G2_por + student.G3_por) / 3
+    else if (student.G1_math != null)
+      result = (student.G1_math + student.G2_math + student.G3_math) / 3
+
+    return result
   }
 
   /*
@@ -193,7 +203,6 @@ export class BarStudentRangeComponent implements OnInit {
     // Réinitialiser les données du graphique à leur état initial
   this.chartData = this.getStudentRangeSummary();
   this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
-  console.log(this.combinedChartData)
   }
 
   /**
@@ -202,7 +211,10 @@ export class BarStudentRangeComponent implements OnInit {
 
 
   private calculateAverageParentEdu(student: schoolData): number {
-    return Math.ceil((student.Medu + student.Fedu) / 2)
+    let MeduValue = this.education.filter(x => x.value_name === student.Medu)[0].value
+    let FeduValue = this.education.filter(x => x.value_name === student.Fedu)[0].value
+    
+    return Math.ceil((MeduValue + FeduValue) / 2)
   }
 
   private getEduLevelName(value: number): string {

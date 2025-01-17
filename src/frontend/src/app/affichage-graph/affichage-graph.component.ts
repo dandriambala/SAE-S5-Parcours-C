@@ -14,6 +14,6 @@ import { JaugeStudentRangeComponent } from './components/jauge-student-range/jau
 })
 
 export class AffichageGraphComponent {
-  data = jsonData as dataFromJson;
+  data : dataFromJson = [];
 
 }
