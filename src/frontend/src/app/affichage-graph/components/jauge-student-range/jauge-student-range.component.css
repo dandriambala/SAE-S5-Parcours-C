@@ -23,6 +23,7 @@
 .chart-wrapper {
   background-color: #fff;
   border-radius: 8px;
+  font-family: 'Courier New', Courier, monospace;  
 }
 
 .chart {
