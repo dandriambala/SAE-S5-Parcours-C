@@ -2,7 +2,7 @@
   <div class="menu-and-chart">
 
     <!-- Graphique -->
-    <h2 class="chart-title">Moyenne générale des élèves en fonction du temps</h2>
+    <h2 class="chart-title">Moyenne générale des élèves en fonction de {{activeTab}} </h2>
     <div class="chart">
       <div class="chart-wrapper" >
         <ngx-charts-gauge [results]="overallAverage" [min]="0" [max]="20" [units]="'/20'"
