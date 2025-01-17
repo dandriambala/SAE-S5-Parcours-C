@@ -1,0 +1,99 @@
+import { Component, OnInit, Input, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { NgxChartsModule } from '@swimlane/ngx-charts'; // Module de jauge de ngx-charts
+import { schoolData, dataFromJson } from '../../../types';
+import { StudentDataService } from '../../../services/student.service'; // Service des données
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common'; 
+
+@Component({
+  selector: 'app-jauge-student-range',
+  standalone: true,
+  imports: [NgxChartsModule, FormsModule, CommonModule],
+  templateUrl: './jauge-student-range.component.html',
+  styleUrls: ['./jauge-student-range.component.css'],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
+})
+export class JaugeStudentRangeComponent implements OnInit {
+  @Input({ required: true }) data: dataFromJson = []; // Liste des étudiants en entrée
+
+  students: schoolData[] = [];
+  overallAverage: any[] = [];
+
+  // Temps de révision
+  revision = [
+    { name: "Temps de révision : < 2 h", value: 1 },
+    { name: "Temps de révision : > 2 h", value: 2 },
+    { name: "Temps de révision : > 5 h", value: 3 },
+    { name: "Temps de révision : > 10 h", value: 4 },
+  ];
+
+  // Temps de trajet
+  trajet = [
+    { name: "Temps de trajet : < 15 min", value: 1 },
+    { name: "Temps de trajet : > 15 min", value: 2 },
+    { name: "Temps de trajet : > 30 min", value: 3 },
+    { name: "Temps de trajet : > 1 h", value: 4 },
+  ];
+
+  // Niveaux sélectionnés pour les curseurs
+  cursorValue: number = 1;
+  activeTab: 'trajet' | 'revision' = 'trajet';
+
+  constructor(private studentDataService: StudentDataService) {}
+
+  ngOnInit(): void {
+    this.studentDataService.getStudentData().subscribe((data: schoolData[]) => {
+      this.students = data;
+      this.updateOverallAverage(this.students);
+    });
+  }
+
+  updateOverallAverage(filteredStudents: schoolData[]): void {
+    this.overallAverage = [
+      {
+        name: 'Moyenne générale',
+        value: this.calculateOverallAverage(filteredStudents),
+      },
+    ];
+  }
+
+  calculateOverallAverage(tab: schoolData[]): number {
+    if (tab.length === 0) {
+      return 0; // Éviter une division par zéro
+    }
+    const totalSum = tab.reduce((sum, student) => {
+      const studentAverage = (student.G1 + student.G2 + student.G3) / 3;
+      return sum + studentAverage;
+    }, 0);
+
+    return totalSum / tab.length;
+  }
+
+  // Basculer entre les onglets
+  setActiveTab(tab: 'trajet' | 'revision'): void {
+    this.activeTab = tab;
+    this.onSliderLevelToggle(); // Applique le filtre dès que l'onglet change
+  }
+
+  // Appliquer le filtre en fonction de l'onglet actif
+
+  onSliderLevelToggle(): void {
+    let filteredStudents :  schoolData[]= [];
+    if (this.activeTab === 'trajet') {
+      filteredStudents = this.students.filter((x) => x.traveltime >= this.cursorValue);
+    } else if (this.activeTab === 'revision') {
+      filteredStudents = this.students.filter((x) => x.studytime >= this.cursorValue);
+    }
+    this.updateOverallAverage(filteredStudents);
+  }
+  
+  getSliderLabel(): string {
+    if (this.activeTab === 'trajet') {
+      return this.trajet.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
+    } else if (this.activeTab === 'revision') {
+      return this.revision.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
+    }
+    return 'Inconnu';
+  }
+}
+

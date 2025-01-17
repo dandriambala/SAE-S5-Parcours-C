@@ -1,0 +1,120 @@
+.chart-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centrer le contenu horizontalement */
+}
+
+.menu-and-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Espacement vertical entre les curseurs */
+  align-items: center; /* Centrer horizontalement */
+  width: 100%; /* Étendre les curseurs à la largeur disponible */
+}
+
+.menu-item {
+  width: 100%;
+  max-width: 600px; /* Limiter la largeur des curseurs */
+}
+
+.slider-tab-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre horizontalement */
+  justify-content: center; /* Centre verticalement si nécessaire */
+  gap: 20px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center; /* Centre les boutons */
+}
+
+.tab-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab-buttons button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+
+.tab-buttons button:hover {
+  background-color: #0056b3;
+  color: #fff;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centre le contenu du slider */
+  gap: 10px;
+}
+/* Titre du graphique */
+.chart-title {
+  font-size: 32px; /* Augmenter la taille du texte */
+  font-weight: bold; /* Rendre le texte en gras */
+  color: #333; /* Couleur sombre pour un bon contraste */
+  margin-bottom: 20px; /* Espacement sous le titre */
+}
+
+/* Curseur */
+input[type="range"] {
+  width: 500px; /* Augmenter la largeur du curseur */
+  height: 12px; /* Ajuster la hauteur pour le rendre un peu plus visible */
+  background: #ddd;
+  border-radius: 5px;
+  outline: none;
+  margin-top: 10px;
+}
+
+/* Thumb du curseur */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 30px; /* Agrandir le thumb du curseur */
+  height: 30px;
+  border-radius: 50%;
+  background: #af4c4c;
+  cursor: pointer;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 30px; /* Agrandir le thumb du curseur */
+  height: 30px;
+  border-radius: 50%;
+  background: #af4c4c;
+  cursor: pointer;
+}
+
+/* Cibler la valeur affichée par le graphique */
+ngx-charts-gauge .ngx-charts-label {
+  font-size: 24px; /* Taille de la police pour la valeur affichée */
+  font-weight: bold; /* Rendre la valeur en gras */
+  color: #333; /* Couleur sombre pour le contraste */
+}
+

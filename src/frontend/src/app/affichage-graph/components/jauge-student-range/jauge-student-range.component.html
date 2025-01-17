@@ -1,0 +1,50 @@
+<div class="chart-container">
+  <div class="menu-and-chart">
+
+    <!-- Graphique -->
+    <div class="chart">
+      <h1 class="chart-title">Moyenne générale des élèves en fonction du temps</h1>
+      <div class="chart-wrapper" style="width: 700px; height: 700px;">
+        <ngx-charts-gauge [results]="overallAverage" [min]="0" [max]="20" [units]="'/20'"
+          [colorScheme]="{ domain: ['#5AA454', '#E44D25', '#CFC0BB'] }">
+        </ngx-charts-gauge>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Onglets flottants et curseur -->
+  <div class="slider-tab-container">
+    <div class="tab-buttons">
+      <button
+        [class.active]="activeTab === 'trajet'"
+        (click)="setActiveTab('trajet')"
+      >
+        Trajet
+      </button>
+      <button
+        [class.active]="activeTab === 'revision'"
+        (click)="setActiveTab('revision')"
+      >
+        Révision
+      </button>
+    </div>
+    
+    <div class="slider-container">
+      <label for="slider">
+        <h1> {{ getSliderLabel() }} </h1>
+      </label>
+      <input
+        type="range"
+        id="slider"
+        [min]="1"
+        [max]="4"
+        [step]="1"
+        [(ngModel)]="cursorValue"
+        (input)="onSliderLevelToggle()"
+      />
+    </div>
+  </div>
+  
+  
+</div>

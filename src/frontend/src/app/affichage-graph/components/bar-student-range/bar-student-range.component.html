@@ -1,0 +1,81 @@
+<div class="chart-container">
+  <div class="menu-and-chart">
+
+    <div class="menu">
+      <div class="menu-item">
+        <h4>Aucun filtre
+          <input type="radio" name="radio-button" value="aucunfiltre" id="unselect-all-checkboxes" (change)="onDeselectAll()" checked>
+        </h4>
+
+        <h4>Niveau académique des parents
+          <input type="radio" name="radio-button" value="educationFamiliale" (change)="onAllParentEducationLevelToggle($event)">
+        </h4>
+        <label>
+          <input type="checkbox" name="educationFamiliale" value="4" [(ngModel)]="educationCheckboxes['4']" (change)="onParentEducationLevelToggle(4, $event)">
+          Niveau : études supérieures
+        </label>
+        <label>
+          <input type="checkbox" name="educationFamiliale" value="3"
+          [(ngModel)]="educationCheckboxes['3']" (change)="onParentEducationLevelToggle(3, $event)">
+          Niveau : lycée
+        </label>
+        <label>
+          <input type="checkbox" name="educationFamiliale" value="2"
+          [(ngModel)]="educationCheckboxes['2']" (change)="onParentEducationLevelToggle(2, $event)">
+          Niveau : collège
+        </label>
+        <label>
+          <input type="checkbox" name="educationFamiliale" value="1" [(ngModel)]="educationCheckboxes['1']" (change)="onParentEducationLevelToggle(1, $event)">
+          Niveau : primaire
+        </label>
+      </div>
+
+      <div class="menu-item">
+        <h4>Sortie extrascolaire
+          <input type="radio" name="radio-button" value="goout" (change)="onAllGoOutLevelToggle($event)">
+        </h4>
+        <label>
+          <input type="checkbox" name="goout" value="1" [(ngModel)]="gooutCheckboxes['1']" (change)="onGoOutLevelToggle(1, 1, 2, $event)">
+          Rarement
+        </label>
+        <label>
+          <input type="checkbox" name="goout" value="2" [(ngModel)]="gooutCheckboxes['2']" (change)="onGoOutLevelToggle(2, 3, 3, $event)">
+          Occasionnellement
+        </label>
+        <label>
+          <input type="checkbox" name="goout" value="3" [(ngModel)]="gooutCheckboxes['3']" (change)="onGoOutLevelToggle(3, 4, 5, $event)">
+          Régulièrement
+        </label>
+      </div>
+
+     <div class="menu-item">
+        <h4>Consommation Alcool
+          <input type="radio" name="radio-button" value="alcool" (change)="onAllAlcoolLevelToggle($event)">
+        </h4>
+        <label>
+          <input type="checkbox" name="alcool" value="1" [(ngModel)]="alcoolCheckboxes['1']" (change)="onAlcoolLevelToggle(1, 1, 2, $event)">
+          Rarement
+        </label>
+        <label>
+          <input type="checkbox" name="alcool" value="2" [(ngModel)]="alcoolCheckboxes['2']" (change)="onAlcoolLevelToggle(2, 3, 3, $event)">
+          Occasionnellement
+        </label>
+        <label>
+          <input type="checkbox" name="alcool" value="3" [(ngModel)]="alcoolCheckboxes['3']" (change)="onAlcoolLevelToggle(3, 4, 5, $event)">
+          Régulièrement
+        </label>
+      </div>
+
+    </div>
+
+    <div class="chart">
+      <h2>Effectif des élèves par tranche de notes </h2>
+      <div class="chart-wrapper">
+        <ngx-charts-bar-vertical-2d [view]="view" [scheme]="'vivid'" [results]="combinedChartData" [xAxis]="true"
+          [yAxis]="true" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [showXAxisLabel]="true" 
+          [showYAxisLabel]="true" [legend]="true" [customColors]="customColors" [yScaleMax]="yScaleMax">
+        </ngx-charts-bar-vertical-2d>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,20 +1,19 @@
 import { Component} from '@angular/core';
-import { EduFamilleComponent } from './components/edu-famille/edu-famille.component';
+import { BarStudentRangeComponent } from './components/bar-student-range/bar-student-range.component';
+import { PolarStudentRangeComponent } from './components/polar-student-range/polar-student-range.component';
 import jsonData from '../../assets/student.json';
 import { dataFromJson } from '../types';
-
-import { RouterOutlet } from '@angular/router';
-//import jsonData from '../../../assets/student.json';
+import { JaugeStudentRangeComponent } from './components/jauge-student-range/jauge-student-range.component';
 
 @Component({
   selector: 'app-affichage-graph',
   standalone: true,
-  imports: [EduFamilleComponent],
+  imports: [BarStudentRangeComponent, PolarStudentRangeComponent, JaugeStudentRangeComponent],
   templateUrl: './affichage-graph.component.html',
   styleUrls: ['./affichage-graph.component.css'], 
 })
 
 export class AffichageGraphComponent {
-  //data = jsonData as dataFromJson;
+  data = jsonData as dataFromJson;
 
 }
