@@ -3,17 +3,18 @@
   margin: 0 auto;
   margin-top: 50px;
   padding: 20px;
-  background-color: #f9f9f9;
+  background-color: #ffe6f0; /* Couleur plus douce */
   border: 1px solid #ddd;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 12px; /* Angles légèrement plus arrondis */
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Ombre plus douce */
+  font-family: 'Arial', sans-serif; /* Police moderne */
 }
-
 
 .menu-and-chart {
   display: flex;
-  gap: 30px; 
-  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 30px;
+  align-items: stretch; /* Aligne les deux éléments pour qu'ils aient la même hauteur */
 }
 
 .menu {
@@ -22,11 +23,13 @@
   padding: 20px;
   background-color: #ffffff;
   border: 1px solid #e0e0e0;
-  border-radius: 10px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  transition: box-shadow 0.3s ease;
+  border-radius: 12px; /* Angles arrondis */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
+h2{
+  text-align: center;
+}
 .menu:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
 }
@@ -42,7 +45,7 @@
   font-weight: bold;
   color: #333;
   margin-bottom: 15px;
-  border-left: 4px solid #007bff; 
+  border-left: 4px solid #997a8d; 
   padding-left: 10px;
 }
 
@@ -59,7 +62,7 @@
 }
 
 .menu-item label:hover {
-  color: #007bff; 
+  color: #997a8d; 
 }
 
 
@@ -67,19 +70,13 @@
   margin-right: 12px;
   width: 16px;
   height: 16px;
-  accent-color: #007bff; 
+  accent-color: #997a8d; 
 }
 
 
 .menu-item:last-child {
   margin-bottom: 0;
 }
-
-
-.chart {
-  flex: 3;
-}
-
 
 .chart-title {
   text-align: center;
@@ -90,13 +87,26 @@
 }
 
 
+.chart {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+}
+
 .chart-wrapper {
+  flex-grow: 1; /* Permet de remplir tout l'espace disponible */
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow-x: auto;
+  height: 100%; /* Prend la hauteur complète du conteneur parent */
   padding: 10px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
+
 
 .menu-item h4 {
   display: flex;
