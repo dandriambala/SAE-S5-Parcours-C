@@ -5,6 +5,8 @@ from models.studyHabits_model import StudyHabits
 from models.support_model import Support
 from models.socialLife_model import SocialLife
 from models.health_model import Health
+from models.reasons_model import Reasons
+from models.gamingStartPeriodDict_model import GamingStartDict
 
 class Student(db.Model):
     __tablename__ = 'student'
