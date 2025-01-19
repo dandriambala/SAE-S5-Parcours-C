@@ -21,7 +21,8 @@
   <!-- Affichage du texte pour l'analyse Questionnaire -->
   @if (selectedAnalyse === 'questionnaire') {
     <div class="questionnaire-text">
-      <p>Analyse basée sur les données du questionnaire. Aucun graphique disponible pour cette section.</p>
+      <app-questionnaire-bar-student-rannge [data]="data"></app-questionnaire-bar-student-rannge>
+      <app-questionnaire-jauge-student-range [data]="data"></app-questionnaire-jauge-student-range>
     </div>
   }
 </main>

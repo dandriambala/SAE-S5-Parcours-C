@@ -1,0 +1,48 @@
+<div class="chart-container">
+    <div class="menu-and-chart">
+  
+      <div class="menu">
+        <div class="menu-item">
+          <h3>Les filtres : </h3>
+          <h4>Aucun filtre
+            <input type="radio" name="radio-button" value="aucunfiltre" id="unselect-all-checkboxes" (change)="onDeselectAll()" checked>
+          </h4>
+
+          <h4>Niveau d'étude visé
+            <input type="radio" name="radio-button" value="furtherStudy" (change)="onAllfurtherStudyLevelToggle($event)">
+          </h4>
+          <label>
+            <input type="checkbox" name="furtherStudy" value="1" [(ngModel)]="furtherStudyCheckboxes['1']" (change)="onfurtherStudyLevelToggle(1, $event)">
+            Niveau visé : Bac+2
+          </label>
+          <label>
+            <input type="checkbox" name="furtherStudy" value="2" [(ngModel)]="furtherStudyCheckboxes['2']" (change)="onfurtherStudyLevelToggle(2, $event)">
+            Niveau visé : Bac+3
+          </label>
+          <label>
+            <input type="checkbox" name="furtherStudy" value="3" [(ngModel)]="furtherStudyCheckboxes['3']" (change)="onfurtherStudyLevelToggle(3, $event)">
+            Niveau visé : Master
+          </label>
+          <label>
+            <input type="checkbox" name="furtherStudy" value="4" [(ngModel)]="furtherStudyCheckboxes['4']" (change)="onfurtherStudyLevelToggle(4, $event)">
+            Niveau visé : Diplome d'ingénieur
+          </label>
+          <label>
+            <input type="checkbox" name="furtherStudy" value="5" [(ngModel)]="furtherStudyCheckboxes['5']" (change)="onfurtherStudyLevelToggle(5, $event)">
+            Niveau visé : Doctorat
+          </label>
+        </div>
+  
+      </div>
+  
+      <div class="chart">
+        <h2>Effectif des élèves par tranche de notes </h2>
+        <div class="chart-wrapper">
+          <ngx-charts-bar-vertical-2d [view]="view" [scheme]="'vivid'" [results]="combinedChartData" [xAxis]="true"
+            [yAxis]="true" [xAxisLabel]="xAxisLabel" [yAxisLabel]="yAxisLabel" [showXAxisLabel]="true" 
+            [showYAxisLabel]="true" [legend]="true" [customColors]="customColors" [yScaleMax]="yScaleMax">
+          </ngx-charts-bar-vertical-2d>
+        </div>
+      </div>
+    </div>
+  </div>

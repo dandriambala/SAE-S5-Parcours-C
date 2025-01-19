@@ -7,10 +7,15 @@ import { Observable } from 'rxjs';
 })
 export class StudentDataService {
   private  readonly kaggleUrl = 'http://localhost:5000/students'; 
+  private  readonly QuestionnaireUrl = 'assets/exemple2.json'; 
 
   constructor(private http: HttpClient) {}
 
   getStudentData(): Observable<any[]> {
     return this.http.get<any[]>(this.kaggleUrl);
+  }
+
+  getStudentDataQuestionnaire(): Observable<any[]> {
+    return this.http.get<any[]>(this.QuestionnaireUrl);
   }
 }
