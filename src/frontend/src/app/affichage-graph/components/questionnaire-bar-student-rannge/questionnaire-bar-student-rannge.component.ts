@@ -72,7 +72,7 @@ export class QuestionnaireBarStudentRanngeComponent implements OnInit {
         { name: '8 - 10', list: this.students.filter(x => x.avg_grade  === "[8-10[") },
         { name: '10 - 12', list: this.students.filter(x => x.avg_grade  === "[10-12[") },
         { name: '12 - 16', list: this.students.filter(x => x.avg_grade  === "[12-16[") },
-        { name: '>16', list: this.students.filter(x => x.avg_grade  === "[16-20[") }
+        { name: '>16', list: this.students.filter(x => x.avg_grade  === "[16-20]") }
       ]
 
       this.chartData = this.getStudentRangeSummary();

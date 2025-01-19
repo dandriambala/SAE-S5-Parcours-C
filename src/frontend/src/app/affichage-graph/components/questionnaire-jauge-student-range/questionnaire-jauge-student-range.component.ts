@@ -44,7 +44,7 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
     { name: "Temps de jeu : > 11 h", value: 11 }
   ];
 
-  // Temps hobby
+  // Temps loisir
   tempsHobby = [
     { name: "Temps de loisir : < 1 h", value: 0, value_name: "Moins d'1 heure" },
     { name: "Temps de loisir : 1 - 2 h", value: 1, value_name: '1-2 heures' },
@@ -101,7 +101,8 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
 
   // Niveaux sélectionnés pour les curseurs
   cursorValue: number = 0;
-  activeTab: 'jeu' | 'hobby' | 'other' = 'jeu';
+  activeTab: 'jeu' | 'loisir' | 'réseaux/ménage' = 'jeu';
+  activeAverageTab: 'general' | 'english' = 'general'; // Par défaut, sur "Moyenne générale"
 
   avgMin: number = 0;
   avgMax: number = 0;
@@ -137,16 +138,13 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
     let count = 0;
 
     students.forEach((student) => {
-      const grades = [student.avg_grade, student.english_grade];
-      grades.forEach((grade) => {
-        const note = this.Notes.find(
-          (n) => n.name === grade
-        );
-        if (note) {
-          totalMin += note.value_min;
-          count++;
-        }
-      });
+      const grade = this.activeAverageTab === 'general' ? student.avg_grade : student.english_grade; // Choix de la note
+      const note = this.Notes.find((n) => n.name === grade);
+
+      if (note) {
+        totalMin += note.value_min;
+        count++;
+      }
     });
 
     return count === 0 ? 0 : totalMin / count;
@@ -157,23 +155,20 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
     let count = 0;
 
     students.forEach((student) => {
-      const grades = [student.avg_grade, student.english_grade];
-      grades.forEach((grade) => {
-        const note = this.Notes.find(
-          (n) => n.name === grade
-        );
-        if (note) {
-          totalMax += note.value_max;
-          count++;
-        }
-      });
+      const grade = this.activeAverageTab === 'general' ? student.avg_grade : student.english_grade; // Choix de la note
+      const note = this.Notes.find((n) => n.name === grade);
+
+      if (note) {
+        totalMax += note.value_max;
+        count++;
+      }
     });
 
     return count === 0 ? 0 : totalMax / count;
   }
 
   valueFormatter(value: number): string {
-    return `${value.toFixed(2)} / 20`;
+    return `${value.toFixed(2)}`;
   }
 
   calculateOverallAverage(tab: schoolDataQuestionnaire[]) {
@@ -214,9 +209,21 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
   }
 
   // Basculer entre les onglets
-  setActiveTab(tab: 'jeu' | 'hobby' | 'other'): void {
+  setActiveTab(tab: 'jeu' | 'loisir' | 'réseaux/ménage'): void {
     this.activeTab = tab;
-    this.onSliderLevelToggle(); // Applique le filtre dès que l'onglet change
+    const maxSliderValue = this.getMaxSliderValue();
+    if (this.cursorValue > maxSliderValue) {
+      this.cursorValue = maxSliderValue;
+    }
+
+    this.onSliderLevelToggle(); // Mettre à jour le filtre 
+  }
+
+  setAverageTab(tab: 'general' | 'english'): void {
+    this.activeAverageTab = tab;
+
+    // Recalcule les moyennes avec les nouvelles données
+    this.updateOverallAverage(this.students);
   }
 
   // Appliquer le filtre en fonction de l'onglet actif
@@ -225,44 +232,68 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
     let filteredStudents: schoolDataQuestionnaire[] = [];
     if (this.activeTab === 'jeu') {
       filteredStudents = this.students.filter((x) => {
-        let gametimeValue = this.getTempsJeuValue(x.vgTimeSm) + this.getTempsJeuValue(x.vgTimeWe)
-        return gametimeValue >= this.cursorValue
+        const gametimeValue =
+          this.getTempsJeuValue(x.vgTimeSm) + this.getTempsJeuValue(x.vgTimeWe);
+        return gametimeValue >= this.cursorValue;
       });
-    } else if (this.activeTab === 'hobby') {
+    } else if (this.activeTab === 'loisir') {
       filteredStudents = this.students.filter((x) => {
-        let hobbytimeValue = this.getTempsHobbyValue(x.hobbyTimeSm) + this.getTempsHobbyValue(x.hobbyTimeWe)
-        return hobbytimeValue >= this.cursorValue
+        const hobbytimeValue =
+          this.getTempsHobbyValue(x.hobbyTimeSm) + this.getTempsHobbyValue(x.hobbyTimeWe);
+        return hobbytimeValue >= this.cursorValue;
       });
-    } else if (this.activeTab === 'other') {
+    } else if (this.activeTab === 'réseaux/ménage') {
       filteredStudents = this.students.filter((x) => {
-        let othertimeValue = this.getTempsOtherValue(x.chordsTimeSm) + this.getTempsOtherValue(x.chordsTimeWe) + this.getTempsOtherValue(x.socialMediaTime)
-        return othertimeValue >= this.cursorValue
+        const othertimeValue =
+          this.getTempsOtherValue(x.chordsTimeSm) +
+          this.getTempsOtherValue(x.chordsTimeWe) +
+          this.getTempsOtherValue(x.socialMediaTime);
+        return othertimeValue >= this.cursorValue;
       });
-      this.updateOverallAverage(filteredStudents);
     }
+
+    // Mettre à jour les jauges avec les étudiants filtrés
+    this.updateOverallAverage(filteredStudents);
   }
 
-  getTempsJeuValue(val: String) {
-    return this.tempsJeu.filter(x => x.value_name === val)[0].value
+  getTempsJeuValue(val: string): number {
+    const result = this.tempsJeu.find(x => x.value_name === val)?.value ?? 0; // Valeur par défaut si undefined
+    return result;
   }
 
-  getTempsHobbyValue(val: String) {
-    return this.tempsHobby.filter(x => x.value_name === val)[0].value
+  getTempsHobbyValue(val: string): number {
+    const result = this.tempsHobby.find(x => x.value_name === val)?.value ?? 0; // Valeur par défaut si undefined
+    return result;
   }
 
-  getTempsOtherValue(val: String) {
-    return this.tempsOther.filter(x => x.value_name === val)[0].value
+  getTempsOtherValue(val: string): number {
+    const result = this.tempsOther.find(x => x.value_name === val)?.value ?? 0; // Valeur par défaut si undefined
+    return result;
   }
+
 
   getSliderLabel(): string {
     if (this.activeTab === 'jeu') {
       return this.tempsJeuCumule.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
-    } else if (this.activeTab === 'hobby') {
+    } else if (this.activeTab === 'loisir') {
       return this.tempsHobbyCumule.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
-    } else if (this.activeTab === 'other') {
+    } else if (this.activeTab === 'réseaux/ménage') {
       return this.tempsOtherCumule.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
     }
     return 'Inconnu';
   }
+
+  getMaxSliderValue(): number {
+    if (this.activeTab === 'jeu') {
+      return this.tempsJeuCumule.length - 1; // Dernier index dans tempsJeuCumule
+    } else if (this.activeTab === 'loisir') {
+      return this.tempsHobbyCumule.length - 1; // Dernier index dans tempsHobbyCumule
+    } else if (this.activeTab === 'réseaux/ménage') {
+      return this.tempsOtherCumule.length - 1; // Dernier index dans tempsOtherCumule
+    }
+    return 0; // Valeur par défaut au cas où
+  }
+
 }
+
 

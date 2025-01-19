@@ -1,200 +1,264 @@
 .chart-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    margin-top: 50px;
-    padding: 20px;
-    background-color: #ffe6f0;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centrer le contenu horizontalement */
-    height: auto;
-  }
-  
-  .menu-and-chart {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  
+  max-width: 1200px;
+  margin: 0 auto;
+  margin-top: 50px;
+  padding: 20px;
+  background-color: #ffe6f0;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centrer le contenu horizontalement */
+  height: auto;
+}
 
-  
-  .chart {
-    margin-top: 20px;
-    margin-bottom: 30px; /* Ajout d'un espace entre le graphique et les curseurs */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    height: auto;
-  
-  }
-  
-  
-  .menu {
-    display: flex;
-    flex-direction: column;
-    gap: 10px; /* Espacement vertical entre les curseurs */
-    align-items: center; /* Centrer horizontalement */
-    width: 50%; /* Augmentation de la largeur */
-    height: 40%; /* Augmentation de la hauteur */
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    padding: 20px; /* Ajout d'espace interne pour que les curseurs ne soient pas collés au bord */
-  }
-  .menu-item {
-    width: 100%;
-    max-width: 600px; /* Limiter la largeur des curseurs */
-  }
-  
-  .slider-tab-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre horizontalement */
-    justify-content: center; /* Centre verticalement si nécessaire */
-    gap: 20px;
-    margin: 20px auto;
-    text-align: center;
-  }
-  h3 {
-    color: #333;
-  }
-  .tab-buttons {
-    display: flex;
-    gap: 10px;
-    justify-content: center; /* Centre les boutons */
-  }
-  
-  .tab-buttons button {
-    padding: 10px 20px;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    background-color: #f0f0f0;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-  
-  .tab-buttons button.active {
-    background-color: #997a8d;
-    color: #fff;
-  }
-  
-  .tab-buttons button:hover {
-    background-color: #997a8d;
-    color: #fff;
-  }
-  
-  .slider-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center; /* Centre le contenu du slider */
-    gap: 10px;
-  }
-  /* Titre du graphique */
-  .chart-title {
-    font-size: 32px; /* Augmenter la taille du texte */
-    font-weight: bold; 
-    color: #333; 
-    margin-bottom: 20px; 
-  }
-  /* Curseur */
-  input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 500px; /* Largeur du slider */
-    height: 14px; /* Hauteur de la ligne */
-    background: linear-gradient(90deg, #d8bfd8, #997a8d, #8b5f6d); /* Dégradé inversé */
-    border-radius: 10px; /* Bord arrondi */
-    outline: none;
-    box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2); /* Effet d'ombre intérieure */
-    margin: 0; /* Supprimer les marges par défaut */
-  }
-  
-  /* Thumb (bouton du slider) */
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 32px; /* Taille du cercle */
-    height: 32px; /* Taille du cercle */
-    margin-top: -9px; /* Centrer le cercle sur la ligne */
-    border-radius: 50%; /* Forme circulaire */
-    background: radial-gradient(circle, #fff, #997a8d); /* Dégradé pour le cercle */
-    cursor: pointer;
-    border: 2px solid #997a8d; /* Bordure du cercle */
-    transition: transform 0.2s ease, background-color 0.3s ease; /* Animation fluide */
-  }
-  
-  input[type="range"]::-webkit-slider-thumb:hover {
-    transform: scale(1.2); /* Agrandir le cercle au survol */
-    background-color: #8b5f6d; /* Changement de couleur au survol */
-  }
-  
-  input[type="range"]::-moz-range-thumb {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background: radial-gradient(circle, #fff, #997a8d);
-    cursor: pointer;
-    border: 2px solid #997a8d;
-    transition: transform 0.2s ease, background-color 0.3s ease;
-    margin-top: -9px; /* Centrer pour Firefox également */
-  }
-  
-  input[type="range"]::-moz-range-thumb:hover {
-    transform: scale(1.2);
-    background-color: #8b5f6d;
-  }
-  
-  /* Ligne active (track progress) */
-  input[type="range"]::-webkit-slider-runnable-track {
-    background: linear-gradient(90deg, #d8bfd8, #997a8d, #8b5f6d);
+.menu-and-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+
+
+
+.chart {
+  margin-top: 20px;
+  margin-bottom: 30px;
+  /* Ajout d'un espace entre le graphique et les curseurs */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  height: auto;
+
+}
+
+
+.menu {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  /* Espacement vertical entre les curseurs */
+  align-items: center;
+  /* Centrer horizontalement */
+  width: 50%;
+  /* Augmentation de la largeur */
+  height: 40%;
+  /* Augmentation de la hauteur */
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  /* Ajout d'espace interne pour que les curseurs ne soient pas collés au bord */
+}
+
+.menu-item {
+  width: 100%;
+  max-width: 600px;
+  /* Limiter la largeur des curseurs */
+}
+
+.slider-tab-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centre horizontalement */
+  justify-content: center;
+  /* Centre verticalement si nécessaire */
+  gap: 20px;
+  margin: 20px auto;
+  text-align: center;
+}
+
+h3 {
+  color: #333;
+}
+
+.tab-buttons {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  /* Centre les boutons */
+}
+
+.tab-buttons button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.tab-buttons button.active {
+  background-color: #997a8d;
+  color: #fff;
+}
+
+.tab-buttons button:hover {
+  background-color: #997a8d;
+  color: #fff;
+}
+
+.slider-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* Centre le contenu du slider */
+  gap: 10px;
+}
+
+/* Titre du graphique */
+.chart-title {
+  font-size: 32px;
+  /* Augmenter la taille du texte */
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* Curseur */
+input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 500px;
+  /* Largeur du slider */
+  height: 14px;
+  /* Hauteur de la ligne */
+  background: linear-gradient(90deg, #d8bfd8, #997a8d, #8b5f6d);
+  /* Dégradé inversé */
+  border-radius: 10px;
+  /* Bord arrondi */
+  outline: none;
+  box-shadow: inset 0 4px 6px rgba(0, 0, 0, 0.2);
+  /* Effet d'ombre intérieure */
+  margin: 0;
+  /* Supprimer les marges par défaut */
+}
+
+/* Thumb (bouton du slider) */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 32px;
+  /* Taille du cercle */
+  height: 32px;
+  /* Taille du cercle */
+  margin-top: -9px;
+  /* Centrer le cercle sur la ligne */
+  border-radius: 50%;
+  /* Forme circulaire */
+  background: radial-gradient(circle, #fff, #997a8d);
+  /* Dégradé pour le cercle */
+  cursor: pointer;
+  border: 2px solid #997a8d;
+  /* Bordure du cercle */
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  /* Animation fluide */
+}
+
+input[type="range"]::-webkit-slider-thumb:hover {
+  transform: scale(1.2);
+  /* Agrandir le cercle au survol */
+  background-color: #8b5f6d;
+  /* Changement de couleur au survol */
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff, #997a8d);
+  cursor: pointer;
+  border: 2px solid #997a8d;
+  transition: transform 0.2s ease, background-color 0.3s ease;
+  margin-top: -9px;
+  /* Centrer pour Firefox également */
+}
+
+input[type="range"]::-moz-range-thumb:hover {
+  transform: scale(1.2);
+  background-color: #8b5f6d;
+}
+
+/* Ligne active (track progress) */
+input[type="range"]::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, #d8bfd8, #997a8d, #8b5f6d);
   /* Dégradé inversé pour la ligne */
-    height: 14px; /* Hauteur de la ligne */
-    border-radius: 10px; /* Bord arrondi */
-  }
-  
-  /* Focus */
-  input[type="range"]:focus::-webkit-slider-runnable-track {
-    background: linear-gradient(90deg, #d8bfd8, #997a8d, #8b5f6d); /* Couleur changeante au focus */
-  }
-  
-  /* Label */
-  .slider-container label {
-    font-size: 20px;
-    color: #997a8d;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
-  
-  .chart-wrapper {
-    position: relative;
-    width: 700px;
-    height: 700px;
-  }
-  
-  .inner-gauge {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 80%;
-    height: 80%;
-    margin: auto;
-  }
-  
-  .outer-gauge {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-  }
-  .chart-wrapper {
-    background-color: #fff;
-    border-radius: 8px;
-    font-family: 'Courier New', Courier, monospace;  
-  }
+  height: 14px;
+  /* Hauteur de la ligne */
+  border-radius: 10px;
+  /* Bord arrondi */
+}
+
+/* Focus */
+input[type="range"]:focus::-webkit-slider-runnable-track {
+  background: linear-gradient(90deg, #d8bfd8, #997a8d, #8b5f6d);
+  /* Couleur changeante au focus */
+}
+
+/* Label */
+.slider-container label {
+  font-size: 20px;
+  color: #997a8d;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.chart-wrapper {
+  position: relative;
+  width: 600px;
+  height: 600px;
+}
+
+.inner-gauge {
+  position: absolute;
+  top: 15%;
+  /* Ajustez selon vos besoins */
+  left: 15%;
+  width: 70%;
+  height: 70%;
+
+}
+
+.outer-gauge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.average-tab-container {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.average-tab-container button {
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.average-tab-container button.active {
+  background-color: #997a8d;
+  color: #fff;
+}
+
+.average-tab-container button:hover {
+  background-color: #997a8d;
+  color: #fff;
+}
+.inner-gauge .ngx-charts-gauge-value {
+  font-size: 12px !important;  /* Taille du texte affiché sur la jauge */
+  font-weight: bold;           /* Optionnel : pour rendre le texte en gras */
+}
