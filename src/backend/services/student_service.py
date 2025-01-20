@@ -20,7 +20,7 @@ class StudentService:
         health_data = requests.get(f"{StudentService.BASE_URL}/health").json()['health']
         parent_job_data = requests.get(f"{StudentService.BASE_URL}/parent_job").json()['parent_job']
         parent_edu_data = requests.get(f"{StudentService.BASE_URL}/parent_education").json()['parent_education']
-        reasons_data = requests.get(f"{StudentService.BASE_URL}/reasons").json()['reasons']
+        reasons_data = requests.get(f"{StudentService.BASE_URL}/reason").json()['reason']
         travel_time_data = requests.get(f"{StudentService.BASE_URL}/travel_time").json()['travel_time']
         studytime_data = requests.get(f"{StudentService.BASE_URL}/studytime").json()['studytime']
         guardian_data = requests.get(f"{StudentService.BASE_URL}/guardian").json()['guardian']
