@@ -1,0 +1,72 @@
+<div class="chart-container">
+  <div class="menu-and-chart">
+
+    <!-- Graphique -->
+    <h2 class="chart-title">Intervalle de moyenne des élèves en fonction du temps de {{activeTab}} </h2>
+    <div class="chart">
+      <div class="average-tab-container">
+        <button [class.active]="activeAverageTab === 'general'" (click)="setAverageTab('general')">
+          Moyenne générale
+        </button>
+        <button [class.active]="activeAverageTab === 'english'" (click)="setAverageTab('english')">
+          Moyenne en anglais
+        </button>
+      </div>
+
+      <div class="chart-wrapper">
+        <!-- Jauge pour la moyenne minimale -->
+        <div class="inner-gauge">
+          <ngx-charts-gauge [results]="[{ name: 'Moyenne minimale', value: avgMin }]" [min]="0" [max]="20"
+            [units]="'/20'" [angleSpan]="240" [startAngle]="-120" [valueFormatting]="valueFormatter" [arcWidth]="0.3"
+            [customColors]="customColors" [showText]="false">
+          </ngx-charts-gauge>
+        </div>
+
+        <!-- Jauge pour la moyenne maximale -->
+        <div class="outer-gauge">
+          <ngx-charts-gauge [results]="[{ name: 'Moyenne maximale', value: avgMax }]" [min]="0" [max]="20"
+            [units]="'/20'" [angleSpan]="240" [startAngle]="-120" [valueFormatting]="valueFormatter" [arcWidth]="0.15"
+            [customColors]="customColors" [showText]="false">
+          </ngx-charts-gauge>
+        </div>
+      </div>
+      
+      <div class="gauge-value-text">
+        <p>
+          Note maximale théorique : 
+          <span class="max-value-text">{{ avgMax.toFixed(1) }}</span>/20
+        </p>
+        <p>
+          Note minimale théorique : 
+          <span class="min-value-text">{{ avgMin.toFixed(1) }}</span>/20
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Onglets flottants et curseur -->
+  <div class="slider-tab-container">
+    <div class="tab-buttons">
+      <button [class.active]="activeTab === 'jeu'" (click)="setActiveTab('jeu')">
+        Jeu
+      </button>
+      <button [class.active]="activeTab === 'loisir'" (click)="setActiveTab('loisir')">
+        loisir
+      </button>
+      <button [class.active]="activeTab === 'réseaux/ménage'" (click)="setActiveTab('réseaux/ménage')">
+        Autres
+      </button>
+    </div>
+
+    <div class="slider-container">
+      <label for="slider">
+        <h3> {{ getSliderLabel() }} </h3>
+      </label>
+      <input type="range" id="slider" [min]="0" [max]="getMaxSliderValue()" [step]="1" [(ngModel)]="cursorValue"
+        (input)="onSliderLevelToggle()" />
+    </div>
+  </div>
+
+
+</div>

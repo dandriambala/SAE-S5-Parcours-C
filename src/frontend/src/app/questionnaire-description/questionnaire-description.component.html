@@ -1,0 +1,42 @@
+<div class="study-description">
+  <h2>Étude : Consommation de jeux vidéo et performances académiques</h2>
+
+  <!-- Texte abrégé visible par défaut -->
+  <p *ngIf="!showFullText">
+    Notre groupe avait pour but de recueillir des données afin d’analyser le lien entre consommation de jeux vidéo et performances académiques. 
+    Pour cela, un questionnaire a été conçu, permettant de récolter 269 réponses d’étudiants français en études supérieures. 
+    <button (click)="toggleText()" class="toggle-button">En savoir plus</button>
+  </p>
+
+  <!-- Texte complet affiché lorsque le bouton est cliqué -->
+  <div *ngIf="showFullText">
+    <p>
+      Notre groupe avait pour but de recueillir des données afin d’analyser le lien entre consommation de jeux vidéo et performances académiques. 
+      Pour cela, un questionnaire a été conçu, permettant de récolter 269 réponses d’étudiants français en études supérieures. 
+      Les étudiants provenaient de divers établissements, dans des domaines d’étude variés, bien qu’une sur-représentation des étudiants en informatique ait été constatée.
+    </p>
+
+    <h3>Informations sociodémographiques</h3>
+    <p>
+      Les données obtenues contiennent des informations sociodémographiques : genre, âge, niveau et domaine d’étude, niveau d’étude parental, situation familiale, etc.
+    </p>
+
+    <h3>Consommation de jeux vidéo</h3>
+    <p>
+      Nous avons également récolté des données concernant la consommation de jeux vidéo : quantité d’heures jouées, types de jeux, moment de jeu dans la journée, langue dans laquelle les individus jouent, etc.
+    </p>
+
+    <h3>Activités du quotidien</h3>
+    <p>
+      Afin de relativiser l’impact des jeux vidéo sur les performances scolaires, nous avons également relevé des données concernant différentes activités du quotidien : loisirs en général, temps consacrés aux tâches ménagères, temps consacré aux réseaux sociaux, etc.
+    </p>
+
+    <h3>Performances académiques</h3>
+    <p>
+      Enfin, notre jeu de données contient des informations permettant de refléter la performance académique : moyenne générale, moyenne en anglais. 
+      De même que dans l’étude <strong>Student Alcohol Consumption</strong>, nous avons relevé des facteurs externes pouvant influencer cette performance : retards, absences, motivation à poursuivre des études, temps de révision, temps de trajet, soutien scolaire, etc.
+    </p>
+
+    <button (click)="toggleText()" class="toggle-button">Voir moins</button>
+  </div>
+</div>

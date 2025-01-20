@@ -38,6 +38,25 @@ export type schoolData = {
     G2_math: number;
     G3_math: number;
 };
+
+export type schoolDataQuestionnaire = {
+    schoolingLevel: string;
+    studyField: string;
+    houseHold: string;
+    hobbyTimeSm: string;
+    hobbyTimeWe: string;
+    vgTimeSm: string;
+    vgTimeWe: string;
+    chordsTimeSm: string;
+    chordsTimeWe: string;
+    socialMediaTime: string;
+    avg_grade: string;
+    english_grade: string;
+    target_education: string;
+    Medu: string;
+    Fedu: string;
+};
+
 export type SingleData = {
     value: number;
     name: string;
@@ -52,6 +71,10 @@ export type MultipleData = {
 export type StudentRange = {
     name: string;
     list: schoolData[];
+}
+export type StudentRangeQuestionnaire = {
+    name: string;
+    list: schoolDataQuestionnaire[];
 }
 
 export interface SeriesItem {
