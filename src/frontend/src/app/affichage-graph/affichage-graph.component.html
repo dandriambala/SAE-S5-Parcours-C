@@ -13,6 +13,7 @@
   <!-- Affichage des graphiques pour l'analyse Kaggle -->
   @if (selectedAnalyse === 'kaggle') {
     <div class="graphs">
+      <app-kaggle-description></app-kaggle-description>
       <app-bar-student-range [data]="data"></app-bar-student-range>
       <app-jauge-student-range [data]="data"></app-jauge-student-range>
     </div>
@@ -21,6 +22,7 @@
   <!-- Affichage du texte pour l'analyse Questionnaire -->
   @if (selectedAnalyse === 'questionnaire') {
     <div class="questionnaire-text">
+      <app-questionnaire-description></app-questionnaire-description>
       <app-questionnaire-bar-student-rannge [data]="data"></app-questionnaire-bar-student-rannge>
       <app-questionnaire-jauge-student-range [data]="data"></app-questionnaire-jauge-student-range>
     </div>

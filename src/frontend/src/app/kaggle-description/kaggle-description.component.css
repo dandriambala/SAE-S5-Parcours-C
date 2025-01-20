@@ -1,0 +1,39 @@
+.study-description {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6; /* Réduction de l'espacement entre les lignes */
+    color: #333;
+    padding: 20px;
+    max-width: 1200px;
+    align-items: center;
+    margin: 0 auto;
+}  
+  
+  .study-description h2 {
+    font-size: 2rem;
+    color: #997a8d;
+    margin-bottom: 20px;
+  }
+  
+  .study-description h3 {
+    font-size: 1.5rem;
+    color: #555;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .study-description p {
+    font-size: 1.2rem;
+    color: #555;
+    margin-bottom: 20px;
+  }
+  
+  .study-description ul {
+    margin-left: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .study-description ul li {
+    font-size: 1.1rem;
+    color: #555;
+  }
+  
