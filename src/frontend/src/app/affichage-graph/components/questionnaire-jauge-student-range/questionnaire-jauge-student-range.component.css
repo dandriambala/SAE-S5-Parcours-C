@@ -271,3 +271,13 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
   margin-top: 10px; /* Espace au-dessus du texte */
   color: #333; /* Couleur du texte */
 }
+
+.gauge-value-text .max-value-text {
+  color: #b06f8e; /* Couleur pour la valeur maximale */
+  font-weight: bold; /* Mettre en gras */
+}
+
+.gauge-value-text .min-value-text {
+  color: #FFC107; /* Couleur pour la valeur minimale */
+  font-weight: bold; /* Mettre en gras */
+}

@@ -18,7 +18,7 @@
         <div class="inner-gauge">
           <ngx-charts-gauge [results]="[{ name: 'Moyenne minimale', value: avgMin }]" [min]="0" [max]="20"
             [units]="'/20'" [angleSpan]="240" [startAngle]="-120" [valueFormatting]="valueFormatter" [arcWidth]="0.3"
-            [colorScheme]="{ domain: ['#FFD700'] }" [showText]="false">
+            [customColors]="customColors" [showText]="false">
           </ngx-charts-gauge>
         </div>
 
@@ -26,14 +26,20 @@
         <div class="outer-gauge">
           <ngx-charts-gauge [results]="[{ name: 'Moyenne maximale', value: avgMax }]" [min]="0" [max]="20"
             [units]="'/20'" [angleSpan]="240" [startAngle]="-120" [valueFormatting]="valueFormatter" [arcWidth]="0.15"
-            [colorScheme]="{ domain: ['#E44D25'] }" [showText]="false">
+            [customColors]="customColors" [showText]="false">
           </ngx-charts-gauge>
         </div>
       </div>
       
       <div class="gauge-value-text">
-        <p>Note maximale théorique : {{ avgMax.toFixed(1) }}/20</p>
-        <p>Note minimale théorique : {{ avgMin.toFixed(1) }}/20</p>
+        <p>
+          Note maximale théorique : 
+          <span class="max-value-text">{{ avgMax.toFixed(1) }}</span>/20
+        </p>
+        <p>
+          Note minimale théorique : 
+          <span class="min-value-text">{{ avgMin.toFixed(1) }}</span>/20
+        </p>
       </div>
     </div>
 
