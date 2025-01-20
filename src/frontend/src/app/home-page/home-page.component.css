@@ -1,149 +1,159 @@
-/* Conteneur principal */
-.stats-container {
+.container {
   display: flex;
-  flex-direction: column; /* Pour empiler les éléments verticalement */
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  background-color: #ddd0d8; /* Fond blanc */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(2, 2, 2, 0.5);
-  width: 70%;
-  height: auto;
+  flex-direction: column; /* Disposition verticale */
+  align-items: center; /* Centrer horizontalement */
+  justify-content: center; /* Centrer verticalement */
+  width: 80%; /* Largeur commune aux deux blocs */
   margin: auto;
-  margin-top: 2%;
+  padding: 20px;
+  gap: 20px; /* Espacement entre les blocs */
 }
-
-/* Section gauche : Texte */
-.info-section {
-  max-width: 80%; /* Ajuster la largeur pour qu'elle soit plus adaptée */
-  margin-bottom: 30px; /* Ajouter de l'espace entre le texte et les cartes */
-  
-}
-
-.info-section h2 {
-  font-size: 1.8rem;
-  color: #333333;
-  margin-bottom: 10px;
-}
-
-.info-section p {
-  font-size: 1rem;
-  color: #555555;
-}
-
-/* Section droite : Cartes */
-.cards-section {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 20px;
-  margin-top: 20px; /* Espacement entre le texte et les cartes */
-}
-
-.card {
-  align-items: center;
-  background-color: #997a8d;
-  border-radius: 10px;
-  padding: 30px;
-  text-align: center;
-  width: 200px;
-  height: 250px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: all 0.3s ease-in-out; /* Animation fluide */
-}
-
-.card h3 {
-  font-size: 2.5rem; /* Augmenter la taille du texte */
-  margin-bottom: 10px;
-  color: #fff;
-}
-
-.card p {
-  font-size: 1.2rem; /* Augmenter la taille du texte */
-  color: #fff;
-}
-
-.stats-container2 {
-  display: flex;
-  flex-direction: column; /* Pour empiler les éléments verticalement */
-  justify-content: center;
-  align-items: center;
-  padding: 40px;
-  background-color: #ddd0d8; /* Fond blanc */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(2, 2, 2, 0.5);
-  width: 70%;
-  height: auto;
-  margin: auto;
-  margin-top: 2%;
-}
-
-.card:hover {
-  background-color: #d9b8c6; /* Couleur plus claire au survol */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Augmenter l'ombre */
-  transform: translateY(-5px); /* Légère élévation */
-}
-
-/* Hover pour le texte dans info-section */
-.info-section h2,
-.info-section p {
-  transition: color 0.3s ease-in-out;
-}
-
-
-.info-section p:hover {
-  color: #333333; /* Texte plus foncé au survol */
-}
-
-/* Hover pour les conteneurs (stats-container2) */
+/* Conteneur principal unifié */
+/* Conteneur secondaire unifié */
 .stats-container2 {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 40px;
-  background-color: #ddd0d8;
+  background-color: #fff;
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(2, 2, 2, 0.5);
-  width: 70%;
+  width: 100%; /* Largeur uniforme */
+
+  line-height: 1.8; 
+}
+
+.stats-container2 h2 {
+  font-size: 2rem;
+  color: black;
+  margin-bottom: 20px;
+  text-align: center; /* Centrer les titres */
+  font-weight: bold;
+}
+
+.stats-container2 p {
+  font-size: 1.2rem;
+  text-align: justify;
+  font-family: "Georgia", serif;
+}
+
+/* Section des cartes */
+.cards-section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 20px;
+  width: 100%; /* Largeur uniforme pour les cartes */
+}
+
+/* Style des cartes */
+/* Style des cartes */
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Aligner le contenu verticalement */
+  align-items: center; /* Centrer horizontalement */
+  background-color: #997a8d;
+  border-radius: 10px;
+  padding: 20px;
+  text-align: center; /* Centrer le texte */
+  width: 180px;
+  height: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+}
+
+.card h3 {
+  font-size: 2.5rem;
+  margin-bottom: 20px; /* Ajout d'un espacement uniforme entre le h3 et le contenu */
+  color: white; /* Titre noir */
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start; /* Garde un alignement uniforme sous le h3 */
+  align-items: center; /* Centre horizontalement */
+  width: 100%; /* Prend toute la largeur disponible */
+}
+
+.card p {
+  font-size: 1.2rem;
+  color: #fff; /* Couleur blanche pour le texte */
+  text-align: center; /* Centre le texte horizontalement */
+  margin: 0; /* Enlève les marges inutiles */
+}
+
+
+/* Effet au survol des cartes */
+.card:hover {
+  background-color: #d9b8c6;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
+  transform: translateY(-5px);
+}
+
+/* Texte "Le Projet" */
+.stats-container2 {
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 80%;
   height: auto;
   margin: auto;
   margin-top: 2%;
-  transition: all 0.3s ease-in-out; /* Animation fluide */
+  line-height: 1.8; /* Espacement pour le confort de lecture */
 }
 
-.stats-container2:hover {
-  background-color: #cbb5c2; 
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); 
-  transform: scale(1.02); 
-}
-.texte {
-  align-items: center;
-  padding: 40px;
-  background-color: #ddd0d8; 
-  border-radius: 10px;
-  color: #555555;
+.stats-container2 h2 {
+  font-size: 2rem;
+  color: black;
+  margin-bottom: 20px;
+  text-align: left;
+  font-weight: bold;
 }
 
+.stats-container2 p {
+  font-size: 1.2rem;
+  text-align: justify;
+  font-family: "Georgia", serif;
+  
+}
+
+/* Alignement pour texte et logo */
 
 .texte2 {
-  display: flex; 
-  align-items: center; 
-  justify-content: flex-start; 
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
   gap: 20px;
-  background-color: #ddd0d8; 
-  border-radius: 10px; 
+  background-color: #fff;
+  border-radius: 10px;
 }
 
 #logo {
-  width: 30%; 
+  width: 30%;
   height: auto;
 }
 
 .texte2 p {
-  font-size: 1rem; 
-  color: #555555; 
-  margin: 0; 
-  text-align: left; 
+  font-size: 1.2rem; /* Taille ajustée pour la lisibilité */
+  color: #555555;
+  margin: 0;
+  text-align: left;
+  line-height: 1.6;
 }
+.texte {
+  font-size: 1.2rem; /* Taille de la police pour une meilleure lisibilité */
+  color: #555555; /* Texte en noir */
+  text-align: justify; /* Justifier le texte pour une présentation professionnelle */
+  font-family: "Georgia", serif; /* Police élégante */
+  line-height: 1.8; /* Espacement pour un confort de lecture */
+}
+
+

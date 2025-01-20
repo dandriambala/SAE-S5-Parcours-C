@@ -1,4 +1,15 @@
 from bd_sql import db
+from models.studentFamily_model import StudentFamily
+from models.performance_model import Performance
+from models.studyHabits_model import StudyHabits
+from models.support_model import Support
+from models.socialLife_model import SocialLife
+from models.health_model import Health
+from models.parent_education_model import ParentEducation
+from models.parent_job_model import ParentJob
+from models.reasons_model import Reason
+from models.travel_time_model import TravelTime
+from models.study_time_model import StudyTime
 
 
 class Student(db.Model):

@@ -21,24 +21,50 @@ header a:hover {
 
 nav {
   display: flex;
-  gap: 1.5rem;
+  gap: 5rem;
 }
 
 nav a {
   padding: 0.5rem 1rem;
   border-radius: 0.25rem;
   transition: background-color 0.3s ease, color 0.3s ease;
-  font-size: medium;
+  font-size: larger;
 }
-
 nav a:hover {
   background-color: #d9b8c6;
   color: whitesmoke;
 }
-img {
-  height: 100px;
-  width: 100px;
+
+/* Conteneur principal pour le logo et le texte */
+.logo-container {
+  display: flex;
+  align-items: center; /* Aligner verticalement */
+  text-decoration: none; /* Supprime la décoration des liens */
+  color: inherit; /* Maintenir la couleur du texte */
+  gap: 15px; /* Espacement entre l'image et le texte */
 }
+
+/* Style pour l'image */
+#logo {
+  width: 100px; /* Ajustez la taille du logo */
+  height: auto;
+}
+
+/* Style pour le texte */
+.logo-container h1 {
+  font-size: 1.5rem; /* Ajustez la taille du texte */
+  color: #ffffff; /* Couleur personnalisée */
+  margin: 0; /* Supprime les marges par défaut */
+  font-weight: bold; /* Texte en gras */
+  transition: color 0.3s ease-in-out; /* Animation pour le survol */
+}
+
+
+.logo-container:hover #logo {
+  transform: scale(1.1); /* Légère augmentation de la taille du logo */
+  transition: transform 0.3s ease-in-out;
+}
+
 @media (max-width: 768px) {
   header {
     flex-direction: column;

@@ -1,4 +1,28 @@
-<p>affichage-graph works!</p>
+<h1>Liste des graphiques</h1>
+
+<div class="buttons-container">
+  <button (click)="onAnalyseChange('kaggle')" [class.active]="selectedAnalyse === 'kaggle'">
+    Analyse Kaggle
+  </button>
+  <button (click)="onAnalyseChange('questionnaire')" [class.active]="selectedAnalyse === 'questionnaire'">
+    Analyse Questionnaire
+  </button>
+</div>
+
 <main>
-    <!--<app-edu-famille [data]="data"></app-edu-famille>-->
+  <!-- Affichage des graphiques pour l'analyse Kaggle -->
+  @if (selectedAnalyse === 'kaggle') {
+    <div class="graphs">
+      <app-bar-student-range [data]="data"></app-bar-student-range>
+      <app-jauge-student-range [data]="data"></app-jauge-student-range>
+    </div>
+  }
+
+  <!-- Affichage du texte pour l'analyse Questionnaire -->
+  @if (selectedAnalyse === 'questionnaire') {
+    <div class="questionnaire-text">
+      <app-questionnaire-bar-student-rannge [data]="data"></app-questionnaire-bar-student-rannge>
+      <app-questionnaire-jauge-student-range [data]="data"></app-questionnaire-jauge-student-range>
+    </div>
+  }
 </main>

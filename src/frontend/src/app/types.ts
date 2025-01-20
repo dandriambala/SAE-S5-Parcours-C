@@ -7,14 +7,14 @@ export type schoolData = {
     address: string;
     famsize: string;
     Pstatus: string;
-    Medu: number;
-    Fedu: number;
+    Medu: string;
+    Fedu: string;
     Mjob: string;
     Fjob: string;
     reason: string;
     guardian: string;
-    traveltime: number;
-    studytime: number;
+    traveltime: string;
+    studytime: string;
     failures: number;
     schoolsup: string;
     famsup: string;
@@ -31,10 +31,30 @@ export type schoolData = {
     Walc: number;
     health: number;
     absences: number;
-    G1: number;
-    G2: number;
-    G3: number;
+    G1_por: number;
+    G2_por: number;
+    G3_por: number;
+    G1_math: number;
+    G2_math: number;
+    G3_math: number;
 };
+
+export type schoolDataQuestionnaire = {
+    schoolingLevel: string;
+    studyField: string;
+    houseHold: string;
+    hobbyTimeSm: string;
+    hobbyTimeWe: string;
+    vgTimeSm: string;
+    vgTimeWe: string;
+    chordsTimeSm: string;
+    chordsTimeWe: string;
+    socialMediaTime: string;
+    avg_grade: string;
+    english_grade: string;
+    target_education: string
+};
+
 export type SingleData = {
     value: number;
     name: string;
@@ -49,6 +69,10 @@ export type MultipleData = {
 export type StudentRange = {
     name: string;
     list: schoolData[];
+}
+export type StudentRangeQuestionnaire = {
+    name: string;
+    list: schoolDataQuestionnaire[];
 }
 
 export interface SeriesItem {
