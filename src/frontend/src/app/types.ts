@@ -52,7 +52,9 @@ export type schoolDataQuestionnaire = {
     socialMediaTime: string;
     avg_grade: string;
     english_grade: string;
-    target_education: string
+    target_education: string;
+    Medu: string;
+    Fedu: string;
 };
 
 export type SingleData = {
