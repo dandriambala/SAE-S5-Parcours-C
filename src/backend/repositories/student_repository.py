@@ -1,4 +1,4 @@
-from models.student_model import Student
+from models.kaggle.student_model import Student
 
 class StudentRepository:
     @staticmethod

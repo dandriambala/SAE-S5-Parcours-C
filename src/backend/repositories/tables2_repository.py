@@ -7,8 +7,6 @@ class GeneralRepository:
             
             engine = db.get_engine(bind='database_b')
             connection = engine.connect()
-
-
             metadata = db.metadata
             metadata.reflect(bind=engine)
 

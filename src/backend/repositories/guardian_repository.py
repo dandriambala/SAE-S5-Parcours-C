@@ -1,4 +1,4 @@
-from models.guardians_model import Guardian
+from models.kaggle.guardians_model import Guardian
 
 class GuardianRepository:
     @staticmethod

@@ -6,8 +6,8 @@ from controllers.guardian_controller import guardian_bp
 from controllers.tables_controller import tables_bp
 from controllers.tables2_controller import tables2_bp
 from controllers.student_controller import student_bp
-
-
+from models.kaggle import *
+from models.questionnaire import *
 
 app = Flask(__name__)
 
