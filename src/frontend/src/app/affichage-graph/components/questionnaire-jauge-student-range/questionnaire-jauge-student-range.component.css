@@ -12,6 +12,7 @@
   align-items: center;
   /* Centrer le contenu horizontalement */
   height: auto;
+  
 }
 
 .menu-and-chart {
@@ -30,7 +31,7 @@
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   height: auto;
-
+  background-color: #fff;
 }
 
 
@@ -261,4 +262,12 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
 .inner-gauge .ngx-charts-gauge-value {
   font-size: 12px !important;  /* Taille du texte affiché sur la jauge */
   font-weight: bold;           /* Optionnel : pour rendre le texte en gras */
+}
+
+.gauge-value-text {
+  text-align: center; /* Centrer le texte */
+  font-size: 25px; /* Taille du texte */
+  font-weight: bold; /* Gras pour plus de visibilité */
+  margin-top: 10px; /* Espace au-dessus du texte */
+  color: #333; /* Couleur du texte */
 }

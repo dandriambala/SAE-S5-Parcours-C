@@ -4,11 +4,13 @@ import { dataFromJson } from '../types';
 import { JaugeStudentRangeComponent } from './components/jauge-student-range/jauge-student-range.component';
 import { QuestionnaireBarStudentRanngeComponent } from './components/questionnaire-bar-student-rannge/questionnaire-bar-student-rannge.component';
 import { QuestionnaireJaugeStudentRangeComponent } from './components/questionnaire-jauge-student-range/questionnaire-jauge-student-range.component';
+import { KaggleDescriptionComponent } from '../kaggle-description/kaggle-description.component';
+import { QuestionnaireDescriptionComponent } from '../questionnaire-description/questionnaire-description.component';
 
 @Component({
   selector: 'app-affichage-graph',
   standalone: true,
-  imports: [BarStudentRangeComponent, JaugeStudentRangeComponent,QuestionnaireBarStudentRanngeComponent, QuestionnaireJaugeStudentRangeComponent],
+  imports: [BarStudentRangeComponent, JaugeStudentRangeComponent,QuestionnaireBarStudentRanngeComponent, QuestionnaireJaugeStudentRangeComponent,KaggleDescriptionComponent,QuestionnaireDescriptionComponent],
   templateUrl: './affichage-graph.component.html',
   styleUrls: ['./affichage-graph.component.css'], 
 })
