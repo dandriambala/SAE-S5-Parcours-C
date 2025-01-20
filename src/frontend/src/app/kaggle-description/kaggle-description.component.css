@@ -36,4 +36,20 @@
     font-size: 1.1rem;
     color: #555;
   }
+  .toggle-button {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #997a8d;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    cursor: pointer;
+    border: none;
+  }
+  
+  .toggle-button:hover {
+    background-color: #d9b8c6;
+  }
   
