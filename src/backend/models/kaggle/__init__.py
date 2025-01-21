@@ -3,7 +3,7 @@ from .student_model import Student
 from .studentFamily_model import StudentFamily
 from .studyHabits_model import StudyHabits
 from .support_model import Support
-from .reasons_model import Reasons
+from .reasons_model import Reason
 from .guardians_model import Guardian
 from .travelTime_model import TravelTime
 from .studytime_model import Studytime
@@ -18,7 +18,7 @@ __all__ = [
     'StudentFamily',
     'StudyHabits',
     'Support',
-    'Reasons',
+    'Reason',
     'Guardian',
     'TravelTime',
     'Studytime',

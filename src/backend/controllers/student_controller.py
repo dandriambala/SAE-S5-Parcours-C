@@ -8,5 +8,7 @@ def get_all_students():
     try:
         students = StudentService.get_all_students()
         return jsonify(students), 200
+    except ValueError as e:
+        return jsonify({"error": str(e)}), 404
     except Exception as e:
         return jsonify({"error": f"Une erreur est survenue: {str(e)}"}), 500
