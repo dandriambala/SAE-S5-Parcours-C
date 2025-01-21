@@ -52,12 +52,56 @@
     text-align: left;
     line-height: 1.6;
   }
+
+
   .texte {
-    font-size: 1.2rem; /* Taille de la police pour une meilleure lisibilité */
-    color: #000; /* Texte en noir */
-    text-align: justify; /* Justifier le texte pour une présentation professionnelle */
-    font-family: "Georgia", serif; /* Police élégante */
-    line-height: 1.8; /* Espacement pour un confort de lecture */
+    background-color: #f9f9f9; /* Couleur de fond légèrement grisée pour différenciation */
+    border-radius: 10px; /* Bords arrondis pour un effet moderne */
+    padding: 20px; /* Espacement intérieur pour le confort visuel */
+    margin: 20px 0; /* Espacement vertical entre les sections */
   }
   
+  .texte h2 {
+    font-size: 2rem; /* Taille légèrement réduite par rapport à .stats-container2 */
+    color: #333; /* Texte plus foncé pour le contraste */
+    margin-bottom: 15px; /* Espacement sous le titre */
+    font-weight: bold;
+    text-align: center; /* Alignement du titre */
+  }
+  
+  .texte h3 {
+    font-size: 2rem; /* Taille des sous-titres */
+    color: #555; /* Couleur intermédiaire */
+    margin-bottom: 10px; /* Espacement sous les sous-titres */
+    font-weight: bold;
+  }
+  
+  .texte p {
+    font-size: 2rem; /* Taille légèrement plus petite pour les paragraphes */
+    color: #555; /* Couleur douce pour le texte */
+    margin-bottom: 15px; /* Espacement après chaque paragraphe */
+    text-align: justify; /* Texte justifié pour une apparence professionnelle */
+    line-height: 1.8; /* Espacement pour améliorer la lisibilité */
+  }
+  
+  .texte ul {
+    list-style-type: disc; /* Style de liste classique */
+    margin-left: 20px; /* Indentation des listes */
+    padding-left: 20px; /* Ajout d'espace intérieur */
+    color: #333; /* Couleur pour le texte des listes */
+  }
+  
+  .texte ul li {
+    margin-bottom: 10px; /* Espacement entre chaque élément de liste */
+  }
+  
+  .texte ul li ul {
+    list-style-type: circle; /* Sous-listes avec un style différent */
+    margin-left: 20px; /* Indentation supplémentaire pour les sous-listes */
+  }
+  
+  .texte ul li strong {
+    color: #333; /* Texte des titres plus visible */
+    font-weight: bold;
+  }
   
