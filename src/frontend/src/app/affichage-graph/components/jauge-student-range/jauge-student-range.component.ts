@@ -37,7 +37,7 @@ export class JaugeStudentRangeComponent implements OnInit {
 
   // Niveaux sélectionnés pour les curseurs
   cursorValue: number = 1;
-  activeTab: 'trajet' | 'revision' = 'trajet';
+  activeTab: 'trajet' | 'révision' = 'trajet';
 
   constructor(private studentDataService: StudentDataService) { }
 
@@ -77,7 +77,7 @@ export class JaugeStudentRangeComponent implements OnInit {
   }
 
   // Basculer entre les onglets
-  setActiveTab(tab: 'trajet' | 'revision'): void {
+  setActiveTab(tab: 'trajet' | 'révision'): void {
     this.activeTab = tab;
     this.onSliderLevelToggle(); // Applique le filtre dès que l'onglet change
   }
@@ -92,7 +92,7 @@ export class JaugeStudentRangeComponent implements OnInit {
           let traveltimeValue = this.trajet.filter(y => y.value_name === x.traveltime)[0].value
           return traveltimeValue >= this.cursorValue
       });
-    } else if (this.activeTab === 'revision') {
+    } else if (this.activeTab === 'révision') {
       filteredStudents = this.students.filter((x) => { 
         let studytimeValue = this.revision.filter(y => y.value_name === x.studytime)[0].value
         return studytimeValue >= this.cursorValue
@@ -104,7 +104,7 @@ export class JaugeStudentRangeComponent implements OnInit {
   getSliderLabel(): string {
     if (this.activeTab === 'trajet') {
       return this.trajet.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
-    } else if (this.activeTab === 'revision') {
+    } else if (this.activeTab === 'révision') {
       return this.revision.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
     }
     return 'Inconnu';
