@@ -1,5 +1,5 @@
 
-/* Texte "Le Projet" */
+
 .stats-container2 {
     display: flex;
     flex-direction: column;
@@ -12,7 +12,7 @@
     height: auto;
     margin: auto;
     margin-top: 2%;
-    line-height: 1.8; /* Espacement pour le confort de lecture */
+    line-height: 1.8; 
   }
   
   .stats-container2 h2 {
@@ -29,7 +29,6 @@
     font-family: "Georgia", serif;
   }
   
-  /* Alignement pour texte et logo */
   
   .texte2 {
     display: flex;
@@ -46,7 +45,7 @@
   }
   
   .texte2 p {
-    font-size: 1.2rem; /* Taille ajustée pour la lisibilité */
+    font-size: 1.2rem;
     color: #555555;
     margin: 0;
     text-align: left;
@@ -55,53 +54,53 @@
 
 
   .texte {
-    background-color: #f9f9f9; /* Couleur de fond légèrement grisée pour différenciation */
-    border-radius: 10px; /* Bords arrondis pour un effet moderne */
-    padding: 20px; /* Espacement intérieur pour le confort visuel */
-    margin: 20px 0; /* Espacement vertical entre les sections */
+    background-color: #f9f9f9; 
+    border-radius: 10px; 
+    padding: 20px; 
+    margin: 20px 0; 
   }
   
   .texte h2 {
-    font-size: 2rem; /* Taille légèrement réduite par rapport à .stats-container2 */
-    color: #333; /* Texte plus foncé pour le contraste */
-    margin-bottom: 15px; /* Espacement sous le titre */
+    font-size: 2rem; 
+    color: #333; 
+    margin-bottom: 15px; 
     font-weight: bold;
-    text-align: center; /* Alignement du titre */
+    text-align: center;
   }
   
   .texte h3 {
-    font-size: 2rem; /* Taille des sous-titres */
-    color: #555; /* Couleur intermédiaire */
-    margin-bottom: 10px; /* Espacement sous les sous-titres */
+    font-size: 2rem; 
+    color: #555; 
+    margin-bottom: 10px; 
     font-weight: bold;
   }
   
   .texte p {
-    font-size: 2rem; /* Taille légèrement plus petite pour les paragraphes */
-    color: #555; /* Couleur douce pour le texte */
-    margin-bottom: 15px; /* Espacement après chaque paragraphe */
-    text-align: justify; /* Texte justifié pour une apparence professionnelle */
-    line-height: 1.8; /* Espacement pour améliorer la lisibilité */
+    font-size: 2rem; 
+    color: #555; 
+    margin-bottom: 15px;
+    text-align: justify; 
+    line-height: 1.8; 
   }
   
   .texte ul {
-    list-style-type: disc; /* Style de liste classique */
-    margin-left: 20px; /* Indentation des listes */
-    padding-left: 20px; /* Ajout d'espace intérieur */
-    color: #333; /* Couleur pour le texte des listes */
+    list-style-type: disc; 
+    margin-left: 20px; 
+    padding-left: 20px; 
+    color: #333;
   }
   
   .texte ul li {
-    margin-bottom: 10px; /* Espacement entre chaque élément de liste */
+    margin-bottom: 10px; 
   }
   
   .texte ul li ul {
-    list-style-type: circle; /* Sous-listes avec un style différent */
-    margin-left: 20px; /* Indentation supplémentaire pour les sous-listes */
+    list-style-type: circle; 
+    margin-left: 20px; 
   }
   
   .texte ul li strong {
-    color: #333; /* Texte des titres plus visible */
+    color: #333;
     font-weight: bold;
   }
   
