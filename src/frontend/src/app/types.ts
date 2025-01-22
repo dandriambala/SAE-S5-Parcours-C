@@ -41,8 +41,6 @@ export type schoolData = {
 
 export type schoolDataQuestionnaire = {
     schoolingLevel: string;
-    studyField: string;
-    houseHold: string;
     hobbyTimeSm: string;
     hobbyTimeWe: string;
     vgTimeSm: string;
