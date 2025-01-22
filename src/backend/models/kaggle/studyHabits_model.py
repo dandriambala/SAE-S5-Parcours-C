@@ -5,4 +5,5 @@ class StudyHabits(db.Model):
     study_habits_id = db.Column(db.BigInteger, primary_key=True, autoincrement=True)
     travel_id = db.Column(db.Integer)
     studytime_id = db.Column(db.Integer)
-    absences = db.Column(db.Integer)
+    absences_por = db.Column(db.Integer)
+    absences_math = db.Column(db.Integer)

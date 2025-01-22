@@ -11,7 +11,7 @@ class StudentService:
         et les structure en un format `schoolData`.
         """
         # Récupérer toutes les tables nécessaires
-        student_data = requests.get(f"{StudentService.BASE_URL}/student").json()['student']
+        student_data = requests.get(f"{StudentService.BASE_URL}/student_kaggle").json()['student_kaggle']
         student_family_data = requests.get(f"{StudentService.BASE_URL}/student_family").json()['student_family']
         performance_data = requests.get(f"{StudentService.BASE_URL}/performance").json()['performance']
         study_habits_data = requests.get(f"{StudentService.BASE_URL}/study_habits").json()['study_habits']
@@ -49,7 +49,8 @@ class StudentService:
                 "guardian": next(g["guardian_name"] for g in guardian_data if g["guardian_id"] == student_family["guardian_id"]),
                 "traveltime": next(t["travel_time_range"] for t in travel_time_data if t["travel_id"] == study_habits["travel_id"]),
                 "studytime": next(s["studytime_range"] for s in studytime_data if s["studytime_id"] == study_habits["studytime_id"]),
-                "failures": performance["failures"],
+                "failures_por": performance["failures_por"],
+                "failures_math": performance["failures_math"],
                 "schoolsup": "yes" if support["schoolsup"] else "no",
                 "famsup": "yes" if support["famsup"] else "no",
                 "paid_math": "yes" if support["paid_math"] else "no",
@@ -65,7 +66,8 @@ class StudentService:
                 "Dalc": health["Dalc"],
                 "Walc": health["Walc"],
                 "health": health["health"],
-                "absences": study_habits["absences"],
+                "absences_por": study_habits["absences_por"],
+                "absences_math": study_habits["absences_math"],
                 "G1_por": performance["G1_por"],
                 "G2_por": performance["G2_por"],
                 "G3_por": performance["G3_por"],

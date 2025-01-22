@@ -2,7 +2,7 @@ from bd_sql import db
 
 
 class Student(db.Model):
-    __tablename__ = 'student'
+    __tablename__ = 'student_kaggle'
 
     student_id = db.Column(db.Integer, primary_key=True)
     school = db.Column(db.String(10))

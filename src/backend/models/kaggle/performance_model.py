@@ -9,4 +9,6 @@ class Performance(db.Model):
     G1_math = db.Column(db.Integer)
     G2_math = db.Column(db.Integer)
     G3_math = db.Column(db.Integer)
-    failures = db.Column(db.Integer)
+    failures_por = db.Column(db.Integer)
+    failures_math = db.Column(db.Integer)
+

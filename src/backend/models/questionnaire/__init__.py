@@ -1,1 +1,1 @@
-from questionnaire import *
+from ..questionnaire import *

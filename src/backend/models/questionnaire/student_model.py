@@ -1,6 +1,7 @@
 from bd_sql import db
 class Student(db.Model):
     __tablename__ = 'student'
+    __bindkey__ = 'database_b'
     student_id = db.Column(db.BigInteger, primary_key=True)
     gender_id = db.Column(db.Integer)
     age = db.Column(db.Integer)
