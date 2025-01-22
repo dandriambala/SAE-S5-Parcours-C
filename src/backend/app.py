@@ -35,11 +35,11 @@ def run_app2():
 
 
 if __name__ == '__main__':
-    app1 = threading.Thread(target=run_app1)
-    app2 = threading.Thread(target=run_app2)
+    thread1 = threading.Thread(target=run_app1)
+    thread2 = threading.Thread(target=run_app2)
 
-    app1.start()
-    app2.start()
+    thread1.start()
+    thread2.start()
 
-    app1.join()
-    app2.join()
+    thread1.join()
+    thread2.join()
