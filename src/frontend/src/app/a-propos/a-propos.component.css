@@ -52,7 +52,7 @@
     line-height: 1.6;
   }
 
-
+/*
   .texte {
     background-color: #f9f9f9; 
     border-radius: 10px; 
@@ -103,4 +103,54 @@
     color: #333;
     font-weight: bold;
   }
+  */
+  .texte {
+    display: flex; /* Pour aligner avec le conteneur principal */
+    flex-direction: column; /* Alignement vertical */
+    align-items: center; /* Centrer horizontalement */
+    justify-content: center; /* Centrer verticalement */
+    width: 80%; /* Largeur uniforme avec le conteneur principal */
+    margin: auto;
+    padding: 20px;
+    border-radius: 10px; /* Coins arrondis */
+    font-family: "Georgia", serif; /* Police élégante et lisible */
+    font-size: 1.2rem; /* Taille de la police pour une meilleure lisibilité */
+    color: #555555; /* Texte en noir avec une teinte douce */
+    text-align: justify; /* Justifier le texte pour un rendu professionnel */
+    line-height: 1.8; /* Espacement pour le confort de lecture */
+    gap: 20px; /* Espacement entre les sections internes */
+  }
+  .texte h2 {
+    font-size: 2rem; /* Taille uniforme pour les titres principaux */
+    color: black; /* Couleur noire pour le titre */
+    margin-bottom: 15px;
+    text-align: center; 
+    font-weight: bold;
+  }
   
+  .texte h3 {
+    font-size: 1.8rem; /* Taille légèrement plus petite que h2 */
+    color: #555; /* Couleur douce pour différencier des titres principaux */
+    margin-bottom: 10px;
+    font-weight: bold;
+    text-align: left; /* Alignement à gauche */
+    width: 100%; /* Prend toute la largeur disponible */
+  }
+  
+  
+  .texte ul {
+    list-style-type: disc; /* Style classique pour les listes */
+    margin-left: 20px; /* Indentation */
+    padding-left: 20px;
+    color: #333;
+  }
+  
+  .texte ul li {
+    margin-bottom: 10px; /* Espacement entre les éléments de liste */
+  }
+  
+  .texte ul li ul {
+    list-style-type: circle; /* Style secondaire pour les sous-listes */
+    margin-left: 20px;
+  }
+    
