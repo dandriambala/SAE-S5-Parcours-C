@@ -155,7 +155,7 @@ export class QuestionnaireBarStudentRanngeComponent implements OnInit {
 
   /**
   * Fonctions pour furtherStudy
-  
+  */
 
   private getfurtherStudyLevelName(value: number): string {
     return this.furtherStudy.find(id => id.value === value)?.name || 'N/A';
@@ -227,7 +227,7 @@ export class QuestionnaireBarStudentRanngeComponent implements OnInit {
     this.chartData = this.getStudentRangeSummary();
     this.chartData = this.getAllStudentRangePerfurtherStudyLevel()
     this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
-  }*/
+  }
   /**
   * Fonctions pour game
   */

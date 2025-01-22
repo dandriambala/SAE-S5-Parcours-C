@@ -11,3 +11,4 @@ from .weekdaysVGTimeDict_model import WeekdaysVGTimeDict
 from .weekendVGTimeDict_model import WeekendVGTimeDict
 from .parentSchoolingDict_model import ParentSchoolingDict
 from .gradeDict_model import GradeDict
+from .furtherStudyLevelDict_model import FurtherStudyLevelDict

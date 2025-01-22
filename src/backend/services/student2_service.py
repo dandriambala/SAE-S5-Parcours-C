@@ -19,11 +19,12 @@ class StudentService2:
             "weekend_vg_times": requests.get(f"{StudentService2.BASE_URL}/weekend_vg_time_dict").json()['weekend_vg_time_dict'],
             "parent_schooling": requests.get(f"{StudentService2.BASE_URL}/parent_schooling_dict").json()['parent_schooling_dict'],
             "grade": requests.get(f"{StudentService2.BASE_URL}/grade_dict").json()['grade_dict'],
-            #"grade": requests.get(f"{StudentService2.BASE_URL}/further_study_level_dict").json()['further_study_level_dict']
+            "further_study_level": requests.get(f"{StudentService2.BASE_URL}/further_study_level_dict").json()['further_study_level_dict']
         }
 
         # Indexer les données pour des recherches rapides
         academic_info_dict = {ai["academic_info_id"]: ai for ai in data["academic_info"]}
+        further_study_level_dict = {ai["further_study_level_id"]: ai for ai in data["further_study_level"]}
         family_dict = {f["family_id"]: f for f in data["families"]}
         hobby_dict = {h["hobby_id"]: h for h in data["hobbies"]}
         hobby_time_dict = {ht["hobby_time_id"]: ht for ht in data["hobby_times"]}
@@ -39,6 +40,10 @@ class StudentService2:
             academic_perf = academic_perf_dict.get(student["academic_perf_id"], {})
             academic_info = academic_info_dict.get(student["academic_info_id"], {})
             family = family_dict.get(student["family_id"], {})
+            
+            # Récupération des informations sur les études futures
+            further_study = academic_info_dict.get(student["academic_info_id"], {})
+            further_study_selected = further_study_level_dict.get(further_study["further_study_level_id"], {})
 
             # Récupération des informations sur les notes
             grade = academic_perf_dict.get(student["academic_perf_id"], {})
@@ -70,7 +75,7 @@ class StudentService2:
                 "socialMediaTime": social_media_time.get("hobby_time"),
                 "avg_grade": avg_grade.get("grade"),
                 "english_grade": english_grade.get("grade", 0),
-                #"target_education": "yes" if academic_info.get("further_study") else "no",
+                "target_education": further_study_selected.get("further_study_level"),
                 "Medu": parent_schooling_dict.get(family.get("parent1_schooling_level_id"), ""),
                 "Fedu": parent_schooling_dict.get(family.get("parent2_schooling_level_id"), ""),
             })
