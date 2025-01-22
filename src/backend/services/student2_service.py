@@ -2,7 +2,7 @@ from repositories.student_repository import StudentRepository
 import requests
 
 class StudentService2:
-    BASE_URL = "http://127.0.0.1:5000/tables"
+    BASE_URL = "http://127.0.0.1:5000/tables2"
 
     @staticmethod
     def get_all_students():

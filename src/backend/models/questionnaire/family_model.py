@@ -1,9 +1,9 @@
-from bd_sql import db
+from bd2_sql import db2
 
-class Family(db.Model):
+class Family(db2.Model):
     __tablename__ = 'family'
-    family_id = db.Column(db.BigInteger, primary_key=True)
-    parent1_schooling_level_id = db.Column(db.Integer)
-    parent2_schooling_level_id = db.Column(db.Integer)
-    single_parent = db.Column(db.Boolean)
-    expectations = db.Column(db.Boolean)
+    family_id = db2.Column(db2.BigInteger, primary_key=True)
+    parent1_schooling_level_id = db2.Column(db2.Integer)
+    parent2_schooling_level_id = db2.Column(db2.Integer)
+    single_parent = db2.Column(db2.Boolean)
+    expectations = db2.Column(db2.Boolean)

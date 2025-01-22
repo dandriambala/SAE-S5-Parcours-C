@@ -1,14 +1,14 @@
-from bd_sql import db
+from bd2_sql import db2
 
-class Hobby(db.Model):
+class Hobby(db2.Model):
     __tablename__ = 'hobby'
-    hobby_id = db.Column(db.BigInteger, primary_key=True)
-    weekdays_hobby_time_id = db.Column(db.Integer)
-    weekend_hobby_time_id = db.Column(db.Integer)
-    weekdays_chores_time_id = db.Column(db.Integer)
-    weekend_chores_time_id = db.Column(db.Integer)
-    hobby1_id = db.Column(db.Integer)
-    hobby2_id = db.Column(db.Integer)
-    hobby3_id = db.Column(db.Integer)
-    SM_time_id = db.Column(db.Integer)
-    sleep_SM = db.Column(db.Boolean)
+    hobby_id = db2.Column(db2.BigInteger, primary_key=True)
+    weekdays_hobby_time_id = db2.Column(db2.Integer)
+    weekend_hobby_time_id = db2.Column(db2.Integer)
+    weekdays_chores_time_id = db2.Column(db2.Integer)
+    weekend_chores_time_id = db2.Column(db2.Integer)
+    hobby1_id = db2.Column(db2.Integer)
+    hobby2_id = db2.Column(db2.Integer)
+    hobby3_id = db2.Column(db2.Integer)
+    SM_time_id = db2.Column(db2.Integer)
+    sleep_SM = db2.Column(db2.Boolean)

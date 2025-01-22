@@ -1,5 +1,5 @@
-from bd_sql import db
-class WeekendVGTimeDict(db.Model):
+from bd2_sql import db2
+class WeekendVGTimeDict(db2.Model):
     __tablename__ = 'weekend_vg_time_dict'
-    weekend_vg_time_id = db.Column(db.BigInteger, primary_key=True)
-    weekend_vg_time = db.Column(db.String(15), nullable=False)
+    weekend_vg_time_id = db2.Column(db2.BigInteger, primary_key=True)
+    weekend_vg_time = db2.Column(db2.String(15), nullable=False)

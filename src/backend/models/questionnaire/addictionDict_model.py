@@ -1,6 +1,6 @@
-from bd_sql import db
+from bd2_sql import db2
 
-class AddictionDict(db.Model):
+class AddictionDict(db2.Model):
     __tablename__ = 'addiction_dict'
-    addiction_id = db.Column(db.BigInteger, primary_key=True)
-    addiction = db.Column(db.String(35), nullable=False)
+    addiction_id = db2.Column(db2.BigInteger, primary_key=True)
+    addiction = db2.Column(db2.String(35), nullable=False)

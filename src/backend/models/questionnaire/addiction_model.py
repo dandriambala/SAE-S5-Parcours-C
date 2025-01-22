@@ -1,6 +1,6 @@
-from bd_sql import db
+from bd2_sql import db2
 
-class Addiction(db.Model):
+class Addiction(db2.Model):
     __tablename__ = 'addiction'
-    student_id = db.Column(db.Integer, primary_key=True)
-    addiction_id = db.Column(db.Integer, primary_key=True)
+    student_id = db2.Column(db2.Integer, primary_key=True)
+    addiction_id = db2.Column(db2.Integer, primary_key=True)

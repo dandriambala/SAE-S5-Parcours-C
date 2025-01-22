@@ -1,5 +1,5 @@
-from bd_sql import db
-class HouseholdTypeDict(db.Model):
+from bd2_sql import db2
+class HouseholdTypeDict(db2.Model):
     __tablename__ = 'household_type_dict'
-    household_type_id = db.Column(db.BigInteger, primary_key=True)
-    household_type = db.Column(db.String(35), nullable=False)
+    household_type_id = db2.Column(db2.BigInteger, primary_key=True)
+    household_type = db2.Column(db2.String(35), nullable=False)

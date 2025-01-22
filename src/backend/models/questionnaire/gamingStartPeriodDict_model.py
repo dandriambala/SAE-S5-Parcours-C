@@ -1,8 +1,8 @@
-from bd_sql import db
+from bd2_sql import db2
 
-class GamingStartDict(db.Model):
+class GamingStartDict(db2.Model):
     __tablename__ = 'gaming_start_period_dict'
-    gaming_start_period_id = db.Column(db.BigInteger, primary_key=True)
-    gaming_start_period = db.Column(db.String(100))
+    gaming_start_period_id = db2.Column(db2.BigInteger, primary_key=True)
+    gaming_start_period = db2.Column(db2.String(100))
 
 

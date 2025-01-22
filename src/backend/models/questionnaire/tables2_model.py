@@ -1,4 +1,4 @@
-from bd_sql import db
+from bd2_sql import db2
 
-class TableBD2(db.Model):
+class TableBD2(db2.Model):
     __abstract__ = True  

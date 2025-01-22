@@ -1,13 +1,13 @@
-from bd_sql import db
+from bd2_sql import db2
 
-class AcademicPerf(db.Model):
+class AcademicPerf(db2.Model):
     __tablename__ = 'academic_perf'
-    academic_perf_id = db.Column(db.BigInteger, primary_key=True)
-    avg_grade = db.Column(db.Integer)
-    english_avg_grade = db.Column(db.Integer)
-    late = db.Column(db.Integer)
-    late_incomplete_homework = db.Column(db.Integer)
-    absences = db.Column(db.Integer)
-    doubling = db.Column(db.Boolean)
-    perf_evaluation = db.Column(db.Integer)
-    classes_under_10 = db.Column(db.Integer)
+    academic_perf_id = db2.Column(db2.BigInteger, primary_key=True)
+    avg_grade = db2.Column(db2.Integer)
+    english_avg_grade = db2.Column(db2.Integer)
+    late = db2.Column(db2.Integer)
+    late_incomplete_homework = db2.Column(db2.Integer)
+    absences = db2.Column(db2.Integer)
+    doubling = db2.Column(db2.Boolean)
+    perf_evaluation = db2.Column(db2.Integer)
+    classes_under_10 = db2.Column(db2.Integer)

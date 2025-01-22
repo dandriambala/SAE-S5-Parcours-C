@@ -1,5 +1,5 @@
-from bd_sql import db
-class VGPlatformDict(db.Model):
+from bd2_sql import db2
+class VGPlatformDict(db2.Model):
     __tablename__ = 'vg_platform_dict'
-    vg_platform_id = db.Column(db.BigInteger, primary_key=True)
-    vg_platform = db.Column(db.String(10), nullable=False)
+    vg_platform_id = db2.Column(db2.BigInteger, primary_key=True)
+    vg_platform = db2.Column(db2.String(10), nullable=False)

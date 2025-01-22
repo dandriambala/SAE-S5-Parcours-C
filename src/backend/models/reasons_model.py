@@ -1,6 +1,6 @@
-from bd_sql import db
+from bd2_sql import db2
 
-class Reason(db.Model):
+class Reason(db2.Model):
     __tablename__ = 'reason'
-    reason_id = db.Column(db.BigInteger, primary_key=True)
-    reason = db.Column(db.String(50), nullable=True)
+    reason_id = db2.Column(db2.BigInteger, primary_key=True)
+    reason = db2.Column(db2.String(50), nullable=True)
