@@ -76,17 +76,18 @@ export class BarStudentRangeComponent implements OnInit {
 
   //Colors
   customColors = [
-    { name: 'total', value: '#b06f8e' }, 
-    { name: 'Niveau : études supérieures', value: '#a0557b' }, 
-    { name: 'Niveau : lycée', value: '#c27d9e' }, 
-    { name: 'Niveau : collège', value: '#d894ae' }, 
-    { name: 'Niveau : primaire', value: '#eab1c4' }, 
-    { name: "sortie extrascolaire : rarement", value: '#a0557b' }, 
-    { name: "sortie extrascolaire : occasionnellement", value: '#c27d9e' }, 
-    { name: "sortie extrascolaire : régulièrement", value: '#d894ae' },
-    { name: "alcool : rarement", value: '#a0557b' }, 
-    { name: "alcool : occasionnellement", value: '#c27d9e' }, 
-    { name: "alcool : régulièrement", value: '#d894ae' } 
+    { name: 'total', value: '#997A8D' }, 
+    { name: 'Niveau : études supérieures', value: '#3B5068' }, 
+    { name: 'Niveau : lycée', value: '#87A6A1' }, 
+    { name: 'Niveau : collège', value: '#A7C7D9' }, 
+    { name: 'Niveau : primaire', value: '#8CA3B3' }, 
+    { name: "Niveau : pas d'études", value: '#5176D1' }, 
+    { name: "sortie extrascolaire : rarement", value: '#A7C7D9' }, 
+    { name: "sortie extrascolaire : occasionnellement", value: '#8CA3B3' }, 
+    { name: "sortie extrascolaire : régulièrement", value: '#3B5068' },
+    { name: "alcool : rarement", value: '#A7C7D9' }, 
+    { name: "alcool : occasionnellement", value: '#8CA3B3' }, 
+    { name: "alcool : régulièrement", value: '#3B5068' } 
   ];
   
 

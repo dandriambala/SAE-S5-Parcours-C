@@ -35,6 +35,10 @@ export class JaugeStudentRangeComponent implements OnInit {
     { name: "Temps de trajet : > 1 h", value: 4, value_name: '>1 hour' },
   ];
 
+  customColors = [
+    { name: 'Moyenne générale', value: '#997A8D' }
+  ];
+
   // Niveaux sélectionnés pour les curseurs
   cursorValue: number = 1;
   activeTab: 'trajet' | 'révision' = 'trajet';

@@ -78,17 +78,17 @@ export class QuestionnaireBarStudentRanngeComponent implements OnInit {
 
   //Colors
   customColors = [
-    { name: 'total', value: '#b06f8e' },
-    { name: 'Niveau visé : Doctorat', value: '#a0557b' },
-    { name: "Niveau visé : Diplome d'ingénieur", value: '#c27d9e' },
-    { name: 'Niveau visé : Master', value: '#d894ae' },
-    { name: 'Niveau visé : Bac+3', value: '#eab1c4' },
-    { name: "Niveau visé : Bac+2", value: '#a0557b' },
-    { name: 'Jeu : très régulièrement', value: '#a0557b' },
-    { name: "Jeu : régulièrement", value: '#c27d9e' },
-    { name: 'Jeu : occasionnellement', value: '#d894ae' },
-    { name: 'Jeu : rarement', value: '#eab1c4' },
-    { name: "Jeu : jamais", value: '#a0557b' },
+    { name: 'total', value: '#997A8D' },
+    { name: 'Niveau visé : Doctorat', value: '#3B5068' },
+    { name: "Niveau visé : Diplome d'ingénieur", value: '#87A6A1' },
+    { name: 'Niveau visé : Master', value: '#A7C7D9' },
+    { name: 'Niveau visé : Bac+3', value: '#8CA3B3' },
+    { name: "Niveau visé : Bac+2", value: '#5176D1' },
+    { name: 'Jeu : très régulièrement', value: '#3B5068' },
+    { name: "Jeu : régulièrement", value: '#87A6A1' },
+    { name: 'Jeu : occasionnellement', value: '#A7C7D9' },
+    { name: 'Jeu : rarement', value: '#8CA3B3' },
+    { name: "Jeu : jamais", value: '#5176D1' },
   ];
 
   constructor(private readonly graphService: GraphService, private studentDataService: StudentDataService) { }
