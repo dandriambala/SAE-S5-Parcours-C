@@ -1,18 +1,168 @@
-
 <div class="stats-container2">
-    <h2>Origine du logo et de notre nom d'équipe</h2>
-    <div class="texte2">
-      <img src="assets/logo.png" id="logo" />
-      <p>
-        Le nom de couleur rose Mountbatten désigne une couleur de camouflage
-        maritime utilisée pour les navires de la Royal Navy au cours de la Seconde
-        Guerre mondiale. <br />C'était un gris rosâtre, employé à l'instigation de
-        l'amiral Louis Mountbatten. Mountbatten, convaincu de l'efficacité de
-        cette couleur comme camouflage à l'aube et au crépuscule, moments
-        dangereux pour les navires,<br />
-        fit peindre tous les destroyers de sa flottille avec une peinture
-        similaire, créée en mélangeant un gris moyen avec une petite quantité de
-        rouge vénitien.
-      </p>
-    </div>
+  <h2>Origine du logo et de notre nom d'équipe</h2>
+  <div class="texte2">
+    <img src="assets/logo.png" id="logo" />
+    <p>
+      Le nom de couleur rose Mountbatten désigne une couleur de camouflage
+      maritime utilisée pour les navires de la Royal Navy au cours de la Seconde
+      Guerre mondiale. <br />C'était un gris rosâtre, employé à l'instigation de
+      l'amiral Louis Mountbatten. Mountbatten, convaincu de l'efficacité de
+      cette couleur comme camouflage à l'aube et au crépuscule, moments
+      dangereux pour les navires,<br />
+      fit peindre tous les destroyers de sa flottille avec une peinture
+      similaire, créée en mélangeant un gris moyen avec une petite quantité de
+      rouge vénitien.
+    </p>
   </div>
+  <!-- Groupe Extraction -->
+  <section class="texte">
+    <h2>Groupe Extraction (Base de données)</h2>
+    <h3>Objectifs principaux :</h3>
+    <p>
+      Ce groupe s'est chargé de la collecte, du nettoyage, de l'organisation et
+      du stockage des données nécessaires pour l'analyse.
+    </p>
+    <h3>Tâches réalisées :</h3>
+    <ul>
+      <li>
+        <strong>Extraction et nettoyage des données :</strong>
+        <ul>
+          <li>
+            Analyse initiale du jeu de données provenant de l'étude "Student
+            Alcohol consumption".
+          </li>
+          <li>
+            Nettoyage des données pour éliminer les incohérences ou les données
+            inutiles.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Mise en place dans un SGBD :</strong>
+        <ul>
+          <li>
+            Implémentation des bases de données relationnelles dans PostgreSQL.
+          </li>
+          <li>
+            Définition des relations entre les tables et chargement des données
+            nettoyées.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Ajout des nouvelles données sur le temps de jeu vidéo :</strong>
+        <ul>
+          <li>
+            Mise en place d'un questionnaire afin de récolter des données sur la
+            consommation de jeu vidéo pour les étudiants en étude supérieures.
+          </li>
+          <li>
+            Intégration des données collectées sur les habitudes de jeu vidéo
+            dans la base existante tout en garantissant l’intégrité des
+            relations.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Groupe Analyse -->
+  <section class="texte">
+    <h2>Groupe Analyse</h2>
+    <h3>Objectifs principaux :</h3>
+    <p>
+      Étudier les corrélations entre le temps de jeu vidéo, la consommation
+      d’alcool et les performances scolaires, en utilisant des méthodes
+      statistiques.
+    </p>
+    <h3>Tâches réalisées :</h3>
+    <ul>
+      <li>
+        <strong>Exploration des données existantes :</strong>
+        <ul>
+          <li>Analyse descriptive de l'étude "Student Alcohol consumption".</li>
+          <li>
+            Visualisation pour comprendre les relations entre les variables.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Analyse statistique :</strong>
+        <ul>
+          <li>
+            Calcul des corrélations entre les variables : par exemple,
+            identifier si la consommation d’alcool ou le temps de jeu vidéo
+            influence significativement les performances scolaires.
+          </li>
+          <li>
+            Identification d’effets combinés potentiels (ex. impact simultané du
+            jeu vidéo et de l’alcool).
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Comparaison :</strong>
+        <ul>
+          <li>
+            Comparaison des résultats obtenus entre la consommation d’alcool et
+            le temps de jeu vidéo, pour mieux cerner leurs impacts respectifs
+            sur les performances scolaires.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+
+  <!-- Groupe Interface Web -->
+  <section class="texte">
+    <h2>Groupe Interface Web</h2>
+    <h3>Objectifs principaux :</h3>
+    <p>
+      Concevoir une plateforme web interactive permettant de visualiser et
+      d’explorer les résultats obtenus par les deux autres groupes.
+    </p>
+    <h3>Tâches réalisées :</h3>
+    <ul>
+      <li>
+        <strong>Conception de l’interface utilisateur :</strong>
+        <ul>
+          <li>
+            Développement d’une interface intuitive pour afficher les données et
+            analyses, avec une mise en avant des corrélations observées.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Intégration de visualisations interactives :</strong>
+        <ul>
+          <li>
+            Création de graphiques interactifs pour permettre aux utilisateurs
+            d’explorer les résultats.
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Développement d’un système de navigation :</strong>
+        <ul>
+          <li>
+            Implémentation d’un menu permettant de naviguer entre les
+            différentes sections (ex. résumé des analyses, graphiques
+            spécifiques, détails des données).
+          </li>
+        </ul>
+      </li>
+      <li>
+        <strong>Connexion avec la base de données :</strong>
+        <ul>
+          <li>
+            Mise en place d’API REST pour récupérer les données dynamiques
+            depuis le serveur.
+          </li>
+          <li>
+            Affichage des données en temps réel lorsque la base est mise à jour.
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</div>

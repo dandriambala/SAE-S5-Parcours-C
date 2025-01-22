@@ -9,19 +9,16 @@ from controllers.student_controller import student_bp
 from controllers.student2_controller import student2_bp
 import threading
 
-# Application principale
 app = Flask(__name__)
 CORS(app)
 app.config.from_object(Config)
 db.init_app(app)
 
-# Application secondaire
 app2 = Flask(__name__)
 CORS(app2)
 app2.config.from_object(Config2)
 db2.init_app(app2)
 
-# Enregistrement des blueprints
 app.register_blueprint(tables_bp)
 app.register_blueprint(student_bp)
 
@@ -30,22 +27,19 @@ app2.register_blueprint(student2_bp)
 
 
 def run_app1():
-    """Démarre l'application principale sur le port 5000."""
     app.run(port=5000, debug=True, use_reloader=False)
 
 
 def run_app2():
-    """Démarre l'application secondaire sur le port 5001."""
     app2.run(port=5001, debug=True, use_reloader=False)
 
 
 if __name__ == '__main__':
-    # Créer et démarrer les threads pour chaque application
-    thread1 = threading.Thread(target=run_app1)
-    thread2 = threading.Thread(target=run_app2)
+    app1 = threading.Thread(target=run_app1)
+    app2 = threading.Thread(target=run_app2)
 
-    thread1.start()
-    thread2.start()
+    app1.start()
+    app2.start()
 
-    thread1.join()
-    thread2.join()
+    app1.join()
+    app2.join()

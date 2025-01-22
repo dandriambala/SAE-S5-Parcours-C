@@ -156,4 +156,15 @@
   line-height: 1.8; /* Espacement pour un confort de lecture */
 }
 
+.download-button {
+  padding: 10px 20px;
+  font-size: 1.1rem;
+  font-weight: italic;
+  border: 2px solid #d9b8c6;
+  border-radius: 8px;
+  background-color: #997a8d;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
 
