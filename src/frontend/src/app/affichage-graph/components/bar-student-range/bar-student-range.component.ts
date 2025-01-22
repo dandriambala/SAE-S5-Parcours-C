@@ -176,6 +176,7 @@ export class BarStudentRangeComponent implements OnInit {
     ...
   ];
   */
+ 
   private sortStudentsDatasetPerRangeNotes(dataset: DatasetItem[]): DatasetItem[] {
     const mergedMap = new Map<string, { name: string; value: number }[]>();
 
@@ -290,7 +291,7 @@ export class BarStudentRangeComponent implements OnInit {
 
   /**
    * Fonctions pour sortie
-   */
+   * */
 
   private calculateAverageAlcool(student: schoolData): number {
     return Math.ceil((student.Dalc + student.Walc) / 2)
@@ -364,10 +365,10 @@ export class BarStudentRangeComponent implements OnInit {
     this.chartData = this.getAllStudentRangePerGoOutLevel()
     this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
   }
-  
+ 
   /**
    * Fonctions pour alcool
-   */
+  */ 
 
   private getAlcoolLevelName(value: number): string {
     return this.alcool.find(id => id.value === value)?.name || 'N/A';

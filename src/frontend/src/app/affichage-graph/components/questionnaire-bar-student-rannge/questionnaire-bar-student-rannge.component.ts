@@ -96,7 +96,7 @@ export class QuestionnaireBarStudentRanngeComponent implements OnInit {
   ngOnInit(): void {
     this.studentDataService.getStudentDataQuestionnaire().subscribe((data: schoolDataQuestionnaire[]) => {
       this.students = data;
-
+      console.log(data)
       this.studentRanges = [
         { name: '< 8', list: this.students.filter(x => x.avg_grade === "[0-8[") },
         { name: '8 - 10', list: this.students.filter(x => x.avg_grade === "[8-10[") },
@@ -155,7 +155,7 @@ export class QuestionnaireBarStudentRanngeComponent implements OnInit {
 
   /**
   * Fonctions pour furtherStudy
-  */
+  
 
   private getfurtherStudyLevelName(value: number): string {
     return this.furtherStudy.find(id => id.value === value)?.name || 'N/A';
@@ -227,7 +227,7 @@ export class QuestionnaireBarStudentRanngeComponent implements OnInit {
     this.chartData = this.getStudentRangeSummary();
     this.chartData = this.getAllStudentRangePerfurtherStudyLevel()
     this.combinedChartData = this.sortStudentsDatasetPerRangeNotes(this.chartData);
-  }
+  }*/
   /**
   * Fonctions pour game
   */
