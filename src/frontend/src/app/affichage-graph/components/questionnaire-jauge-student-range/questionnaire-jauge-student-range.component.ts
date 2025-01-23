@@ -99,8 +99,8 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
     { name: "[16-20]", value_min: 16, value_max: 20 },
   ];
   customColors = [
-    { name: 'Moyenne maximale', value: '#b06f8e' }, 
-    { name: 'Moyenne minimale', value: '#FFC107' }
+    { name: 'Moyenne maximale', value: '#997A8D' }, 
+    { name: 'Moyenne minimale', value: '#3B5068' }
   ];
 
   // Niveaux sélectionnés pour les curseurs

@@ -243,6 +243,6 @@ input[type="range"]:focus::-webkit-slider-runnable-track {
 }
 
 .gauge-value-text .min-value-text {
-  color: #FFC107; 
+  color: #3B5068; 
   font-weight: bold; 
 }
