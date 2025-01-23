@@ -82,11 +82,7 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
     { name: "Temps aux autres activités : > 1 h", value: 1 },
     { name: "Temps aux autres activités :  > 2 h", value: 2 },
     { name: "Temps aux autres activités : > 3 h", value: 3 },
-    { name: "Temps aux autres activités : > 4 h", value: 4 },
-    { name: "Temps aux autres activités : > 5 h", value: 5 },
-    { name: "Temps aux autres activités : > 6 h", value: 6 },
-    { name: "Temps aux autres activités : > 7 h", value: 7 },
-    { name: "Temps aux autres activités : > 8 h", value: 8 }
+    { name: "Temps aux autres activités : > 4 h", value: 4 }
   ];
 
   //Notes
@@ -116,18 +112,10 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
   ngOnInit(): void {
     this.studentDataService.getStudentDataQuestionnaire().subscribe((data: schoolDataQuestionnaire[]) => {
       this.students = data;
-      this.updateOverallAverage(this.students);
+      this.updateOverallAverage(this.getStudentsFirstPart());
     });
   }
 
-  /*updateOverallAverage(filteredStudents: schoolDataQuestionnaire[]): void {
-    this.overallAverage = [
-      {
-        name: 'Moyenne générale',
-        series: this.calculateOverallAverage(filteredStudents),
-      },
-    ];
-  }*/
 
   updateOverallAverage(filteredStudents: schoolDataQuestionnaire[]): void {
     const avgMin = this.calculateOverallMin(filteredStudents);
@@ -232,27 +220,71 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
 
   // Appliquer le filtre en fonction de l'onglet actif
 
+  getStudentsFirstPart() {
+  
+      let filteredStudents: schoolDataQuestionnaire[] = [];
+  
+      if (this.activeTab === 'jeu') {
+        filteredStudents = this.students.filter((x) => {
+          const gametimeValue =
+            this.getTempsJeuValue(x.vgTimeSm) + this.getTempsJeuValue(x.vgTimeWe);
+          return gametimeValue == 0;
+        })
+      }
+      else if (this.activeTab === 'loisir') {
+        filteredStudents = this.students.filter((x) => {
+          const hobbytimeValue =
+            this.getTempsHobbyValue(x.hobbyTimeSm) + this.getTempsHobbyValue(x.hobbyTimeWe);
+          return hobbytimeValue == 0;
+        });
+      }
+      else if (this.activeTab === 'ménage') {
+        filteredStudents = this.students.filter((x) => {
+          const othertimeValue =
+            this.getTempsOtherValue(x.chordsTimeSm) +
+            this.getTempsOtherValue(x.chordsTimeWe)
+          return othertimeValue == 0;
+        });
+      }
+      return filteredStudents
+    }
+
   onSliderLevelToggle(): void {
     let filteredStudents: schoolDataQuestionnaire[] = [];
     if (this.activeTab === 'jeu') {
+      if (this.cursorValue == 0) {
+        filteredStudents = this.getStudentsFirstPart()
+      }
+      else {
       filteredStudents = this.students.filter((x) => {
         const gametimeValue =
           this.getTempsJeuValue(x.vgTimeSm) + this.getTempsJeuValue(x.vgTimeWe);
         return gametimeValue >= this.cursorValue;
       });
+    }
     } else if (this.activeTab === 'loisir') {
+      if (this.cursorValue == 0) {
+        filteredStudents = this.getStudentsFirstPart()
+      }
+      else {
       filteredStudents = this.students.filter((x) => {
         const hobbytimeValue =
           this.getTempsHobbyValue(x.hobbyTimeSm) + this.getTempsHobbyValue(x.hobbyTimeWe);
         return hobbytimeValue >= this.cursorValue;
       });
+    }
     } else if (this.activeTab === 'ménage') {
+      if (this.cursorValue == 0) {
+        filteredStudents = this.getStudentsFirstPart()
+      }
+      else {
       filteredStudents = this.students.filter((x) => {
         const othertimeValue =
           this.getTempsOtherValue(x.chordsTimeSm) +
           this.getTempsOtherValue(x.chordsTimeWe)
         return othertimeValue >= this.cursorValue;
       });
+    }
     }
 
     // Mettre à jour les jauges avec les étudiants filtrés
