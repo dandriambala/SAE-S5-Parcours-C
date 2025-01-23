@@ -105,7 +105,7 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
 
   // Niveaux sélectionnés pour les curseurs
   cursorValue: number = 0;
-  activeTab: 'jeu' | 'loisir' | 'réseaux/ménage' = 'jeu';
+  activeTab: 'jeu' | 'loisir' | 'ménage' = 'jeu';
   activeAverageTab: 'general' | 'english' = 'general'; // Par défaut, sur "Moyenne générale"
 
   avgMin: number = 0;
@@ -213,7 +213,7 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
   }
 
   // Basculer entre les onglets
-  setActiveTab(tab: 'jeu' | 'loisir' | 'réseaux/ménage'): void {
+  setActiveTab(tab: 'jeu' | 'loisir' | 'ménage'): void {
     this.activeTab = tab;
     const maxSliderValue = this.getMaxSliderValue();
     if (this.cursorValue > maxSliderValue) {
@@ -246,12 +246,11 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
           this.getTempsHobbyValue(x.hobbyTimeSm) + this.getTempsHobbyValue(x.hobbyTimeWe);
         return hobbytimeValue >= this.cursorValue;
       });
-    } else if (this.activeTab === 'réseaux/ménage') {
+    } else if (this.activeTab === 'ménage') {
       filteredStudents = this.students.filter((x) => {
         const othertimeValue =
           this.getTempsOtherValue(x.chordsTimeSm) +
-          this.getTempsOtherValue(x.chordsTimeWe) +
-          this.getTempsOtherValue(x.socialMediaTime);
+          this.getTempsOtherValue(x.chordsTimeWe)
         return othertimeValue >= this.cursorValue;
       });
     }
@@ -281,7 +280,7 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
       return this.tempsJeuCumule.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
     } else if (this.activeTab === 'loisir') {
       return this.tempsHobbyCumule.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
-    } else if (this.activeTab === 'réseaux/ménage') {
+    } else if (this.activeTab === 'ménage') {
       return this.tempsOtherCumule.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
     }
     return 'Inconnu';
@@ -292,7 +291,7 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
       return this.tempsJeuCumule.length - 1; // Dernier index dans tempsJeuCumule
     } else if (this.activeTab === 'loisir') {
       return this.tempsHobbyCumule.length - 1; // Dernier index dans tempsHobbyCumule
-    } else if (this.activeTab === 'réseaux/ménage') {
+    } else if (this.activeTab === 'ménage') {
       return this.tempsOtherCumule.length - 1; // Dernier index dans tempsOtherCumule
     }
     return 0; // Valeur par défaut au cas où

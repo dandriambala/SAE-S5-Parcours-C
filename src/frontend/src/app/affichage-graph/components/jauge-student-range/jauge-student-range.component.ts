@@ -41,14 +41,14 @@ export class JaugeStudentRangeComponent implements OnInit {
 
   // Niveaux sélectionnés pour les curseurs
   cursorValue: number = 1;
-  activeTab: 'trajet' | 'révision' = 'trajet';
+  activeTab: 'trajet journalier' | 'révision hebdomadaire' = 'trajet journalier';
 
   constructor(private studentDataService: StudentDataService) { }
 
   ngOnInit(): void {
     this.studentDataService.getStudentData().subscribe((data: schoolData[]) => {
       this.students = data;
-      this.updateOverallAverage(this.students);
+      this.updateOverallAverage(this.getStudentsFirstPart());
     });
   }
 
@@ -80,8 +80,28 @@ export class JaugeStudentRangeComponent implements OnInit {
     return totalSum / tab.length;
   }
 
+  getStudentsFirstPart() {
+
+    let filteredStudents: schoolData[] = [];
+
+    if (this.activeTab === 'trajet journalier') {
+      filteredStudents = this.students.filter((x) => {
+        let traveltimeValue = this.trajet.filter(y => y.value_name === x.traveltime)[0].value
+        return traveltimeValue == 1
+      });
+    }
+    else if (this.activeTab === 'révision hebdomadaire') {
+      filteredStudents = this.students.filter((x) => {
+        let studytimeValue = this.revision.filter(y => y.value_name === x.studytime)[0].value
+        return studytimeValue == 1
+      });
+    }
+    return filteredStudents
+
+  }
+
   // Basculer entre les onglets
-  setActiveTab(tab: 'trajet' | 'révision'): void {
+  setActiveTab(tab: 'trajet journalier' | 'révision hebdomadaire'): void {
     this.activeTab = tab;
     this.onSliderLevelToggle(); // Applique le filtre dès que l'onglet change
   }
@@ -90,25 +110,35 @@ export class JaugeStudentRangeComponent implements OnInit {
 
   onSliderLevelToggle(): void {
     let filteredStudents: schoolData[] = [];
-    if (this.activeTab === 'trajet') {
-      filteredStudents = this.students.filter((x) => 
-        { 
+
+    if (this.activeTab === 'trajet journalier') {
+      if (this.cursorValue == 1) {
+        filteredStudents = this.getStudentsFirstPart()
+      }
+      else {
+        filteredStudents = this.students.filter((x) => {
           let traveltimeValue = this.trajet.filter(y => y.value_name === x.traveltime)[0].value
           return traveltimeValue >= this.cursorValue
-      });
-    } else if (this.activeTab === 'révision') {
-      filteredStudents = this.students.filter((x) => { 
-        let studytimeValue = this.revision.filter(y => y.value_name === x.studytime)[0].value
-        return studytimeValue >= this.cursorValue
-    });
+        });
+      }
+    } else if (this.activeTab === 'révision hebdomadaire') {
+      if (this.cursorValue == 1) {
+        filteredStudents = this.getStudentsFirstPart()
+      }
+      else {
+        filteredStudents = this.students.filter((x) => {
+          let studytimeValue = this.revision.filter(y => y.value_name === x.studytime)[0].value
+          return studytimeValue >= this.cursorValue
+        });
+      }
     }
     this.updateOverallAverage(filteredStudents);
   }
 
   getSliderLabel(): string {
-    if (this.activeTab === 'trajet') {
+    if (this.activeTab === 'trajet journalier') {
       return this.trajet.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
-    } else if (this.activeTab === 'révision') {
+    } else if (this.activeTab === 'révision hebdomadaire') {
       return this.revision.find((item) => item.value === this.cursorValue)?.name || 'Inconnu';
     }
     return 'Inconnu';
