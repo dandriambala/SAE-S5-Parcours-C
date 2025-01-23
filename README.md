@@ -9,4 +9,4 @@ Pour le frontend :
 Pour le backend : 
 -Se déplacer dans le dossier backend → cd src/backend
 -Installation des dépendances / librairies python qui sont dans requirements.txt → pip install -r requirements.txt
--Une fois les dépendances installées → flask run ou python3 app.py
+-Une fois les dépendances installées → python / python3 app.py sur un 1er terminal et python / python3 app2.py sur un 2e terminal
