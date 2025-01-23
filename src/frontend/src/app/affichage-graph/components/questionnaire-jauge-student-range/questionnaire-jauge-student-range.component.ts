@@ -138,7 +138,6 @@ export class QuestionnaireJaugeStudentRangeComponent implements OnInit {
         count++;
       }
     });
-
     return count === 0 ? 0 : totalMin / count;
   }
 
