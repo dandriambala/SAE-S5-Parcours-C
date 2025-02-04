@@ -14,6 +14,8 @@
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             "outputPath": "dist/frontend",
+            "baseHref": "/SAE-S5-Parcours-C/",
+            "deployUrl": "/SAE-S5-Parcours-C/",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
