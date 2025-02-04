@@ -6,8 +6,10 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class StudentDataService {
-  private  readonly kaggleUrl = 'http://localhost:5000/students'; 
-  private  readonly QuestionnaireUrl = 'http://localhost:5001/students2';
+  //private  readonly kaggleUrl = 'http://localhost:5000/students'; 
+  private  readonly kaggleUrl = '../assets/dataset_kaggle.json'; 
+  //private  readonly QuestionnaireUrl = 'http://localhost:5001/students2';
+  private  readonly QuestionnaireUrl = '../assets/dataset_questionnaire.json';
 
   constructor(private http: HttpClient) {}
 
